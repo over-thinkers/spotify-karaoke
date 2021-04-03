@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import NavBar from './NavBar'
 
 function app() {
   return (
     <div>
-      <h1>React APP is working</h1>
+      <NavBar />
     </div>
   )
 }
