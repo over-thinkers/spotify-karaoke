@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import Login from './Login';
+import Dashboard from './Dashboard';
 
-function app() {
-  return (
-    <div>
-      <h1>React APP is working</h1>
-    </div>
-  )
+const code = new URLSearchParams(window.location.search).get('code');
+
+function App() {
+  return code ? <Dashboard code={code} /> : <Login />
 }
 
-export default app
+export default App
