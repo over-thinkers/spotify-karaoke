@@ -4,11 +4,12 @@ import NavBar from './NavBar'
 import NavLoggedIn from './NavLoggedIn'
 
 function app() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(true)
+  
   return (
-    <div>
+    <>
       {loggedIn ? <NavLoggedIn /> : <NavBar />}
-    </div>
+    </>
   )
 }
 

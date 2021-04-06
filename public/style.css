@@ -140,3 +140,8 @@ img {
 .profile {
   font-size: 15px;
 }
+
+.arrow {
+  margin-left: 10px;
+  margin-top: 5px;
+}

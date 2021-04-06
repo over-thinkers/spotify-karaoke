@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { MdLibraryMusic } from "react-icons/md";
+import { BsChevronDown } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
 
 function NavLoggedIn() {
   return (
-    <div>
+    <>
       <navbar>
         <ul class="nav-list2">
           <li class="nav-item2">
@@ -31,7 +31,7 @@ function NavLoggedIn() {
             <p class="line"></p>
           </li>
           <li class="nav-item2">
-            <a href="#">
+            <a href="#" onClick={()=>{alert('hello')}}>
                 <div class='loggedIn'>
                     <div class="userLogo">
                         <p><FaRegUserCircle size={30}/></p>
@@ -39,12 +39,15 @@ function NavLoggedIn() {
                     <div class='profile'>
                         <p>Profile</p>
                     </div>
+                    <div class='arrow'>
+                        <p><BsChevronDown size={18}/></p>
+                    </div>
                 </div>
             </a>
           </li>
         </ul>
       </navbar>
-    </div>
+    </>
   )
 }
 

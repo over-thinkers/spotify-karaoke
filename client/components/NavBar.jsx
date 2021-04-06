@@ -5,7 +5,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 
 function NavBar() {
   return (
-    <div>
+    <>
       <navbar>
         <ul class="nav-list">
           <li class="nav-item">
@@ -32,7 +32,7 @@ function NavBar() {
           </li>
         </ul>
       </navbar>
-    </div>
+    </>
   )
 }
 
