@@ -31,7 +31,7 @@ function NavLoggedIn() {
             <p class="line"></p>
           </li>
           <li class="nav-item2">
-            <a href="#" onClick={()=>{alert('hello')}}>
+            <a href="#" onClick={()=>{alert('modal to logout')}}>
                 <div class='loggedIn'>
                     <div class="userLogo">
                         <p><FaRegUserCircle size={30}/></p>
