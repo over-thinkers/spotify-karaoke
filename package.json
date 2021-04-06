@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "nodemon server/index.js",
     "build": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,7 +26,6 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "live-server": "^1.2.1",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "react": "^17.0.2",
