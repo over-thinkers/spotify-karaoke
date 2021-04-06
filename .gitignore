@@ -1,4 +1,3 @@
 node_modules
 public/app.js
 .env
-package-lock.json
