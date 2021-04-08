@@ -4,7 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: 'fe60e323d09f45e7bf069353680f5a1a'
+  clientId: 'dca3db4a5a914cae9632a6c5ebba47f0'
 })
 
 const Dashboard = ({ code }) => {

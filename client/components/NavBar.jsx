@@ -8,32 +8,32 @@ function NavBar() {
 
   return (
     <>
-      <navbar>
-        <ul class="nav-list">
-          <li class="nav-item">
-            <div class="logoName">
-              <div class="logo">
+      <div>
+        <ul className="nav-list">
+          <li className="nav-item">
+            <div className="logoName">
+              <div className="logo">
                 <a href="#"><img src="https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png" width="42px"/></a>
               </div>
-              <div class="name">
+              <div className="name">
                 <p>Spoti-oki</p>
               </div>
             </div>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href="#">Home</a>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href="#">About</a>
           </li>
-          <li class="nav-item">
-            <p class="line"></p>
+          <li className="nav-item">
+            <p className="line"></p>
           </li>
-          <li class="nav-item">
+          <li className="nav-item">
             <a href={AUTH_URL}>Log In</a>
           </li>
         </ul>
-      </navbar>
+      </div>
     </>
   )
 }

@@ -5,6 +5,7 @@ const SearchResultTrack = ({ track }) => {
   return (
     <div>
       <img src={albumUrl} />
+      {console.log('the tracks', uri)}
       <div>
         <div>{title}</div>
         <div>{artist}</div>

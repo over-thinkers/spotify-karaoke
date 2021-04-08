@@ -8,13 +8,13 @@ function Header() {
 
   return (
     <>
-        <div class="headerContainer">
-            <div class="title">
+        <div className="headerContainer">
+            <div className="title">
                 <h1>Log In. Using Spotify</h1>
             </div>
-            <div class="playlistButton">
+            <div className="playlistButton">
                 <a href={AUTH_URL}>
-                    <button class='button'>{code ? <Dashboard code={code} /> : <Login />}</button>
+                    <button className='button'>{code ? <Dashboard code={code} /> : <Login />}</button>
                 </a>
             </div>
       </div>

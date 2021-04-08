@@ -4,12 +4,12 @@ function HeaderLoggedIn() {
   
   return (
     <>
-      <div class="headerContainer2">
-            <div class="title2">
+      <div className="headerContainer2">
+            <div className="title2">
                 <h1>Sing Aloud. Be Happy</h1>
             </div>
-            <div class="playlistButton2">
-                <button class='button2' onClick={()=>{alert('send user to Playlist page')}}>MY PLAYLIST</button>
+            <div className="playlistButton2">
+                <button className='button2' onClick={()=>{alert('send user to Playlist page')}}>MY PLAYLIST</button>
             </div>
       </div>
     </>
