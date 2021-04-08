@@ -4,17 +4,17 @@ import Dashboard from './Dashboard';
 
 function Header() {
     const code = new URLSearchParams(window.location.search).get('code');
-    const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=fe60e323d09f45e7bf069353680f5a1a&response_type=code&redirect_uri=http://localhost:3000&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state%20playlist-modify-public";
+    const AUTH_URL = 'https://accounts.spotify.com/authorize?client_id=dca3db4a5a914cae9632a6c5ebba47f0&response_type=code&redirect_uri=http://localhost:3000/&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state'
 
   return (
     <>
-        <div class="headerContainer">
-            <div class="title">
+        <div className="headerContainer">
+            <div className="title">
                 <h1>Log In. Using Spotify</h1>
             </div>
-            <div class="playlistButton">
+            <div className="playlistButton">
                 <a href={AUTH_URL}>
-                    <button class='button'>{code ? <Dashboard code={code} /> : <Login />}</button>
+                    <button className='button'>{code ? <Dashboard code={code} /> : <Login />}</button>
                 </a>
             </div>
       </div>
