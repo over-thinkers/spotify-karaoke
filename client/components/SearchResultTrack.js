@@ -7,10 +7,8 @@ const SearchResultTrack = ({ track }) => {
       <div className="songCover">
       <img src={albumUrl} className="albumCover"/>
       </div>
-      {/* <div> */}
         <div className='songTitle'>{title}</div>
         <div className='songArtist'>{artist}</div>
-      {/* </div> */}
     </div>
   )
 }

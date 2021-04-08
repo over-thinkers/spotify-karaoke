@@ -9,25 +9,26 @@ const spotifyApi = new SpotifyWebApi({
 
 const Dashboard = ({ code }) => {
   const accessToken = useAuth(code);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
 
   const searchTracks = () => {
     spotifyApi.searchTracks(search)
       .then(res => {
-        setSearchResults(res.body.tracks.items.map(track => {
-
+        setSearchResults(res.body.tracks.items.slice(0, 6).map(track => {
           const smallestImage = track.album.images.reduce((smallest, current) => {
             if (current.height < smallest.height) return current
             return smallest
           })
 
+          const largestImage = track.album.images[0]
+
           return {
             artist: track.artists[0].name,
             title: track.name,
             uri: track.uri,
-            albumUrl: smallestImage.url
+            albumUrl: largestImage.url
           }
         }))
       })
@@ -71,7 +72,9 @@ const Dashboard = ({ code }) => {
       </div>
       <div className="songList">
         {searchResults.map(track => (
+          <div className="mappedItems">
           <SearchResultTrack track={track} key={track.uri} />
+          </div>
         ))}
       </div>
     </div>

@@ -13,10 +13,6 @@ app.use(cors());
 app.use(bodyParser.json())
 
 app.post('/refresh', (req, res) => {
-
-  console.log(process.env.REDIRECT_URI)
-  console.log(process.env.CLIENT_ID)
-  console.log(process.env.CLIENT_SECRET)
   const refreshToken = req.body.refreshToken
   const spotifyApi = new SpotifyWebApi({
     redirectUri: process.env.REDIRECT_URI,
@@ -39,10 +35,6 @@ spotifyApi.refreshAccessToken()
 })
 
 app.post('/login', (req, res) => {
-
-  console.log(process.env.REDIRECT_URI)
-  console.log(process.env.CLIENT_ID)
-  console.log(process.env.CLIENT_SECRET)
     // passing the code from client side
   const code = req.body.code
 
