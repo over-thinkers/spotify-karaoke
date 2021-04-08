@@ -14,7 +14,7 @@ function App() {
     <>
       {code ? <NavLoggedIn /> : <NavBar />}
       {code ? <HeaderLoggedIn /> : <Header/>}
-      {code ? <Dashboard code={code}/> : <Login /> }
+      {code ? <Dashboard code={code}/> : null }
     </>
   )
 }

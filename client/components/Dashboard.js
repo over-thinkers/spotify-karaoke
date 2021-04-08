@@ -53,17 +53,28 @@ const Dashboard = ({ code }) => {
 
   return (
     <>
-      <input 
+    <div className="songContainer">
+      <div className="title">
+        <h1>Looking for music?</h1>
+      </div>
+      <div className="subtitle">
+        <p>Start listening to the best new releases</p>
+      </div>
+      <div className="songSearch">
+      <input
+        className="songSearch" 
         type="search"
         placeholder="Search by song or artist"
         value={search}
         onChange={e => setSearch(e.target.value)}
       />
-      <div>
+      </div>
+      <div className="songList">
         {searchResults.map(track => (
           <SearchResultTrack track={track} key={track.uri} />
         ))}
       </div>
+    </div>
     </>
   )
 }

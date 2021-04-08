@@ -19,6 +19,7 @@ body {
   justify-content: flex-end;
   align-items: center;
   font-weight: 900;
+  z-index: 99;
 }
 
 .nav-item {
@@ -89,6 +90,7 @@ img {
   justify-content: flex-end;
   align-items: center;
   font-weight: 900;
+  z-index: 99;
 }
 
 .nav-item2 {
@@ -226,4 +228,45 @@ button:focus {
 
 .button2:hover {
   cursor: pointer;
+}
+
+/* ------------ Song INFO -------------*/
+.albumCover {
+  width:  250px;
+}
+
+.songContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 150px;
+}
+
+.songSearch {
+  border: #000 1px solid;
+  border-radius: 50px;
+  height: 50px;
+  width: 250px;
+  text-align: center;
+}
+
+.songSearch:focus {
+  outline:0;
+}
+
+.subtitle {
+  margin-top: -60px;
+}
+
+.songList {
+  padding-top: 40px;
+}
+
+.songInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-bottom: 20px;
 }
