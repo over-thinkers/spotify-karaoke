@@ -5,13 +5,12 @@ import SearchResultTrack from './SearchResultTrack';
 import AudioPlayer from './AudioPlayer';
 
 const spotifyApi = new SpotifyWebApi({
-  // clientId: 'fe60e323d09f45e7bf069353680f5a1a'
   clientId: 'dca3db4a5a914cae9632a6c5ebba47f0'
 })
 
 const Dashboard = ({ code }) => {
   const accessToken = useAuth(code);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
 
@@ -24,18 +23,19 @@ const Dashboard = ({ code }) => {
   const searchTracks = () => {
     spotifyApi.searchTracks(search)
       .then(res => {
-        setSearchResults(res.body.tracks.items.map(track => {
-
+        setSearchResults(res.body.tracks.items.slice(0, 6).map(track => {
           const smallestImage = track.album.images.reduce((smallest, current) => {
             if (current.height < smallest.height) return current
             return smallest
           })
 
+          const largestImage = track.album.images[0]
+
           return {
             artist: track.artists[0].name,
             title: track.name,
             uri: track.uri,
-            albumUrl: smallestImage.url
+            albumUrl: largestImage.url
           }
         }))
       })
@@ -71,18 +71,31 @@ const Dashboard = ({ code }) => {
 
   return (
     <>
-      <input 
+    <div className="songContainer">
+      <div className="title">
+        <h1>Looking for music?</h1>
+      </div>
+      <div className="subtitle">
+        <p>Start listening to the best new releases</p>
+      </div>
+      <div className="songSearch">
+      <input
+        className="songSearch" 
         type="search"
         placeholder="Search by song or artist"
         value={search}
         onChange={e => setSearch(e.target.value)}
       />
-      <div>
+      </div>
+      <div className="songList">
         {searchResults.map(track => (
-          <SearchResultTrack track={track} key={track.uri} selectTrack={selectTrack} />
+          <div className="mappedItems">
+            <SearchResultTrack track={track} key={track.uri} selectTrack={selectTrack} />
+          </div>
         ))}
       </div>
-      <AudioPlayer accessToken={accessToken} tracks={tracks} />
+    </div>
+    <AudioPlayer accessToken={accessToken} tracks={tracks} />
     </>
   )
 }
