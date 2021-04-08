@@ -4,6 +4,6 @@ const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=fe60e323d09f4
 
 export default function Login() {
   return (
-      <a href={AUTH_URL}>LOGIN WITH SPOTIFY</a>
+      <a href={AUTH_URL} class='button'>LOGIN</a>
   )
 }
