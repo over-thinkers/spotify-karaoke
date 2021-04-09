@@ -290,3 +290,19 @@ button:focus {
   flex-basis: 33.333333%;
   width: 100%;
 }
+
+/* --------- PLAYLIST ----------*/
+.playlistContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  background-color: red;
+  height: 500px;
+  width: 100%;
+}
+
+.playlistArtist {
+  margin-top: -40px;
+}

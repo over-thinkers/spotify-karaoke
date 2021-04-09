@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+// import { useLocation} from "react-router";
 import useAuth from './useAuth'
 import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
@@ -8,6 +9,8 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 const Dashboard = ({ code }) => {
+  // let location = useLocation();
+  // console.log(location.state)
   const accessToken = useAuth(code);
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
@@ -56,7 +59,7 @@ const Dashboard = ({ code }) => {
     <>
     <div className="songContainer">
       <div className="title">
-        <h1>Looking for music?</h1>
+  <h1>Looking for music?</h1>
       </div>
       <div className="subtitle">
         <p>Start listening to the best new releases</p>
