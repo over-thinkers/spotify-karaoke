@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Route, BrowserRouter as Router, Switch, useLocation, withRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
 import NavBar from './NavBar';
 import NavLoggedIn from './NavLoggedIn';
 import Header from './Header';
 import HeaderLoggedIn from './HeaderLoggedIn';
 import Dashboard from './Dashboard'
-import Login from './Login'
 import Playlist from './Playlist'
 
 function _ScrollToTop(props) {

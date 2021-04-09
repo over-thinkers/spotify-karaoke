@@ -9,8 +9,6 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 const Dashboard = ({ code }) => {
-  // let location = useLocation();
-  // console.log(location.state)
   const accessToken = useAuth(code);
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
