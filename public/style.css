@@ -298,11 +298,24 @@ button:focus {
   align-items: center;
   flex-direction: column;
   padding-top: 100px;
-  background-color: red;
-  height: 500px;
+  padding-bottom: 50px;
+  background-color: #F2B858;
+  color: #fff;
+  height: 100%;
   width: 100%;
 }
 
 .playlistArtist {
   margin-top: -40px;
+}
+
+.playlistLyrics {
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  line-height: 1.42857143;
+  /* max-width: 75ch; */
+  /* padding-right: 33%;
+  padding-left: 33%; */
+  white-space: pre;
 }
