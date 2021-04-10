@@ -319,3 +319,55 @@ button:focus {
   padding-left: 33%; */
   white-space: pre;
 }
+
+/*------- PLAYLIST -------*/
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  height: 250px;
+}
+
+.playlistBox {
+  background-color: orange;
+  align-items: center;
+  text-align: center;
+  height: 120px;
+  width: 500px;
+  overflow: scroll;
+}
+
+.playlistSongList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  /* background-color: orange; */
+  height: 30px;
+  width: 100%;
+  /* overflow: scroll; */
+}
+
+.playlistHeader {
+  background-color: purple;
+  width: 500px;
+  text-align: center;
+}
+
+.playlistH1 {
+  font-size: 20px;
+}
+
+.playlistImg {
+  width: 20px;
+}
+
+.playlistTitle {
+  margin-right: 5px;
+}
+
+.playlistAritst {
+  margin-right: 15px;
+}
