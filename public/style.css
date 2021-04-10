@@ -292,7 +292,7 @@ button:focus {
 }
 
 /* --------- PLAYLIST ----------*/
-.playlistContainer {
+.lyricContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -305,11 +305,11 @@ button:focus {
   width: 100%;
 }
 
-.playlistArtist {
+.lyricArtist {
   margin-top: -40px;
 }
 
-.playlistLyrics {
+.lyricLyrics {
   box-sizing: border-box;
   text-align: center;
   align-items: center;

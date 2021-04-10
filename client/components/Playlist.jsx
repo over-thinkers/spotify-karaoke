@@ -1,40 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import Dashboard from './Dashboard';
 import { useLocation} from "react-router";
 import axios from 'axios'
+import PlaylistItems from './PlaylistItems'
 
 function Playlist() {
+    const [playlist, setPlaylist] = useState([])
+    const [user, setUser] = useState('')
     let [currentSong, setCurrentSong] = useState([])
     let location = useLocation();
     currentSong = location.state
-    const [lyrics, setLyrics] = useState('')
+    console.log(location.state)
+
+    playlist.push(location.state)
+    // playlist = location.state
 
     useEffect(() => {
-        if(!currentSong) return
-        axios.get('http://localhost:3000/lyrics', {
+        const artist = location.state.artist;
+        const title = location.state.title;
+        const albumUrl = location.state.albumUrl;
+        axios.post('http://localhost:3000/postplaylist', {artist, title, albumUrl})
+            .then((res) => {
+                console.log("res data frmo client", res.data)
+                // once posted run the get playlist method
+            })
+            .catch((err) => {
+                console.log('error at playlist component', err)
+            })
+        // add new song to the playlist database
+        // get playlist from database based on users email
+    }, [currentSong])
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/getplaylist', {
             params: {
-                track: currentSong.title,
-                artist: currentSong.artist,
+                userEmail: 'hi@gmail.com'
             }
         })
-        .then((res) => {
-            setLyrics(res.data.lyrics)
-        })
-    }, [currentSong])
+            .then((res) => {
+                console.log("res data from client", res.data)
+                // once posted run the get playlist method
+            })
+            .catch((err) => {
+                console.log('error at playlist component', err)
+            })
+        // get playlist from database based on users email
+    }, [playlist])
 
   return (
     <>
         <div className="playlistContainer">
-            <div classNmame="playlistTitle">
-                <h1>{currentSong.title} by</h1>
-            </div>
-            <div className="playlistArtist">
-                <h1>{currentSong.artist}</h1>
-            </div>
-            <div className="playlistLyrics">
-                <p>{lyrics}</p>
-            </div>
+           {playlist.map((songs, index) => {
+               return <PlaylistItems songs={songs} key={index}/>
+           })}
         </div>
     </>
   )
