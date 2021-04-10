@@ -6,7 +6,7 @@ function PlaylistItems({ songs }) {
         <div className="playlistSongList">
 
           <div className="playlistTitle">
-            {`+ ${songs.title} by ` }
+            {`- ${songs.title} by ` }
           </div>
 
           <div className="playlistAritst">

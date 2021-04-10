@@ -16,7 +16,7 @@ function Playlist() {
     let [currentSong, setCurrentSong] = useState([])
     let location = useLocation();
     currentSong = location.state
-    // console.log("song data", location.state)
+    console.log("song data", location.state)
 
     // playlist.push(location.state)
 
@@ -24,6 +24,7 @@ function Playlist() {
         const artist = location.state.artist;
         const title = location.state.title;
         const albumUrl = location.state.albumUrl;
+        
         axios.post('http://localhost:3000/postplaylist', {artist, title, albumUrl})
             .then((res) => {
                 console.log("res data frmo client", res.data)
@@ -37,9 +38,11 @@ function Playlist() {
     }, [currentSong])
 
     useEffect(() => {
+
+        const userEmail = location.state.userEmail;
         axios.get('http://localhost:3000/getplaylist', {
             params: {
-                userEmail: 'hi@gmail.com'
+                userEmail
             }
         })
             .then((res) => {
