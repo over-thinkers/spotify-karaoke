@@ -32,10 +32,10 @@ function App() {
           </Route>
 
           <Route path="/playlist" exact>
-            {/* <NavLoggedIn /> */}
             <Lyrics />
             <Playlist />
             <Dashboard code={code} />
+            <NavLoggedIn />
           </Route>
 
         </Switch>

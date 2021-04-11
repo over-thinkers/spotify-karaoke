@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import Dashboard from './Dashboard';
 import { useLocation} from "react-router";
 import axios from 'axios'
 

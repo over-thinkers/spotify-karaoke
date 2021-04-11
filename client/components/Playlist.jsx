@@ -24,10 +24,11 @@ function Playlist() {
         const artist = location.state.artist;
         const title = location.state.title;
         const albumUrl = location.state.albumUrl;
+        const userEmail = location.state.userEmail;
         
-        axios.post('http://localhost:3000/postplaylist', {artist, title, albumUrl})
+        axios.post('http://localhost:3000/postsong', {artist, title, albumUrl, userEmail})
             .then((res) => {
-                console.log("res data frmo client", res.data)
+                console.log("res data frmo client:", res.data)
                 // once posted run the get playlist method
             })
             .catch((err) => {
@@ -38,11 +39,16 @@ function Playlist() {
     }, [currentSong])
 
     useEffect(() => {
-
+        const artist = location.state.artist;
+        const title = location.state.title;
+        const albumUrl = location.state.albumUrl;
         const userEmail = location.state.userEmail;
         axios.get('http://localhost:3000/getplaylist', {
             params: {
-                userEmail
+                artist,
+                title, 
+                albumUrl,
+                userEmail, 
             }
         })
             .then((res) => {
@@ -60,11 +66,8 @@ function Playlist() {
         <div className="playlistContainer">
             <div className="playlistHeader"><h1 className="playlistH1">My Playlist</h1></div>
             <div className="playlistBox">
-                {/* <h1 className="playlistH1">My Playlist</h1> */}
            {playlist.map((songs, index) => {
-            //    <div className="playlistSongList">
-               return <PlaylistItems songs={songs} key={index}/>
-            //    </div>
+               return <PlaylistItems userEmail={location.state.userEmail} songs={songs} key={index}/>
            })}
            </div>
         </div>

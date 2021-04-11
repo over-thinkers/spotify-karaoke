@@ -5,7 +5,7 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const lyricFinder = require('lyrics-finder')
-const db = require('../server/index.js')
+// const db = require('../database/index.js')
 
 const app = express();
 const PORT = 3000;
@@ -70,13 +70,13 @@ app.get('/lyrics', async (req, res) => {
 
 app.get('/getplaylist', (req, res) => {
   const userEmail = req.query.userEmail
-  console.log("da query:", userEmail)
+  console.log("user email:", userEmail)
   // console.log(req.body)
   // const songInfo = req.body;
   // res.send(req.body)
   // console.log("the db function", postPlaylist())
 
-    // db.postPlaylist((err, data) => {
+    // db.postPlaylist(userEmail, (err, data) => {
     //   if (err) {
     //     res.status(404).send(err)
     //   } else {
@@ -85,19 +85,34 @@ app.get('/getplaylist', (req, res) => {
     // })
 })
 
-app.post('/postplaylist', (req, res) => {
+app.post('/postsong', (req, res) => {
   const songInfo = req.body;
-  console.log('song info', songInfo)
+  const artist = req.body.artist
+  const title = req.body.title
+  const albumUrl = req.body.albumUrl
+  const userEmail = req.body.userEmail
+  console.log('song to add:', songInfo)
+  // db.getPlaylist()
   // res.send(req.body)
   // console.log("the db function", postPlaylist())
 
-    // db.postPlaylist((err, data) => {
+    // db.postPlaylist([userEmail, artist, title, albumUrl], (err, data) => {
     //   if (err) {
     //     res.status(404).send(err)
     //   } else {
     //     res.status(202).send(data.rows)
     //   }
     // })
+})
+
+app.put('/removesong', (req, res) => {
+  const songTitle = req.body.songTitle
+  const userEmail = req.body.userEmail
+  console.log("song to be removed:", songTitle, userEmail)
+
+  // db.removeSong(userEmail, songTitle, (err, data) => {
+
+  // })
 })
 
 app.listen(PORT, () => {

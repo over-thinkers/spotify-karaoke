@@ -14,7 +14,7 @@ const Dashboard = ({ code }) => {
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
-  let [userEmail, setUserEmail] = useState('fsdf')
+  let [userEmail, setUserEmail] = useState('')
 
   console.log('access token', accessToken)
 
@@ -43,6 +43,7 @@ const Dashboard = ({ code }) => {
     axios.get(`https://api.spotify.com/v1/me?access_token=${accessToken}`)
       .then((res) => {
         setUserEmail(userEmail = res.data.email)
+        console.log('user data:', res.data)
       })
       .then(() => console.log("userrrrr", userEmail))
   }

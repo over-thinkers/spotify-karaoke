@@ -1,39 +1,53 @@
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'spoti-oki'
+  host: '',
+  user: '',
+  password: '',
+  database: ''
 });
  
 connection.connect();
 
+
 var getPlaylist = (userEmail, callback) => {
-    var query = `SELECT * FROM userinfo where email = '${userEmail}'`
+  console.log('connection worked')
+    // var query = `SELECT * FROM playlist where email = '${userEmail}'`
   
-    client.query(query, (err, data) => {
-      if (err) {
-        callback(err)
-      } else {
-        console.log(data.rows)
-        callback(null, data.rows)
-      }
-    })
+    // client.query(query, (err, data) => {
+    //   if (err) {
+    //     callback(err)
+    //   } else {
+    //     console.log(data.rows)
+    //     callback(null, data.rows)
+    //   }
+    // })
 }
 
-// var postPlaylist = (userEmail, callback) => {
-//     var query = `SELECT * FROM userinfo where email = '${userEmail}'`
-  
-//     client.query(query, (err, data) => {
-//       if (err) {
-//         callback(err)
-//       } else {
-//         console.log(data.rows)
-//         callback(null, data.rows)
-//       }
-//     })
-// }
+var postSong = (userEmail, callback) => {
+    // var query = `DELETE FROM playlist WHERE title = ${title}`;
+    // var query = `INSERT INTO playlist (email, artist, title, albumUrl) VALUES (${userEmail}, ${artist}, ${title}, ${albumUrl})'`
+    // client.query(query, (err, data) => {
+    //   if (err) {
+    //     callback(err)
+    //   } else {
+    //     console.log(data.rows)
+    //     callback(null, data.rows)
+    //   }
+    // })
+}
+
+var removeSong = (userEmail, songTitle, callback) => {
+  // var query = `DELETE FROM playlist WHERE email = ${userEmail} title = ${songTitle}`;
+  // client.query(query, (err, data) => {
+  //   if (err) {
+  //     callback(err)
+  //   } else {
+  //     console.log(data.rows)
+  //     callback(null, data.rows)
+  //   }
+  // })
+}
 
   module.exports = {
-    getPlaylist, postPlaylist
+    getPlaylist, postSong, removeSong,
   }
