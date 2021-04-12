@@ -1,40 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import Login from './Login';
-import Dashboard from './Dashboard';
 import { useLocation} from "react-router";
 import axios from 'axios'
+import PlaylistItems from './PlaylistItems'
 
 function Playlist() {
+    const [playlist, setPlaylist] = useState([])
+    // const [user, setUser] = useState('')
     let [currentSong, setCurrentSong] = useState([])
     let location = useLocation();
     currentSong = location.state
-    const [lyrics, setLyrics] = useState('')
 
     useEffect(() => {
-        if(!currentSong) return
-        axios.get('http://localhost:3000/lyrics', {
+        getAll()
+        const artist = location.state.artist;
+        const title = location.state.title;
+        const albumUrl = location.state.albumUrl;
+        const userEmail = location.state.userEmail;
+
+        axios.post('http://localhost:3000/postsong', {artist, title, albumUrl, userEmail})
+            .then((res) => {
+                console.log("res data frmo client:", res.data)
+                // once posted run the get playlist method
+            })
+            .catch((err) => {
+                console.log('error at playlist component', err)
+            })
+    }, [currentSong])
+
+    let getAll = () => {
+        const artist = location.state.artist;
+        const title = location.state.title;
+        const albumUrl = location.state.albumUrl;
+        const userEmail = location.state.userEmail;
+
+        axios.get('http://localhost:3000/getplaylist', {
             params: {
-                track: currentSong.title,
-                artist: currentSong.artist,
+                artist,
+                title,
+                albumUrl,
+                userEmail,
             }
         })
-        .then((res) => {
-            setLyrics(res.data.lyrics)
-        })
-    }, [currentSong])
+            .then((res) => {
+                setPlaylist(p => p = res.data)
+                console.log('current song', currentSong)
+                // once posted run the get playlist method
+            })
+            .catch((err) => {
+                console.log('error at playlist component', err)
+            })
+        }
+
+    let changeSong = (newAlbumUrl, newArtist, newTitle, newUserEmail) => {
+        setCurrentSong(currentSong = {albumUrl: newAlbumUrl, artist: newArtist, title: newTitle, userEmail: newUserEmail })
+    }
+
+    let refreshList = () => {
+        getAll()
+    }
 
   return (
     <>
         <div className="playlistContainer">
-            <div classNmame="playlistTitle">
-                <h1>{currentSong.title} by</h1>
-            </div>
-            <div className="playlistArtist">
-                <h1>{currentSong.artist}</h1>
-            </div>
-            <div className="playlistLyrics">
-                <p>{lyrics}</p>
-            </div>
+            <div className="playlistHeader"><h1 className="playlistH1">My Playlist</h1></div>
+            <div className="playlistBox">
+           {playlist.map((songs, index) => {
+               return <PlaylistItems refreshList={refreshList} changeSong={changeSong} userEmail={location.state.userEmail} songs={songs} key={index}/>
+           })}
+           </div>
         </div>
     </>
   )

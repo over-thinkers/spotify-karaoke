@@ -5,6 +5,7 @@ import NavLoggedIn from './NavLoggedIn';
 import Header from './Header';
 import HeaderLoggedIn from './HeaderLoggedIn';
 import Dashboard from './Dashboard'
+import Lyrics from './Lyrics'
 import Playlist from './Playlist'
 
 function _ScrollToTop(props) {
@@ -18,7 +19,7 @@ const ScrollToTop = withRouter(_ScrollToTop)
 
 function App() {
   const code = new URLSearchParams(window.location.search).get('code');
- 
+
   return (
     <>
     <Router>
@@ -31,9 +32,10 @@ function App() {
           </Route>
 
           <Route path="/playlist" exact>
-            <NavLoggedIn />
+            <Lyrics />
             <Playlist />
             <Dashboard code={code} />
+            <NavLoggedIn />
           </Route>
 
         </Switch>

@@ -26,7 +26,7 @@ export default function useAuth(code) {
   // refreshs new access tokens in the background so user doesnt get logged out
   useEffect(() => {
     if (!refreshToken || !expiresIn) return
-    
+
     const interval = setInterval(() => {
       axios.post('http://localhost:3000/refresh', {
         // pass up the refresh Token
@@ -39,8 +39,8 @@ export default function useAuth(code) {
       .catch(err => {
         window.location = '/'
       })
-    }, (expiresIn - 60) * 1000) 
-    
+    }, (expiresIn - 60) * 1000)
+
     return () => clearInterval(interval);
   }, [refreshToken, expiresIn])
 

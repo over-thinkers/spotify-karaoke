@@ -3,6 +3,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import useAuth from './useAuth'
 import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
+import axios from 'axios'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: 'dca3db4a5a914cae9632a6c5ebba47f0'
@@ -13,6 +14,7 @@ const Dashboard = ({ code }) => {
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
+  let [userEmail, setUserEmail] = useState('')
 
   const searchTracks = () => {
     spotifyApi.searchTracks(search)
@@ -35,7 +37,17 @@ const Dashboard = ({ code }) => {
       })
   }
 
+  const userInfo = () => {
+    axios.get(`https://api.spotify.com/v1/me?access_token=${accessToken}`)
+      .then((res) => {
+        setUserEmail(userEmail = res.data.email)
+        console.log('user data:', res.data)
+      })
+      .then(() => console.log("userrrrr", userEmail))
+  }
+
   useEffect(() => {
+    userInfo();
     if (accessToken) {
       spotifyApi.setAccessToken(accessToken);
     }
@@ -64,7 +76,7 @@ const Dashboard = ({ code }) => {
       </div>
       <div className="songSearch">
       <input
-        className="songSearch" 
+        className="songSearch"
         type="search"
         placeholder="Search by song or artist"
         value={search}
@@ -74,7 +86,7 @@ const Dashboard = ({ code }) => {
       <div className="songList">
         {searchResults.map(track => (
           <div className="mappedItems">
-          <SearchResultTrack track={track} key={track.uri} />
+          <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
           </div>
         ))}
       </div>
