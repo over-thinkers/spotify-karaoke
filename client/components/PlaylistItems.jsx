@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React from 'react';
 import { AiOutlineDelete } from "react-icons/ai";
+import Lyrics from './Lyrics'
 
-function PlaylistItems({ songs, userEmail }) {
+function PlaylistItems({ songs, userEmail, refreshList, changeSong }) {
   let removeSong = () => {
     axios.put('http://localhost:3000/removesong', { userEmail, songTitle: songs.title})
-      .then((res) => {console.log('response', res.data)})
+      .then( refreshList())
       .catch((err) => {console.log('error at remove', err)})
   }
 
@@ -16,7 +17,10 @@ function PlaylistItems({ songs, userEmail }) {
             <p className="deleteIcon" onClick={()=>{removeSong()}}><AiOutlineDelete size={12}/></p>
           </div>
           <div className="playlistTitle">
-            <p className="playSong songTitle" onClick={()=>alert('make song play when clicked')}>{`${songs.title}` }</p>
+            <p className="playSong songTitle" onClick={() => {
+              changeSong(songs.albumUrl, songs.artist, songs.title, userEmail);
+            }
+          }>{`${songs.title}` }</p>
           </div>
 
           <div className="playlistAritst">

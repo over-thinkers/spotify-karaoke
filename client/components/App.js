@@ -19,7 +19,7 @@ const ScrollToTop = withRouter(_ScrollToTop)
 
 function App() {
   const code = new URLSearchParams(window.location.search).get('code');
- 
+
   return (
     <>
     <Router>

@@ -4,28 +4,19 @@ import axios from 'axios'
 import PlaylistItems from './PlaylistItems'
 
 function Playlist() {
-    const [playlist, setPlaylist] = useState([
-        {artist: "Gryffin", title: "Feel Good (feat. Daya)", albumUrl: "https://i.scdn.co/image/ab67616d0000b2736362397987db1fbf17f3d9b5"},
-        {artist: "Gryffin", title: "I Want Love (with Two Feet)", albumUrl: "https://i.scdn.co/image/ab67616d0000b27327942224c75fa4f0718f1b19"},
-        {artist: "Gryffin", title: "Body Back (feat. Maia Wright)", albumUrl: "https://i.scdn.co/image/ab67616d0000b273a2c3c702bdb4ad9ed5789fe5"},
-        {artist: "Gryffin", title: "All You Need To Know (feat. Calle Lehmann)", albumUrl: "https://i.scdn.co/image/ab67616d0000b27344fa3ab08e3c6e74c1960081"},
-        {artist: "Gryffin", title: "Body Back (feat. Maia Wright)", albumUrl: "https://i.scdn.co/image/ab67616d0000b273a2c3c702bdb4ad9ed5789fe5"},
-        {artist: "Gryffin", title: "All You Need To Know (feat. Calle Lehmann)", albumUrl: "https://i.scdn.co/image/ab67616d0000b27344fa3ab08e3c6e74c1960081"},
-    ])
+    const [playlist, setPlaylist] = useState([])
     // const [user, setUser] = useState('')
     let [currentSong, setCurrentSong] = useState([])
     let location = useLocation();
     currentSong = location.state
-    console.log("song data", location.state)
-
-    // playlist.push(location.state)
 
     useEffect(() => {
+        getAll()
         const artist = location.state.artist;
         const title = location.state.title;
         const albumUrl = location.state.albumUrl;
         const userEmail = location.state.userEmail;
-        
+
         axios.post('http://localhost:3000/postsong', {artist, title, albumUrl, userEmail})
             .then((res) => {
                 console.log("res data frmo client:", res.data)
@@ -34,32 +25,39 @@ function Playlist() {
             .catch((err) => {
                 console.log('error at playlist component', err)
             })
-        // add new song to the playlist database
-        // get playlist from database based on users email
     }, [currentSong])
 
-    useEffect(() => {
+    let getAll = () => {
         const artist = location.state.artist;
         const title = location.state.title;
         const albumUrl = location.state.albumUrl;
         const userEmail = location.state.userEmail;
+
         axios.get('http://localhost:3000/getplaylist', {
             params: {
                 artist,
-                title, 
+                title,
                 albumUrl,
-                userEmail, 
+                userEmail,
             }
         })
             .then((res) => {
-                console.log("res data from client", res.data)
+                setPlaylist(p => p = res.data)
+                console.log('current song', currentSong)
                 // once posted run the get playlist method
             })
             .catch((err) => {
                 console.log('error at playlist component', err)
             })
-        // get playlist from database based on users email
-    }, [playlist])
+        }
+
+    let changeSong = (newAlbumUrl, newArtist, newTitle, newUserEmail) => {
+        setCurrentSong(currentSong = {albumUrl: newAlbumUrl, artist: newArtist, title: newTitle, userEmail: newUserEmail })
+    }
+
+    let refreshList = () => {
+        getAll()
+    }
 
   return (
     <>
@@ -67,7 +65,7 @@ function Playlist() {
             <div className="playlistHeader"><h1 className="playlistH1">My Playlist</h1></div>
             <div className="playlistBox">
            {playlist.map((songs, index) => {
-               return <PlaylistItems userEmail={location.state.userEmail} songs={songs} key={index}/>
+               return <PlaylistItems refreshList={refreshList} changeSong={changeSong} userEmail={location.state.userEmail} songs={songs} key={index}/>
            })}
            </div>
         </div>

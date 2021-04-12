@@ -16,8 +16,6 @@ const Dashboard = ({ code }) => {
   const [delay, setDelay] = useState();
   let [userEmail, setUserEmail] = useState('')
 
-  console.log('access token', accessToken)
-
   const searchTracks = () => {
     spotifyApi.searchTracks(search)
       .then(res => {
@@ -78,7 +76,7 @@ const Dashboard = ({ code }) => {
       </div>
       <div className="songSearch">
       <input
-        className="songSearch" 
+        className="songSearch"
         type="search"
         placeholder="Search by song or artist"
         value={search}
