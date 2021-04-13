@@ -1,22 +1,19 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useContext } from 'react'
 import SpotifyPlayer from 'react-spotify-web-playback'
+import SongContext from '../../context/SongContext'
 
-function AudioPlayer({ accessToken, tracks }) {
+function AudioPlayer({ accessToken }) {
+  const context = useContext(SongContext);
   if (!accessToken) return null;
 
   const playerRef = useRef();
-
-  console.log('ref', playerRef)
-
-  playerRef.current.props.uris.push()
-
 
   return (
     <SpotifyPlayer
       ref={playerRef}
       token={accessToken}
       showSaveIcon
-      uris={tracks}
+      uris={[context.currentSong]}
       callback={state => {
         console.log('hello', state);
       }}
