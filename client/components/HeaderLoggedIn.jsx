@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function HeaderLoggedIn() {
-  
+
   return (
     <>
       <div className="headerContainer2">

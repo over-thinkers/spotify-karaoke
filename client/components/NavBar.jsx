@@ -10,7 +10,7 @@ function NavBar() {
           <li className="nav-item">
             <div className="logoName">
               <div className="logo">
-                <a href="#"><img src="https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png" width="42px"/></a>
+                <a href="#"><img className="logoIcon" src="https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png" width="42px"/></a>
               </div>
               <div className="name">
                 <p>Spoti-oki</p>

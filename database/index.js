@@ -9,9 +9,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-
 var getPlaylist = (userEmail, callback) => {
-  console.log('connection worked')
     var query = `SELECT * FROM playlist where email = '${userEmail}' ORDER BY id DESC `
 
     connection.query(query, (err, data) => {

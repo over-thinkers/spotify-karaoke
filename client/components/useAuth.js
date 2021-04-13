@@ -19,7 +19,9 @@ export default function useAuth(code) {
         window.history.pushState({}, null, '/');
     })
     .catch(err => {
-      window.location = '/'
+      // window.location = '/'
+      console.log('codeeeeeee', code, "access token:", accessToken)
+      console.log('error from login API:', err)
     })
   }, [code])
 
@@ -37,7 +39,8 @@ export default function useAuth(code) {
         setExpiresIn(res.data.expiresIn);
       })
       .catch(err => {
-        window.location = '/'
+        // window.location = '/'
+      console.log('error from Refresh API:', err)
       })
     }, (expiresIn - 60) * 1000)
 

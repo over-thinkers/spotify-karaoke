@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import { AiOutlineDelete } from "react-icons/ai";
-import Lyrics from './Lyrics'
 
 function PlaylistItems({ songs, userEmail, refreshList, changeSong }) {
   let removeSong = () => {
