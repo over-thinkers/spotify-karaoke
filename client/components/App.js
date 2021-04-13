@@ -7,6 +7,7 @@ import HeaderLoggedIn from './HeaderLoggedIn';
 import Dashboard from './Dashboard'
 import Lyrics from './Lyrics'
 import Playlist from './Playlist'
+import { SongContextProvider } from '../../context/SongContext';
 
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
@@ -21,27 +22,27 @@ function App() {
   const code = new URLSearchParams(window.location.search).get('code');
 
   return (
-    <>
-    <Router>
-      <ScrollToTop>
-        <Switch>
-          <Route path="/" exact>
-            {code ? <NavLoggedIn /> : <NavBar />}
-            {code ? <HeaderLoggedIn /> : <Header/>}
-            {code ? <Dashboard code={code}/> : null }
-          </Route>
+    <SongContextProvider>
+      <Router>
+        <ScrollToTop>
+          <Switch>
+            <Route path="/" exact>
+              {code ? <NavLoggedIn /> : <NavBar />}
+              {code ? <HeaderLoggedIn /> : <Header/>}
+              {code ? <Dashboard code={code}/> : null }
+            </Route>
 
-          <Route path="/playlist" exact>
-            <Lyrics />
-            <Playlist />
-            <Dashboard code={code} />
-            <NavLoggedIn />
-          </Route>
+            <Route path="/playlist" exact>
+              <Lyrics />
+              <Playlist />
+              <Dashboard code={code} />
+              <NavLoggedIn />
+            </Route>
 
-        </Switch>
-      </ScrollToTop>
-    </Router>
-    </>
+          </Switch>
+        </ScrollToTop>
+      </Router>
+    </SongContextProvider>
   )
 }
 
