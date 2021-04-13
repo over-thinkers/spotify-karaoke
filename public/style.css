@@ -290,3 +290,102 @@ button:focus {
   flex-basis: 33.333333%;
   width: 100%;
 }
+
+/* --------- PLAYLIST ----------*/
+.lyricContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  background-color: #F2B858;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+}
+
+.lyricArtist {
+  margin-top: -40px;
+}
+
+.lyricLyrics {
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  line-height: 1.42857143;
+  /* max-width: 75ch; */
+  /* padding-right: 33%;
+  padding-left: 33%; */
+  white-space: pre;
+}
+
+/*------- PLAYLIST -------*/
+.playlistContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  height: 250px;
+}
+
+.playlistBox {
+  background-color: #F2B858;
+  align-items: center;
+  text-align: center;
+  height: 120px;
+  width: 500px;
+  overflow: scroll;
+  padding-left: 18px;
+}
+
+.playlistSongList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  /* background-color: orange; */
+  height: 30px;
+  width: 100%;
+  /* overflow: scroll; */
+}
+
+.playlistHeader {
+  background-color: #2941AB;
+  width: 518px;
+  text-align: center;
+}
+
+.playlistH1 {
+  font-size: 20px;
+  color: #fff;
+}
+
+.playlistImg {
+  width: 20px;
+}
+
+.playlistTitle {
+  margin-right: 5px;
+}
+
+.playlistAritst {
+  margin-right: 15px;
+}
+
+.songTitle {
+  font-weight: 800;
+}
+
+.deleteIcon {
+  padding-right: 10px;
+}
+
+.deleteIcon:hover {
+  cursor: pointer;
+}
+
+.playSong:hover {
+  cursor: pointer;
+}

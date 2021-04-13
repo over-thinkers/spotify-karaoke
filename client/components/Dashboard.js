@@ -4,6 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
 import AudioPlayer from './AudioPlayer';
 import SpotifyPlayer from 'react-spotify-web-playback';
+import axios from 'axios'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: 'dca3db4a5a914cae9632a6c5ebba47f0'
@@ -14,6 +15,7 @@ const Dashboard = ({ code }) => {
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
+  let [userEmail, setUserEmail] = useState('')
 
   const [tracks, setTracks] = useState([]);
 
@@ -42,7 +44,17 @@ const Dashboard = ({ code }) => {
       })
   }
 
+  const userInfo = () => {
+    axios.get(`https://api.spotify.com/v1/me?access_token=${accessToken}`)
+      .then((res) => {
+        setUserEmail(userEmail = res.data.email)
+        console.log('user data:', res.data)
+      })
+      .then(() => console.log("userrrrr", userEmail))
+  }
+
   useEffect(() => {
+    userInfo();
     if (accessToken) {
       spotifyApi.setAccessToken(accessToken);
 
@@ -78,6 +90,7 @@ const Dashboard = ({ code }) => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="songContainer">
         <div className="title">
           <h1>Looking for music?</h1>
@@ -101,6 +114,30 @@ const Dashboard = ({ code }) => {
             </div>
           ))}
         </div>
+=======
+    <div className="songContainer">
+      <div className="title">
+  <h1>Looking for music?</h1>
+      </div>
+      <div className="subtitle">
+        <p>Start listening to the best new releases</p>
+      </div>
+      <div className="songSearch">
+      <input
+        className="songSearch"
+        type="search"
+        placeholder="Search by song or artist"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      />
+      </div>
+      <div className="songList">
+        {searchResults.map(track => (
+          <div className="mappedItems">
+          <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
+          </div>
+        ))}
+>>>>>>> f1dd52bb619a2ddfe26f42eb4770fe994f20c7b9
       </div>
       <AudioPlayer accessToken={accessToken} tracks={tracks} />
     </>

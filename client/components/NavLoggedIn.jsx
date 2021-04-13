@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import { BsChevronDown } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 function NavLoggedIn() {
   return (
@@ -19,7 +19,9 @@ function NavLoggedIn() {
             </div>
           </li>
           <li className="nav-item2">
+          <Link to={{ pathname: '/'}}>
             <a href="#">Home</a>
+          </Link>
           </li>
           <li className="nav-item2">
             <a href="#">About</a>
