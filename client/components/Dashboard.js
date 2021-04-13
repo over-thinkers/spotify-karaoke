@@ -17,12 +17,6 @@ const Dashboard = ({ code }) => {
   const [delay, setDelay] = useState();
   let [userEmail, setUserEmail] = useState('')
 
-  const [tracks, setTracks] = useState([]);
-
-  const selectTrack = (uri) => {
-    setTracks([...tracks, uri])
-  }
-
   const searchTracks = () => {
     spotifyApi.searchTracks(search)
       .then(res => {
@@ -90,7 +84,6 @@ const Dashboard = ({ code }) => {
 
   return (
     <>
-<<<<<<< HEAD
       <div className="songContainer">
         <div className="title">
           <h1>Looking for music?</h1>
@@ -100,7 +93,7 @@ const Dashboard = ({ code }) => {
         </div>
         <div className="songSearch">
         <input
-          className="songSearch" 
+          className="songSearch"
           type="search"
           placeholder="Search by song or artist"
           value={search}
@@ -110,36 +103,12 @@ const Dashboard = ({ code }) => {
         <div className="songList">
           {searchResults.map(track => (
             <div className="mappedItems">
-              <SearchResultTrack track={track} key={track.uri} selectTrack={selectTrack} />
+              <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
             </div>
           ))}
         </div>
-=======
-    <div className="songContainer">
-      <div className="title">
-  <h1>Looking for music?</h1>
+        <AudioPlayer accessToken={accessToken} />
       </div>
-      <div className="subtitle">
-        <p>Start listening to the best new releases</p>
-      </div>
-      <div className="songSearch">
-      <input
-        className="songSearch"
-        type="search"
-        placeholder="Search by song or artist"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      />
-      </div>
-      <div className="songList">
-        {searchResults.map(track => (
-          <div className="mappedItems">
-          <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
-          </div>
-        ))}
->>>>>>> f1dd52bb619a2ddfe26f42eb4770fe994f20c7b9
-      </div>
-      <AudioPlayer accessToken={accessToken} tracks={tracks} />
     </>
   )
 }
