@@ -1,8 +1,9 @@
-import React, { Fragment, useState, useEffect } from 'react'
-// import { useLocation} from "react-router";
+import React, { Fragment, useState, useEffect, useRef } from 'react'
 import useAuth from './useAuth'
 import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
+import AudioPlayer from './AudioPlayer';
+import SpotifyPlayer from 'react-spotify-web-playback';
 import axios from 'axios'
 
 const spotifyApi = new SpotifyWebApi({
@@ -50,6 +51,22 @@ const Dashboard = ({ code }) => {
     userInfo();
     if (accessToken) {
       spotifyApi.setAccessToken(accessToken);
+
+      // spotifyApi.getMe()
+      // .then(data => {
+      //   console.log(data)
+      //   spotifyApi.getUserPlaylists(data.body.id)
+      //     .then(res => {
+      //       spotifyApi.getPlaylist("4FXYlr757L1wMERZGOrOrE")
+      //         .then(list => console.log(list))
+      //     })
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
+
+      spotifyApi.getMyDevices()
+        .then(data => console.log(data.body.devices))
     }
   }, [accessToken])
 
@@ -67,30 +84,31 @@ const Dashboard = ({ code }) => {
 
   return (
     <>
-    <div className="songContainer">
-      <div className="title">
-  <h1>Looking for music?</h1>
+      <div className="songContainer">
+        <div className="title">
+          <h1>Looking for music?</h1>
+        </div>
+        <div className="subtitle">
+          <p>Start listening to the best new releases</p>
+        </div>
+        <div className="songSearch">
+        <input
+          className="songSearch"
+          type="search"
+          placeholder="Search by song or artist"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        </div>
+        <div className="songList">
+          {searchResults.map(track => (
+            <div className="mappedItems">
+              <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
+            </div>
+          ))}
+        </div>
+        <AudioPlayer accessToken={accessToken} />
       </div>
-      <div className="subtitle">
-        <p>Start listening to the best new releases</p>
-      </div>
-      <div className="songSearch">
-      <input
-        className="songSearch"
-        type="search"
-        placeholder="Search by song or artist"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      />
-      </div>
-      <div className="songList">
-        {searchResults.map(track => (
-          <div className="mappedItems">
-          <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
-          </div>
-        ))}
-      </div>
-    </div>
     </>
   )
 }
