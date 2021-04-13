@@ -1,17 +1,16 @@
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: 'localhost',
+  user: 'root',
+  password: 'cowboyz',
+  database: 'spotioki'
 });
 
 connection.connect();
 
 
 var getPlaylist = (userEmail, callback) => {
-  console.log('connection worked')
     var query = `SELECT * FROM playlist where email = '${userEmail}' ORDER BY id DESC `
 
     connection.query(query, (err, data) => {

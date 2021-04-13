@@ -43,7 +43,7 @@ body {
   border-width: 1px;
   border-color: #fff;
   height: 20px;
-  
+
 }
 
 .nav-item:first-child {
@@ -55,7 +55,7 @@ body {
   margin-right: 6rem;
 }
 
-img {
+.logoIcon {
   filter: invert(100%);
 }
 
@@ -114,7 +114,7 @@ img {
   border-width: 1px;
   border-color: #fff;
   height: 20px;
-  
+
 }
 
 .nav-item2:first-child {

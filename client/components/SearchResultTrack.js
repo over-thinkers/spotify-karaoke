@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const SearchResultTrack = ({ track, userEmail }) => {
   const { artist, title, uri, albumUrl } = track;
+  {console.log("album urllllllll", albumUrl)}
   return (
     <div className="songInfo">
       <Link to={{ pathname: '/playlist', state: { artist, title, albumUrl, userEmail } }}>
