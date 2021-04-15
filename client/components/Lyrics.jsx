@@ -1,40 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLocation} from "react-router";
-import axios from 'axios'
+import axios from 'axios';
+import SongContext from '../../context/SongContext';
+
 
 function Lyrics() {
-    let [currentSong, setCurrentSong] = useState([])
-    let location = useLocation();
-    currentSong = location.state
+    // let [currentSong, setCurrentSong] = useState([])
+    const context = useContext(SongContext);
+    // let location = useLocation();
+    // currentSong = location.state
     const [lyrics, setLyrics] = useState('')
 
     useEffect(() => {
-        if(!currentSong) return
+        if (!context.currentSong) return;
         axios.get('http://localhost:3000/lyrics', {
             params: {
-                track: currentSong.title,
-                artist: currentSong.artist,
+                track: context.currentSong.title,
+                artist: context.currentSong.artist,
             }
         })
         .then((res) => {
             setLyrics(res.data.lyrics)
         })
-    }, [currentSong])
+    }, [context.currentSong])
 
   return (
-    <>
-        <div className="lyricContainer">
-            <div className="lyricTitle">
-                <h1>{currentSong.title} by</h1>
-            </div>
-            <div className="lyricArtist">
-                <h1>{currentSong.artist}</h1>
-            </div>
-            <div className="lyricLyrics">
-                <p>{lyrics}</p>
-            </div>
+    <div className="lyricContainer">
+        <div className="lyricTitle">
+            <h1>{context.currentSong.title} by</h1>
         </div>
-    </>
+        <div className="lyricArtist">
+            <h1>{context.currentSong.artist}</h1>
+        </div>
+        <div className="lyricLyrics">
+            <p>{lyrics}</p>
+        </div>
+    </div>
   )
 }
 
