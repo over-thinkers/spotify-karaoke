@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 const SongContext = createContext();
 
 export const SongContextProvider = (props) => {
-  const [currentSong, setCurrentSong] = useState();
+  const [currentSong, setCurrentSong] = useState([]);
 
   const context = {
     currentSong,
