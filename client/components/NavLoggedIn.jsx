@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function NavLoggedIn() {
   return (
     <>
-      <navbar>
+      <nav>
         <ul className="nav-list2">
           <li className="nav-item2">
             <div className="logoName">
@@ -48,7 +48,7 @@ function NavLoggedIn() {
             </a>
           </li>
         </ul>
-      </navbar>
+      </nav>
     </>
   )
 }
