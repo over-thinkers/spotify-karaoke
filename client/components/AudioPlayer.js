@@ -12,6 +12,15 @@ function AudioPlayer({ accessToken }) {
     setPlay(true);
   }, [context.currentSong])
 
+  const playerCallback = (state) => {
+    if (!state.isPlaying) {
+      setPlay(false)
+      if (state.type === 'player_update' && state.position === 0) {
+        context.nextSong();
+      }
+    }
+  }
+
   return (
     <div 
       style={{
@@ -20,15 +29,16 @@ function AudioPlayer({ accessToken }) {
         bottom: 0
       }}
     >
+      <button onClick={context.prevSong}>prev</button>
+      <button onClick={context.nextSong}>next</button>
       <SpotifyPlayer
         play={play}
         token={accessToken}
         showSaveIcon
-        uris={context.currentSong}
-        callback={state => {
-          if (!state.isPlaying) setPlay(false)
-        }}
+        uris={context.currentSong ? [context.currentSong.uri] : []}
+        callback={playerCallback}
       />
+
     </div>
   )
 }
