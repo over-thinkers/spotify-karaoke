@@ -24,7 +24,7 @@ function Lyrics() {
   return (
     <>
         <div className="lyricContainer">
-            <div classNmame="lyricTitle">
+            <div className="lyricTitle">
                 <h1>{currentSong.title} by</h1>
             </div>
             <div className="lyricArtist">

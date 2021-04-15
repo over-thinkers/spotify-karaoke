@@ -43,7 +43,7 @@ function Playlist() {
         })
             .then((res) => {
                 setPlaylist(p => p = res.data)
-                console.log('current song', currentSong)
+                // console.log('current song', currentSong)
                 // once posted run the get playlist method
             })
             .catch((err) => {
