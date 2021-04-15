@@ -3,21 +3,30 @@ import SpotifyPlayer from 'react-spotify-web-playback'
 import SongContext from '../../context/SongContext'
 
 function AudioPlayer({ accessToken }) {
-  const context = useContext(SongContext);
   if (!accessToken) return null;
-
-  const playerRef = useRef();
+  const context = useContext(SongContext);
 
   return (
-    <SpotifyPlayer
-      ref={playerRef}
-      token={accessToken}
-      showSaveIcon
-      uris={[context.currentSong]}
-      callback={state => {
-        console.log('hello', state);
+    <div 
+      className="playerContainer" 
+      style={{
+        width: '100%',
+        position: 'fixed',
+        bottom: 0
       }}
-    />
+    >
+      <SpotifyPlayer
+        token={accessToken}
+        showSaveIcon
+        uris={context.currentSong}
+        callback={state => {
+          console.log('Player state changed: ', state);
+          if (state.type === 'player_update' && state.position === 0) {
+            console.log('Load the next song now')
+          }
+        }}
+      />
+    </div>
   )
 }
 
