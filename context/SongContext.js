@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const SongContext = createContext();
 
@@ -6,10 +7,11 @@ export const SongContextProvider = (props) => {
   const [currentSong, setCurrentSong] = useState(null);
   const [playlist, setPlaylist] = useState([]);
   const [playlistIdx, setPlaylistIdx] = useState(0);
+  const [userEmail, setUserEmail] = useState('');
 
   const addToPlaylist = (track) => {
     if (!currentSong) {
-      setCurrentSong(track);
+      setCurrentSong(playlist[playlistIdx]);
     } 
     setPlaylist(prev => [...prev, track]);
   }
@@ -41,11 +43,55 @@ export const SongContextProvider = (props) => {
     setCurrentSong(playlist[playlistIdx]);
   }, [playlistIdx])
   
+  useEffect(() => {
+    if (!userEmail) return;
+
+    axios.get('http://localhost:3000/user', {
+      params: { email: userEmail }
+    })
+    .then(res => {
+      console.log('GOT USER', res)
+      setPlaylist(res.data[0].playlist);
+      // if it's a new user
+      if (!res.data.length) {
+        axios.post('http://localhost:3000/user', {
+          email: userEmail
+        })
+        .then(res => {
+          console.log('CREATED USER', res)
+        })
+        .catch(err => {
+          console.log('Error creating user', err);
+        })
+      }
+    })
+    .catch(err => {
+      console.log('Error getting user', err)
+    })
+  }, [userEmail])
+
+  useEffect(() => {
+    if (!userEmail) return;
+
+    axios.put('http://localhost:3000/playlist', {
+      email: userEmail,
+      playlist
+    })
+    .then(res => {
+      console.log('UPDATED PLAYLIST', res);
+    })
+    .catch(err => {
+      console.log('Error updating playlist', err);
+    })
+  }, [playlist])
+
   const context = {
     currentSong,
     playlist,
     setCurrentSong,
     setPlaylistIdx,
+    userEmail,
+    setUserEmail,
     addToPlaylist,
     nextSong,
     prevSong,
