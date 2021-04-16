@@ -13,6 +13,11 @@ export const SongContextProvider = (props) => {
     if (!currentSong) {
       setCurrentSong(playlist[playlistIdx]);
     }
+
+    // don't allow duplicates in playlist
+    const uris = playlist.map(track => track.uri);
+    if (uris.includes(track.uri)) return;
+
     setPlaylist((prev) => [...prev, track]);
   };
 
@@ -48,7 +53,9 @@ export const SongContextProvider = (props) => {
       })
       .then((res) => {
         console.log('GOT USER', res);
-        setPlaylist(res.data[0].playlist);
+        if (res.data.length) {
+          setPlaylist(res.data[0].playlist);
+        }
         // if it's a new user
         if (!res.data.length) {
           axios
@@ -70,6 +77,7 @@ export const SongContextProvider = (props) => {
 
   useEffect(() => {
     if (!userEmail) return;
+    setCurrentSong(playlist[playlistIdx]);
 
     axios
       .put('http://localhost:3000/playlist', {
