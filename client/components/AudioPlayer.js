@@ -9,6 +9,7 @@ function AudioPlayer({ accessToken }) {
   const context = useContext(SongContext);
 
   useEffect(() => {
+    if (!context.currentSong) return setPlay(false);
     setPlay(true);
   }, [context.currentSong]);
 
@@ -29,8 +30,24 @@ function AudioPlayer({ accessToken }) {
         bottom: 0,
       }}
     >
-      <button onClick={context.prevSong}>prev</button>
-      <button onClick={context.nextSong}>next</button>
+      <button
+        onClick={context.prevSong}
+        style={{
+          width: '50%',
+          height: '2.5rem',
+        }}
+      >
+        prev
+      </button>
+      <button
+        onClick={context.nextSong}
+        style={{
+          width: '50%',
+          height: '2.5rem',
+        }}
+      >
+        next
+      </button>
       <SpotifyPlayer
         play={play}
         token={accessToken}
