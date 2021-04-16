@@ -1,4 +1,4 @@
-const { User } = require('./mongo');
+const { User } = require('./index');
 
 const getUser = (email, callback) => {
   User.find({ email }, (err, res) => {

@@ -5,7 +5,6 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const lyricFinder = require('lyrics-finder')
-const db = require('../database/index.js')
 const { getUser, createUser, updatePlaylist } = require('../database/helpers');
 
 const app = express();
