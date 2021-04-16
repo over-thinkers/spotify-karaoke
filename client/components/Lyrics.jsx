@@ -9,6 +9,7 @@ function Lyrics() {
 
   useEffect(() => {
     if (!context.currentSong) return;
+    setLyrics('');
 
     axios
       .get('http://localhost:3000/lyrics', {
@@ -21,6 +22,12 @@ function Lyrics() {
         setLyrics(res.data.lyrics);
       });
   }, [context.currentSong]);
+
+  if (!lyrics) return (
+    <div className="lyricContainer">
+      <h4>Loading...</h4>
+    </div>
+  )
 
   return (
     <div className='lyricContainer'>
