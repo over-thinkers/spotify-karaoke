@@ -10,24 +10,17 @@ function PlaylistItem({ song, index }) {
     context.setPlaylistIdx(i);
   };
 
-  const showDelete = () => {
-    console.log(index, context.playlistIdx)
-    return index !== context.playlistIdx;
-  };
-
   return (
     <div className='playlistSongList'>
       <div className='playlistTitle'>
-        {showDelete() && (
-          <p
-            className='deleteIcon'
-            onClick={() => {
-              context.deleteSong(index);
-            }}
-          >
-            <AiOutlineDelete size={12} />
-          </p>
-        )}
+        <p
+          className='deleteIcon'
+          onClick={() => {
+            context.deleteSong(index);
+          }}
+        >
+          <AiOutlineDelete size={12} />
+        </p>
       </div>
       <div className='playlistTitle'>
         <p
