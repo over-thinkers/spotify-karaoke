@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const lyricFinder = require('lyrics-finder')
 const db = require('../database/index.js')
+const { getUser, createUser, updatePlaylist } = require('../database/helpers');
 
 const app = express();
 const PORT = 3000;
@@ -108,6 +109,37 @@ app.put('/removesong', (req, res) => {
     } else {
       res.status(202).send(data)
     }
+  })
+})
+
+app.get('/user', (req, res) => {
+  const { email } = req.query;
+  getUser(email, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    }
+    res.status(200).send(data);
+  })
+})
+
+app.post('/user', (req, res) => {
+  const { email } = req.body;
+  const playlist = [];
+  createUser(email, playlist, (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    }
+    res.status(201).send(data);
+  })
+})
+
+app.put('/playlist', (req, res) => {
+  const { email, playlist } = req.body;
+  updatePlaylist(email, playlist, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    }
+    res.status(200).send(data);
   })
 })
 
