@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
-import SpotifyPlayer from 'react-spotify-web-playback'
-import SongContext from '../../context/SongContext'
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import SpotifyPlayer from 'react-spotify-web-playback';
+import SongContext from '../../context/SongContext';
 
 function AudioPlayer({ accessToken }) {
   if (!accessToken) return null;
@@ -10,23 +10,23 @@ function AudioPlayer({ accessToken }) {
 
   useEffect(() => {
     setPlay(true);
-  }, [context.currentSong])
+  }, [context.currentSong]);
 
   const playerCallback = (state) => {
     if (!state.isPlaying) {
-      setPlay(false)
+      setPlay(false);
       if (state.type === 'player_update' && state.position === 0) {
         context.nextSong();
       }
     }
-  }
+  };
 
   return (
-    <div 
+    <div
       style={{
         width: '100%',
         position: 'fixed',
-        bottom: 0
+        bottom: 0,
       }}
     >
       <button onClick={context.prevSong}>prev</button>
@@ -38,9 +38,8 @@ function AudioPlayer({ accessToken }) {
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
       />
-
     </div>
-  )
+  );
 }
 
-export default AudioPlayer
+export default AudioPlayer;
