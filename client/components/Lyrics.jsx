@@ -29,6 +29,8 @@ function Lyrics() {
     </div>
   )
 
+  if (!context.currentSong) return null;
+
   return (
     <div className='lyricContainer'>
       <div className='lyricTitle'>
