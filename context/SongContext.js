@@ -23,18 +23,33 @@ export const SongContextProvider = (props) => {
     if (!playlist[playlistIdx - 1]) return;
     setPlaylistIdx(prev => prev - 1);
   }
+
+  const deleteSong = (index) => {
+    setPlaylist(prev => (
+      prev.filter((track, i) => (
+        i !== index
+      ))
+    ))
+    if (index < playlistIdx) {
+      setPlaylistIdx(prev => prev - 1);
+    }
+  }
   
   useEffect(() => {
     if (!playlist.length) return;
+    if (currentSong.uri === playlist[playlistIdx].uri) return;
     setCurrentSong(playlist[playlistIdx]);
   }, [playlistIdx])
   
   const context = {
     currentSong,
+    playlist,
     setCurrentSong,
+    setPlaylistIdx,
     addToPlaylist,
     nextSong,
-    prevSong
+    prevSong,
+    deleteSong
   };
 
   return (
