@@ -18,9 +18,9 @@ const Dashboard = ({ code }) => {
   const [userEmail, setUserEmail] = useState('')
 
   const searchTracks = () => {
-    spotifyApi.searchTracks(search)
+    spotifyApi.searchTracks(search, { limit: 20, offset: 0 })
       .then(res => {
-        setSearchResults(res.body.tracks.items.slice(0, 6).map(track => {
+        setSearchResults(res.body.tracks.items.map(track => {
           const smallestImage = track.album.images.reduce((smallest, current) => {
             if (current.height < smallest.height) return current
             return smallest
