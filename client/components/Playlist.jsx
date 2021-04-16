@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation} from "react-router";
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation } from 'react-router';
 import axios from 'axios'
-import PlaylistItems from './PlaylistItems'
+import PlaylistItem from './PlaylistItem'
+import SongContext from '../../context/SongContext'
 
 function Playlist() {
-    const [playlist, setPlaylist] = useState([])
+    const context = useContext(SongContext);
+    const playlist = context.playlist;
+
+    // const [playlist, setPlaylist] = useState([])
     // const [user, setUser] = useState('')
     let [currentSong, setCurrentSong] = useState([])
     let location = useLocation();
@@ -51,25 +55,32 @@ function Playlist() {
             })
         }
 
-    let changeSong = (newAlbumUrl, newArtist, newTitle, newUserEmail) => {
-        setCurrentSong(currentSong = {albumUrl: newAlbumUrl, artist: newArtist, title: newTitle, userEmail: newUserEmail })
-    }
+    // let changeSong = (newAlbumUrl, newArtist, newTitle, newUserEmail) => {
+    //     setCurrentSong({albumUrl: newAlbumUrl, artist: newArtist, title: newTitle, userEmail: newUserEmail })
+    // }
 
     let refreshList = () => {
         getAll()
     }
 
   return (
-    <>
-        <div className="playlistContainer">
-            <div className="playlistHeader"><h1 className="playlistH1">My Playlist</h1></div>
-            <div className="playlistBox">
-           {playlist.map((songs, index) => {
-               return <PlaylistItems refreshList={refreshList} changeSong={changeSong} userEmail={location.state.userEmail} songs={songs} key={index}/>
-           })}
-           </div>
+    <div className="playlistContainer">
+        <div className="playlistHeader"><h1 className="playlistH1">My Playlist</h1></div>
+        <div className="playlistBox">
+        {playlist.map((song, index) => {
+            return (
+                <PlaylistItem 
+                    refreshList={refreshList}
+                    // changeSong={changeSong}
+                    userEmail={location.state.userEmail}
+                    song={song}
+                    key={song.uri}
+                    index={index}
+                />
+            )
+        })}
         </div>
-    </>
+    </div>
   )
 }
 
