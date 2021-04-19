@@ -1,6 +1,25 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import SongContext from '../../context/SongContext';
+import styled from '@emotion/styled';
+
+const Container = styled.div`
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+`;
+
+const Button = styled.button`
+  width: 50%;
+  height: 2.5rem;
+  background-color: #fff;
+  border: 1px solid black;
+  transition: 500ms ease-out;
+  &:hover {
+    cursor: pointer;
+    background-color: #e0dfdf;
+  }
+`;
 
 function AudioPlayer({ accessToken }) {
   if (!accessToken) return null;
@@ -23,31 +42,9 @@ function AudioPlayer({ accessToken }) {
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        position: 'fixed',
-        bottom: 0,
-      }}
-    >
-      <button
-        onClick={context.prevSong}
-        style={{
-          width: '50%',
-          height: '2.5rem',
-        }}
-      >
-        prev
-      </button>
-      <button
-        onClick={context.nextSong}
-        style={{
-          width: '50%',
-          height: '2.5rem',
-        }}
-      >
-        next
-      </button>
+    <Container>
+      <Button onClick={context.prevSong}>Previous</Button>
+      <Button onClick={context.nextSong}>Next</Button>
       <SpotifyPlayer
         play={play}
         token={accessToken}
@@ -55,7 +52,7 @@ function AudioPlayer({ accessToken }) {
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
       />
-    </div>
+    </Container>
   );
 }
 
