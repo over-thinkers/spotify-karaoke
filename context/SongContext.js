@@ -15,7 +15,7 @@ export const SongContextProvider = (props) => {
     }
 
     // don't allow duplicates in playlist
-    const uris = playlist.map(track => track.uri);
+    const uris = playlist.map((track) => track.uri);
     if (uris.includes(track.uri)) return;
 
     setPlaylist((prev) => [...prev, track]);
@@ -95,6 +95,7 @@ export const SongContextProvider = (props) => {
   const context = {
     currentSong,
     playlist,
+    setPlaylist,
     setCurrentSong,
     playlistIdx,
     setPlaylistIdx,
