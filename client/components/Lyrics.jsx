@@ -23,11 +23,13 @@ function Lyrics() {
       });
   }, [context.currentSong]);
 
-  if (!lyrics) return (
-    <div className="lyricContainer">
-      <h4>Loading...</h4>
-    </div>
-  )
+  if (!lyrics) {
+    return (
+      <div className='lyricContainer'>
+        <h4>Loading...</h4>
+      </div>
+    );
+  }
 
   if (!context.currentSong) return null;
 
