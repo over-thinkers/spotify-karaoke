@@ -6,8 +6,8 @@ import styled from '@emotion/styled';
 
 const SongContainer = styled.div((props) => ({
   display: 'flex',
-  height: '3.5rem',
-  marginTop: '0.2rem',
+  height: '3rem',
+  // marginTop: '0.2rem',
   position: 'relative',
   padding: '0.3rem',
   borderRadius: '5px',
@@ -20,13 +20,13 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 0 1rem;
+  margin: 0 .7rem;
   max-width: 70%;
 `;
 
 const Title = styled.h4`
   margin: 0;
-  font-size: 1rem;
+  font-size: .9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
