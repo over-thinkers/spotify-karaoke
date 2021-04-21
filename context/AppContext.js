@@ -43,6 +43,37 @@ export const AppContextProvider = (props) => {
     }
   }, [accessToken]);
 
+  useEffect(() => {
+    if (!userEmail) return;
+
+    axios
+      .get('http://localhost:3000/user', {
+        params: { email: userEmail },
+      })
+      .then((res) => {
+        console.log('GOT USER', res);
+        if (res.data.length) {
+          setPlaylist(res.data[0].playlist);
+        }
+        // if it's a new user
+        if (!res.data.length) {
+          axios
+            .post('http://localhost:3000/user', {
+              email: userEmail,
+            })
+            .then((res) => {
+              console.log('CREATED USER', res);
+            })
+            .catch((err) => {
+              console.log('Error creating user', err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log('Error getting user', err);
+      });
+  }, [userEmail]);
+
   /********** SEARCH **********/
   const searchTracks = () => {
     spotifyApi.searchTracks(search, { limit: 20, offset: 0 }).then((res) => {
@@ -116,37 +147,6 @@ export const AppContextProvider = (props) => {
     if (currentSong.uri === playlist[playlistIdx].uri) return;
     setCurrentSong(playlist[playlistIdx]);
   }, [playlistIdx]);
-
-  useEffect(() => {
-    if (!userEmail) return;
-
-    axios
-      .get('http://localhost:3000/user', {
-        params: { email: userEmail },
-      })
-      .then((res) => {
-        console.log('GOT USER', res);
-        if (res.data.length) {
-          setPlaylist(res.data[0].playlist);
-        }
-        // if it's a new user
-        if (!res.data.length) {
-          axios
-            .post('http://localhost:3000/user', {
-              email: userEmail,
-            })
-            .then((res) => {
-              console.log('CREATED USER', res);
-            })
-            .catch((err) => {
-              console.log('Error creating user', err);
-            });
-        }
-      })
-      .catch((err) => {
-        console.log('Error getting user', err);
-      });
-  }, [userEmail]);
 
   useEffect(() => {
     if (!userEmail) return;
