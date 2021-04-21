@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const SongContainer = styled.li`
@@ -67,7 +67,7 @@ const ImageContainer = styled.div`
 `
 
 const SearchResultTrack = ({ track }) => {
-  const context = useContext(SongContext);
+  const context = useContext(AppContext);
 
   const { artist, title, uri, albumUrl } = track;
 

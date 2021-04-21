@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import PlaylistItem from './PlaylistItem';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const PlaylistContainer = styled.div((props) => ({
@@ -42,13 +42,21 @@ const List = styled.ul`
 
 const OpenPlaylistTab = styled.div`
   position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateX(100%);
+  top: 46%;
+  right: -53px;
+  transform: rotate(90deg);
+  background-color: #fff;
+  z-index: -1;
+  border-radius: 5px 5px 0 0;
+  box-shadow: rgb(0 0 0 / 35%) 5px 0px 15px;
+  padding: 0.3rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 function Playlist() {
-  const context = useContext(SongContext);
+  const context = useContext(AppContext);
   const playlist = context.playlist;
   const [playlistOpen, setPlaylistOpen] = useState(false);
 
@@ -69,21 +77,7 @@ function Playlist() {
     <PlaylistContainer open={playlistOpen}>
       <Header>My Playlist</Header>
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable
-          droppableId='songs'
-          // renderClone={(provided, snapshot, rubric) => {
-          //   console.log(rubric)
-          //   return (
-          //     <div
-          //       {...provided.draggableProps}
-          //       {...provided.dragHandleProps}
-          //       ref={provided.innerRef}
-          //     >
-          //       {rubric.draggableId}
-          //     </div>
-          //   );
-          // }}
-        >
+        <Droppable droppableId='songs'>
           {(provided) => (
             <List {...provided.droppableProps} ref={provided.innerRef}>
               {playlist.map((song, index) => (
@@ -104,7 +98,7 @@ function Playlist() {
           )}
         </Droppable>
       </DragDropContext>
-      <OpenPlaylistTab onClick={toggleOpenPlaylist}>Playlist</OpenPlaylistTab>
+      <OpenPlaylistTab onClick={toggleOpenPlaylist}>PLAYLIST</OpenPlaylistTab>
     </PlaylistContainer>
   );
 }

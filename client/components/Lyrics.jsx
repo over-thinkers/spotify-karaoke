@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 
 function Lyrics() {
-  const context = useContext(SongContext);
+  const context = useContext(AppContext);
   const [lyrics, setLyrics] = useState('');
 
   useEffect(() => {

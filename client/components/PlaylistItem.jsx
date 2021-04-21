@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const SongContainer = styled.div((props) => ({
@@ -55,7 +55,7 @@ const TrashCan = styled.div`
 `;
 
 function PlaylistItem({ song, index }) {
-  const context = useContext(SongContext);
+  const context = useContext(AppContext);
 
   const selectPlaylistTrack = (i) => {
     context.setPlaylistIdx(i);

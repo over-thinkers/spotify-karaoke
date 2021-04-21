@@ -1,14 +1,87 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import SpotifyWebApi from 'spotify-web-api-node';
+import useAuth from '../client/components/useAuth';
 
-const SongContext = createContext();
+const AppContext = createContext();
 
-export const SongContextProvider = (props) => {
+const spotifyApi = new SpotifyWebApi({
+  clientId: 'dca3db4a5a914cae9632a6c5ebba47f0',
+});
+
+export const AppContextProvider = (props) => {
+  const accessToken = useAuth(props.code);
+
+  /********** USER **********/
+  const [userEmail, setUserEmail] = useState('');
+
+  /********** SEARCH **********/
+  const [search, setSearch] = useState('gryffin');
+  const [searchResults, setSearchResults] = useState([]);
+  const [delay, setDelay] = useState();
+
+  /********** PLAYLIST **********/
   const [currentSong, setCurrentSong] = useState(null);
   const [playlist, setPlaylist] = useState([]);
   const [playlistIdx, setPlaylistIdx] = useState(0);
-  const [userEmail, setUserEmail] = useState('');
 
+  /********** USER **********/
+  const userInfo = () => {
+    axios
+      .get(`https://api.spotify.com/v1/me?access_token=${accessToken}`)
+      .then((res) => {
+        setUserEmail(res.data.email);
+      });
+  };
+
+  useEffect(() => {
+    if (accessToken) {
+      spotifyApi.setAccessToken(accessToken);
+      userInfo();
+
+      spotifyApi.getMyDevices().then((data) => console.log(data.body.devices));
+    }
+  }, [accessToken]);
+
+  /********** SEARCH **********/
+  const searchTracks = () => {
+    spotifyApi.searchTracks(search, { limit: 20, offset: 0 }).then((res) => {
+      setSearchResults(
+        res.body.tracks.items.map((track) => {
+          const smallestImage = track.album.images.reduce(
+            (smallest, current) => {
+              if (current.height < smallest.height) return current;
+              return smallest;
+            }
+          );
+
+          const largestImage = track.album.images[0];
+
+          return {
+            artist: track.artists[0].name,
+            title: track.name,
+            uri: track.uri,
+            albumUrl: largestImage.url,
+          };
+        })
+      );
+    });
+  };
+
+  useEffect(() => {
+    if (!search) return setSearchResults([]);
+    if (!accessToken) return;
+
+    if (delay) clearTimeout(delay);
+
+    setDelay(
+      setTimeout(() => {
+        searchTracks();
+      }, 300)
+    );
+  }, [search, accessToken]);
+
+  /********** PLAYLIST **********/
   const addToPlaylist = (track) => {
     if (!currentSong) {
       setCurrentSong(playlist[playlistIdx]);
@@ -93,14 +166,19 @@ export const SongContextProvider = (props) => {
   }, [playlist]);
 
   const context = {
-    currentSong,
-    playlist,
-    setPlaylist,
-    setCurrentSong,
-    playlistIdx,
-    setPlaylistIdx,
+    accessToken,
     userEmail,
     setUserEmail,
+    search,
+    setSearch,
+    searchResults,
+    setSearchResults,
+    currentSong,
+    setCurrentSong,
+    playlist,
+    setPlaylist,
+    playlistIdx,
+    setPlaylistIdx,
     addToPlaylist,
     nextSong,
     prevSong,
@@ -108,10 +186,8 @@ export const SongContextProvider = (props) => {
   };
 
   return (
-    <SongContext.Provider value={context}>
-      {props.children}
-    </SongContext.Provider>
+    <AppContext.Provider value={context}>{props.children}</AppContext.Provider>
   );
 };
 
-export default SongContext;
+export default AppContext;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -25,7 +25,7 @@ function AudioPlayer({ accessToken }) {
   if (!accessToken) return null;
 
   const [play, setPlay] = useState(false);
-  const context = useContext(SongContext);
+  const context = useContext(AppContext);
 
   useEffect(() => {
     if (!context.currentSong) return setPlay(false);
