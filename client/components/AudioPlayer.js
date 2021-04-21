@@ -21,11 +21,12 @@ const Button = styled.button`
   }
 `;
 
-function AudioPlayer({ accessToken }) {
-  if (!accessToken) return null;
-
-  const [play, setPlay] = useState(false);
+function AudioPlayer() {
   const context = useContext(AppContext);
+  const [play, setPlay] = useState(false);
+
+  // if (!context.accessToken) return null;
+  const accessToken = context.accessToken;
 
   useEffect(() => {
     if (!context.currentSong) return setPlay(false);

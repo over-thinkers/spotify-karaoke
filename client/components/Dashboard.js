@@ -71,7 +71,6 @@ const Dashboard = ({ code }) => {
           <SearchResultTrack track={track} key={track.uri} />
         ))}
       </SearchResultsContainer>
-      <AudioPlayer accessToken={context.accessToken} />
     </SearchContainer>
   );
 };
