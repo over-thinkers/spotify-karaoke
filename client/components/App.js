@@ -8,6 +8,7 @@ import Dashboard from './Dashboard'
 import Lyrics from './Lyrics'
 import Playlist from './Playlist'
 import { AppContextProvider } from '../../context/AppContext';
+import SearchDrawer from './SearchDrawer';
 
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
@@ -35,7 +36,7 @@ function App() {
             <Route path="/playlist" exact>
               <Lyrics />
               <Playlist />
-              <Dashboard code={code} />
+              <SearchDrawer />
               <NavLoggedIn />
             </Route>
 
