@@ -7,7 +7,6 @@ import styled from '@emotion/styled';
 const SongContainer = styled.div((props) => ({
   display: 'flex',
   height: '3rem',
-  // marginTop: '0.2rem',
   position: 'relative',
   padding: '0.3rem',
   borderRadius: '5px',
@@ -22,6 +21,9 @@ const TextContainer = styled.div`
   align-items: flex-start;
   margin: 0 .7rem;
   max-width: 70%;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Title = styled.h4`
