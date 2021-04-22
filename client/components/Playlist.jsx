@@ -59,7 +59,7 @@ const OpenPlaylistTab = styled.div`
 function Playlist() {
   const context = useContext(AppContext);
   const playlist = context.playlist;
-  const [playlistOpen, setPlaylistOpen] = useState(false);
+  const [playlistOpen, setPlaylistOpen] = useState(true);
 
   const toggleOpenPlaylist = () => {
     setPlaylistOpen((prev) => !prev);
