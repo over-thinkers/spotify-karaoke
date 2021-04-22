@@ -48,11 +48,12 @@ const TrashCan = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  top: 23px;
-  right: 10px;
+  top: 16px;
+  right: 8px;
 
   &:hover {
     cursor: pointer;
+    color: #2941ab;
   }
 `;
 
@@ -91,7 +92,7 @@ function PlaylistItem({ song, index }) {
           context.deleteSong(index);
         }}
       >
-        <AiOutlineDelete size={20} />
+        <AiOutlineDelete size={22} />
       </TrashCan>
     </SongContainer>
   );
