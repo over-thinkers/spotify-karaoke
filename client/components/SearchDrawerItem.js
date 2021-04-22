@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/AppContext';
+import { AiOutlinePlus } from 'react-icons/ai';
 import styled from '@emotion/styled';
 
 const SongContainer = styled.div`
@@ -12,7 +13,7 @@ const SongContainer = styled.div`
     background-color: #fff;
     cursor: pointer;
   }
-`
+`;
 
 const TextContainer = styled.div`
   display: flex;
@@ -41,6 +42,19 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
+const Plus = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 16px;
+  right: 8px;
+
+  &:hover {
+    cursor: pointer;
+    color: #2941ab;
+  }
+`;
+
 const SearchDrawerItem = ({ track }) => {
   const context = useContext(AppContext);
 
@@ -56,6 +70,9 @@ const SearchDrawerItem = ({ track }) => {
         <Title>{track.title}</Title>
         <Artist>{track.artist}</Artist>
       </TextContainer>
+      <Plus>
+        <AiOutlinePlus size={25} />
+      </Plus>
     </SongContainer>
   );
 };
