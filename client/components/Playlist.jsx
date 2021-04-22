@@ -14,7 +14,7 @@ const PlaylistContainer = styled.div((props) => ({
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
   position: 'fixed',
-  top: '25%',
+  top: '15%',
   left: 0,
   transition: '500ms ease-in',
   transform: props.open ? '' : 'translateX(-100%)',
@@ -35,8 +35,7 @@ const List = styled.ul`
   list-style: none;
   padding: 0.1rem 0.5rem;
   margin: 0;
-  min-height: 5rem;
-  max-height: 17rem;
+  height: 27rem;
   overflow-y: scroll;
 `;
 
@@ -45,10 +44,10 @@ const OpenPlaylistTab = styled.div`
   top: 46%;
   right: -53px;
   transform: rotate(90deg);
-  background-color: #fff;
+  background-color: #2941ab;
+  color: #fff;
   z-index: -1;
   border-radius: 5px 5px 0 0;
-  box-shadow: rgb(0 0 0 / 35%) 5px 0px 15px;
   padding: 0.3rem;
   &:hover {
     cursor: pointer;
