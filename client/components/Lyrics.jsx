@@ -2,6 +2,31 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router';
 import axios from 'axios';
 import AppContext from '../../context/AppContext';
+import styled from '@emotion/styled';
+
+const LyricsContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 82px 0 150px 0;
+  background-color: #f2b858;
+  color: #000;
+  min-height: 100vh;
+  width: 100%;
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-size: 2.5rem;
+`;
+
+const SongLyrics = styled.p`
+  text-align: center;
+  line-height: 1.6;
+  white-space: pre;
+  font-size: 1.2rem;
+`;
 
 function Lyrics() {
   const context = useContext(AppContext);
@@ -25,26 +50,23 @@ function Lyrics() {
 
   if (!lyrics) {
     return (
-      <div className='lyricContainer'>
+      <LyricsContainer>
         <h4>Loading...</h4>
-      </div>
+      </LyricsContainer>
     );
   }
 
   if (!context.currentSong) return null;
 
   return (
-    <div className='lyricContainer'>
-      <div className='lyricTitle'>
-        <h1>{context.currentSong.title} by</h1>
-      </div>
-      <div className='lyricArtist'>
-        <h1>{context.currentSong.artist}</h1>
-      </div>
-      <div className='lyricLyrics'>
-        <p>{lyrics}</p>
-      </div>
-    </div>
+    <LyricsContainer>
+      <Title>
+        {context.currentSong.title}
+        <br />
+        by {context.currentSong.artist}
+      </Title>
+      <SongLyrics>{lyrics}</SongLyrics>
+    </LyricsContainer>
   );
 }
 
