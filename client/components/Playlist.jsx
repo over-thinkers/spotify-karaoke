@@ -49,8 +49,10 @@ const OpenPlaylistTab = styled.div`
   z-index: -1;
   border-radius: 5px 5px 0 0;
   padding: 0.3rem;
+  transition: 200ms ease-out;
   &:hover {
     cursor: pointer;
+    background-color: #203282;
   }
 `;
 
