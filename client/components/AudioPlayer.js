@@ -24,9 +24,7 @@ const Button = styled.button`
 function AudioPlayer() {
   const context = useContext(AppContext);
   const [play, setPlay] = useState(false);
-
-  // if (!context.accessToken) return null;
-  const accessToken = context.accessToken;
+  const accessToken = context.accessToken || '';
 
   useEffect(() => {
     if (!context.currentSong) return setPlay(false);
