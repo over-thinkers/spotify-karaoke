@@ -33,7 +33,7 @@ const Header = styled.h3`
 
 const List = styled.ul`
   list-style: none;
-  padding: 0.1rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   margin: 0;
   height: 27rem;
   overflow-y: scroll;
