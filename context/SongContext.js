@@ -10,6 +10,8 @@ export const SongContextProvider = (props) => {
     setCurrentSong
   };
 
+  console.log("conte4xttttttttt", context)
+
   return (
     <SongContext.Provider value={context}>
       {props.children}
