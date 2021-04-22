@@ -10,7 +10,7 @@ const PlaylistContainer = styled.div((props) => ({
   backgroundColor: '#f1f1f1',
   borderRadius: '0 10px 10px 0',
   margin: 0,
-  width: '20rem',
+  width: '22rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
   position: 'fixed',
