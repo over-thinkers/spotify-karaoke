@@ -9,6 +9,7 @@ const SongContainer = styled.div`
   position: relative;
   padding: 0.3rem;
   border-radius: 5px;
+  transition: 200ms ease-out;
   &:hover {
     background-color: #fff;
     cursor: pointer;
