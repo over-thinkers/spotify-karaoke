@@ -24,12 +24,14 @@ const Button = styled.button`
 function AudioPlayer() {
   const context = useContext(AppContext);
   const [play, setPlay] = useState(false);
-  const accessToken = context.accessToken || '';
+  const accessToken = context.accessToken;
 
   useEffect(() => {
     if (!context.currentSong) return setPlay(false);
     setPlay(true);
   }, [context.currentSong]);
+
+  if (!accessToken) return null;
 
   const playerCallback = (state) => {
     if (!state.isPlaying) {
