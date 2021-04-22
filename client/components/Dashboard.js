@@ -1,27 +1,29 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react'
+import React, { Fragment, useState, useEffect, useRef, useContext } from 'react'
 import useAuth from './useAuth'
 import SpotifyWebApi from 'spotify-web-api-node';
 import SearchResultTrack from './SearchResultTrack';
 import AudioPlayer from './AudioPlayer';
 import SpotifyPlayer from 'react-spotify-web-playback';
-import axios from 'axios'
+import axios from 'axios';
+import SongContext from '../../context/SongContext';
+
 
 const spotifyApi = new SpotifyWebApi({
   clientId: 'dca3db4a5a914cae9632a6c5ebba47f0'
 })
 
 const Dashboard = ({ code }) => {
+  const context = useContext(SongContext);
   const accessToken = useAuth(code);
-  console.log("access tokennnnnn:",accessToken)
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
-  let [userEmail, setUserEmail] = useState('')
+  const [userEmail, setUserEmail] = useState('')
 
   const searchTracks = () => {
-    spotifyApi.searchTracks(search)
+    spotifyApi.searchTracks(search, { limit: 20, offset: 0 })
       .then(res => {
-        setSearchResults(res.body.tracks.items.slice(0, 6).map(track => {
+        setSearchResults(res.body.tracks.items.map(track => {
           const smallestImage = track.album.images.reduce((smallest, current) => {
             if (current.height < smallest.height) return current
             return smallest
@@ -42,29 +44,15 @@ const Dashboard = ({ code }) => {
   const userInfo = () => {
     axios.get(`https://api.spotify.com/v1/me?access_token=${accessToken}`)
       .then((res) => {
-        setUserEmail(userEmail = res.data.email)
-        console.log('user data:', res.data)
+        // setUserEmail(res.data.email)
+        context.setUserEmail(res.data.email);
       })
-      .then(() => console.log("userrrrr", userEmail))
   }
 
   useEffect(() => {
-    userInfo();
     if (accessToken) {
       spotifyApi.setAccessToken(accessToken);
-
-      // spotifyApi.getMe()
-      // .then(data => {
-      //   console.log(data)
-      //   spotifyApi.getUserPlaylists(data.body.id)
-      //     .then(res => {
-      //       spotifyApi.getPlaylist("4FXYlr757L1wMERZGOrOrE")
-      //         .then(list => console.log(list))
-      //     })
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
+      userInfo();
 
       spotifyApi.getMyDevices()
         .then(data => console.log(data.body.devices))
@@ -103,8 +91,8 @@ const Dashboard = ({ code }) => {
         </div>
         <div className="songList">
           {searchResults.map(track => (
-            <div className="mappedItems">
-              <SearchResultTrack userEmail={userEmail} track={track} key={track.uri} />
+            <div className="mappedItems" key={track.uri}>
+              <SearchResultTrack userEmail={userEmail} track={track} />
             </div>
           ))}
         </div>

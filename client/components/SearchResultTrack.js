@@ -6,9 +6,13 @@ const SearchResultTrack = ({ track, userEmail }) => {
   const context = useContext(SongContext);
 
   const { artist, title, uri, albumUrl } = track;
-  {console.log("album urllllllll", albumUrl)}
   return (
-    <div className="songInfo" onClick={() => context.setCurrentSong(uri)}>
+    <div 
+      className="songInfo" 
+      onClick={() => {
+        context.addToPlaylist(track)
+      }}
+    >
       <Link to={{ pathname: '/playlist', state: { artist, title, albumUrl, userEmail } }}>
         <div className="songCover">
           <img src={albumUrl} className="albumCover"/>
