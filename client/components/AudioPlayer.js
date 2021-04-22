@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
-import SongContext from '../../context/SongContext';
+import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const Container = styled.div`
@@ -21,16 +21,17 @@ const Button = styled.button`
   }
 `;
 
-function AudioPlayer({ accessToken }) {
-  if (!accessToken) return null;
-
+function AudioPlayer() {
+  const context = useContext(AppContext);
   const [play, setPlay] = useState(false);
-  const context = useContext(SongContext);
+  const accessToken = context.accessToken;
 
   useEffect(() => {
     if (!context.currentSong) return setPlay(false);
     setPlay(true);
   }, [context.currentSong]);
+
+  if (!accessToken) return null;
 
   const playerCallback = (state) => {
     if (!state.isPlaying) {
@@ -51,6 +52,10 @@ function AudioPlayer({ accessToken }) {
         showSaveIcon
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
+        styles={{
+          sliderColor: '#2941ab',
+          activeColor: '#2941ab',
+        }}
       />
     </Container>
   );
