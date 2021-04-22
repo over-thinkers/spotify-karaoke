@@ -52,6 +52,10 @@ function AudioPlayer() {
         showSaveIcon
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
+        styles={{
+          sliderColor: '#2941ab',
+          activeColor: '#2941ab',
+        }}
       />
     </Container>
   );
