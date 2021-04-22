@@ -11,7 +11,7 @@ const ListContainer = styled.div((props) => ({
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
   position: 'fixed',
-  top: '25%',
+  top: '15%',
   right: 0,
   transition: '500ms ease-in',
   transform: props.open ? '' : 'translateX(100%)',
@@ -28,24 +28,37 @@ const Header = styled.h3`
   color: #fff;
 `;
 
+const InputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+`;
+
+const Input = styled.input`
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 7px;
+  border: 1px solid black;
+  padding: 0.3rem;
+`;
+
 const List = styled.ul`
   list-style: none;
   padding: 0.1rem 0.5rem;
   margin: 0;
-  min-height: 5rem;
-  max-height: 17rem;
+  height: 24.5rem;
   overflow-y: scroll;
 `;
 
 const OpenSearchTab = styled.div`
   position: absolute;
   top: 46%;
-  left: -52px;
+  left: -51px;
   transform: rotate(-90deg);
-  background-color: #fff;
+  background-color: #2941ab;
+  color: #fff;
   z-index: -1;
   border-radius: 5px 5px 0 0;
-  box-shadow: rgb(0 0 0 / 35%) 5px 0px 15px;
   padding: 0.3rem;
   &:hover {
     cursor: pointer;
@@ -63,19 +76,14 @@ const SearchDrawer = () => {
   return (
     <ListContainer open={searchOpen}>
       <Header>Search</Header>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '1rem',
-        }}
-      >
-        <input
+      <InputContainer>
+        <Input
           type='search'
+          placeholder='song title or artist'
           value={context.search}
           onChange={(e) => context.setSearch(e.target.value)}
         />
-      </div>
+      </InputContainer>
       <List>
         <li>
           {context.searchResults.map((track) => (
