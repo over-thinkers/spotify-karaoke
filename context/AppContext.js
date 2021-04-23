@@ -111,7 +111,11 @@ export const AppContextProvider = (props) => {
   }, [searchOffset]);
 
   useEffect(() => {
-    if (!search) return setSearchResults([]);
+    if (!search) {
+      setSearchResults([]);
+      setHasMore(true);
+      return;
+    }
     if (!accessToken) return;
 
     if (delay) clearTimeout(delay);
