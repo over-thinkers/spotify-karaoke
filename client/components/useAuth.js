@@ -21,8 +21,6 @@ export default function useAuth(code) {
     })
     .catch(err => {
       // window.location = '/'
-      console.log('codeeeeeee', code, "access token:", accessToken)
-      console.log('error from login API:', err)
     })
   }, [code])
 
