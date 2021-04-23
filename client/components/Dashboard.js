@@ -12,6 +12,7 @@ import AudioPlayer from './AudioPlayer';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import axios from 'axios';
 import AppContext from '../../context/AppContext';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from '@emotion/styled';
 
 const SearchContainer = styled.div`
@@ -67,9 +68,26 @@ const Dashboard = ({ code }) => {
         />
       </InputContainer>
       <SearchResultsContainer>
-        {context.searchResults.map((track) => (
-          <SearchResultTrack track={track} key={track.uri} />
-        ))}
+        <InfiniteScroll
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+          dataLength={context.searchResults.length}
+          next={context.nextPage}
+          hasMore={true}
+          loader={context.search ? <h4>Loading...</h4> : null}
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>End of results</b>
+            </p>
+          }
+        >
+          {context.searchResults.map((track) => (
+            <SearchResultTrack track={track} key={track.uri} />
+          ))}
+        </InfiniteScroll>
       </SearchResultsContainer>
     </SearchContainer>
   );
