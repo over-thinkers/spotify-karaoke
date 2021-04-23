@@ -21,6 +21,7 @@ export const AppContextProvider = (props) => {
   const [delay, setDelay] = useState();
   const [searchLimit, setSearchLimit] = useState(10);
   const [searchOffset, setSearchOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   /********** PLAYLIST **********/
   const [currentSong, setCurrentSong] = useState(null);
@@ -81,6 +82,7 @@ export const AppContextProvider = (props) => {
     spotifyApi
       .searchTracks(search, { limit: searchLimit, offset: searchOffset })
       .then((res) => {
+        if (!res.body.tracks.items.length) return setHasMore(false);
         const results = res.body.tracks.items.map((track) => {
           const largestImage = track.album.images[0];
 
@@ -102,6 +104,7 @@ export const AppContextProvider = (props) => {
 
   useEffect(() => {
     if (!accessToken) return;
+    if (!search) return;
     if (searchOffset === 0) return;
 
     searchTracks();
@@ -112,6 +115,7 @@ export const AppContextProvider = (props) => {
     if (!accessToken) return;
 
     if (delay) clearTimeout(delay);
+    setHasMore(true);
     setSearchOffset(0);
     setSearchResults([]);
 
@@ -184,6 +188,7 @@ export const AppContextProvider = (props) => {
     searchResults,
     setSearchResults,
     nextPage,
+    hasMore,
     currentSong,
     setCurrentSong,
     playlist,

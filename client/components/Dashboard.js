@@ -76,13 +76,8 @@ const Dashboard = ({ code }) => {
           }}
           dataLength={context.searchResults.length}
           next={context.nextPage}
-          hasMore={true}
+          hasMore={context.hasMore}
           loader={context.search ? <h4>Loading...</h4> : null}
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>End of results</b>
-            </p>
-          }
         >
           {context.searchResults.map((track) => (
             <SearchResultTrack track={track} key={track.uri} />

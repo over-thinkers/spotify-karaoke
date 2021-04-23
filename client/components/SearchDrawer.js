@@ -91,12 +91,12 @@ const SearchDrawer = () => {
         <InfiniteScroll
           dataLength={context.searchResults.length}
           next={context.nextPage}
-          hasMore={true}
+          hasMore={context.hasMore}
           loader={context.search ? <h4>Loading...</h4> : null}
           scrollableTarget='searchResults'
           endMessage={
             <p style={{ textAlign: 'center' }}>
-              <b>Yay! You have seen it all</b>
+              <b>End of results</b>
             </p>
           }
         >
