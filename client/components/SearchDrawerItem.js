@@ -3,7 +3,7 @@ import AppContext from '../../context/AppContext';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styled from '@emotion/styled';
 
-const SongContainer = styled.div`
+const SongContainer = styled.li`
   display: flex;
   height: 3rem;
   position: relative;

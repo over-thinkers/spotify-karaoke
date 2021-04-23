@@ -42,7 +42,7 @@ const List = styled.ul`
 const OpenPlaylistTab = styled.div`
   position: absolute;
   top: 46%;
-  right: -53px;
+  right: -55px;
   transform: rotate(90deg);
   background-color: #2941ab;
   color: #fff;

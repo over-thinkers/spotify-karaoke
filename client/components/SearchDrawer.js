@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AppContext from '../../context/AppContext';
 import SearchDrawerItem from './SearchDrawerItem';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from '@emotion/styled';
 
 const ListContainer = styled.div((props) => ({
@@ -86,12 +87,23 @@ const SearchDrawer = () => {
           onChange={(e) => context.setSearch(e.target.value)}
         />
       </InputContainer>
-      <List>
-        <li>
+      <List id='searchResults'>
+        <InfiniteScroll
+          dataLength={context.searchResults.length}
+          next={context.nextPage}
+          hasMore={context.hasMore}
+          loader={context.search ? <h4>Loading...</h4> : null}
+          scrollableTarget='searchResults'
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>End of results</b>
+            </p>
+          }
+        >
           {context.searchResults.map((track) => (
             <SearchDrawerItem track={track} key={track.uri} />
           ))}
-        </li>
+        </InfiniteScroll>
       </List>
       <OpenSearchTab onClick={toggleOpenSearch}>SEARCH</OpenSearchTab>
     </ListContainer>
