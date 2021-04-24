@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
-body {
+html, body {
   margin: 0;
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: 'Open Sans', sans-serif;
+  height: 100%;
 }
 
 
@@ -151,14 +152,39 @@ body {
   margin-top: 5px;
 }
 
+.modal-container {
+  background-color: #fff;
+  transition: 500ms ease-out;
+  margin: 0;
+  z-index: 99;
+  position: absolute;
+  top:5%;
+  bottom: 0;
+  left: 87%;
+  right: 0;
+  height: 7%;
+  width: 11%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.account p:hover {
+  opacity: 0.5;
+}
+
+.account {
+  padding: 2px 0px 5px 12px ;
+}
+
+
 /* ------------- HEADER ---------------- */
-.headerContainer {
+.header-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  padding-top: 250px;
   align-items: center;
-  padding-top: 10px;
-  height: 600px;
+  height:  1100px;
   background-color: #2941AB;
   color: #fff;
 }
@@ -391,4 +417,9 @@ button:focus {
 
 .playSong:hover {
   cursor: pointer;
+}
+
+/* ----------- AUDIO PLAYER -------------*/
+.prev-button {
+  background-color: red;
 }

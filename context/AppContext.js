@@ -205,6 +205,8 @@ export const AppContextProvider = (props) => {
     deleteSong,
   };
 
+  console.log("conte4xttttttttt", context)
+
   return (
     <AppContext.Provider value={context}>{props.children}</AppContext.Provider>
   );
