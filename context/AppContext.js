@@ -19,6 +19,9 @@ export const AppContextProvider = (props) => {
   const [search, setSearch] = useState('gryffin');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
+  const [searchLimit, setSearchLimit] = useState(10);
+  const [searchOffset, setSearchOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   /********** PLAYLIST **********/
   const [currentSong, setCurrentSong] = useState(null);
@@ -76,16 +79,11 @@ export const AppContextProvider = (props) => {
 
   /********** SEARCH **********/
   const searchTracks = () => {
-    spotifyApi.searchTracks(search, { limit: 20, offset: 0 }).then((res) => {
-      setSearchResults(
-        res.body.tracks.items.map((track) => {
-          const smallestImage = track.album.images.reduce(
-            (smallest, current) => {
-              if (current.height < smallest.height) return current;
-              return smallest;
-            }
-          );
-
+    spotifyApi
+      .searchTracks(search, { limit: searchLimit, offset: searchOffset })
+      .then((res) => {
+        if (!res.body.tracks.items.length) return setHasMore(false);
+        const results = res.body.tracks.items.map((track) => {
           const largestImage = track.album.images[0];
 
           return {
@@ -94,21 +92,41 @@ export const AppContextProvider = (props) => {
             uri: track.uri,
             albumUrl: largestImage.url,
           };
-        })
-      );
-    });
+        });
+
+        setSearchResults((prev) => [...prev, ...results]);
+      });
+  };
+
+  const nextPage = () => {
+    setSearchOffset((prev) => prev + searchLimit);
   };
 
   useEffect(() => {
-    if (!search) return setSearchResults([]);
+    if (!accessToken) return;
+    if (!search) return;
+    if (searchOffset === 0) return;
+
+    searchTracks();
+  }, [searchOffset]);
+
+  useEffect(() => {
+    if (!search) {
+      setSearchResults([]);
+      setHasMore(true);
+      return;
+    }
     if (!accessToken) return;
 
     if (delay) clearTimeout(delay);
+    setHasMore(true);
+    setSearchOffset(0);
+    setSearchResults([]);
 
     setDelay(
       setTimeout(() => {
         searchTracks();
-      }, 300)
+      }, 500)
     );
   }, [search, accessToken]);
 
@@ -173,6 +191,8 @@ export const AppContextProvider = (props) => {
     setSearch,
     searchResults,
     setSearchResults,
+    nextPage,
+    hasMore,
     currentSong,
     setCurrentSong,
     playlist,
