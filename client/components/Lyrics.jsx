@@ -35,6 +35,7 @@ function Lyrics() {
   useEffect(() => {
     if (!context.currentSong) return;
     setLyrics('');
+    window.scrollTo(0, 0);
 
     axios
       .get('http://localhost:3000/lyrics', {
