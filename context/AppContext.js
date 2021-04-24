@@ -155,9 +155,12 @@ export const AppContextProvider = (props) => {
   };
 
   const deleteSong = (index) => {
+    const playlistLastIdx = playlist.length - 1;
     setPlaylist((prev) => prev.filter((track, i) => i !== index));
     if (index < playlistIdx) {
       setPlaylistIdx((prev) => prev - 1);
+    } else if (index === playlistIdx && index === playlistLastIdx) {
+      setPlaylistIdx(0);
     }
   };
 
@@ -205,8 +208,6 @@ export const AppContextProvider = (props) => {
     prevSong,
     deleteSong,
   };
-
-  console.log("conte4xttttttttt", context)
 
   return (
     <AppContext.Provider value={context}>{props.children}</AppContext.Provider>
