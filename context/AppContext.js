@@ -54,12 +54,10 @@ export const AppContextProvider = (props) => {
         params: { email: userEmail },
       })
       .then((res) => {
-        console.log('GOT USER', res);
         if (res.data.length) {
           setPlaylist(res.data[0].playlist);
-        }
-        // if it's a new user
-        if (!res.data.length) {
+        } else {
+          // if it's a new user
           axios
             .post('http://localhost:3000/user', {
               email: userEmail,
@@ -178,9 +176,6 @@ export const AppContextProvider = (props) => {
       .put('http://localhost:3000/playlist', {
         email: userEmail,
         playlist,
-      })
-      .then((res) => {
-        console.log('UPDATED PLAYLIST', res);
       })
       .catch((err) => {
         console.log('Error updating playlist', err);
