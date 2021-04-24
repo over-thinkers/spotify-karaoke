@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Modal() {
     // const code = new URLSearchParams(window.location.search).get('code');
@@ -19,7 +20,7 @@ function Modal() {
         <div className="modal-container">
             <div className="account">
                 <p>Account</p>
-                <p onClick={()=>{deleteAllCookies();}}>Logout</p>
+                <Link to={{ pathname: '/' }}><p onClick={()=>{deleteAllCookies();}}>Logout</p></Link>
             </div>
       </div>
     </>
