@@ -2,22 +2,62 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
+import { GrChapterPrevious, GrChapterNext } from "react-icons/gr";
 
 const Container = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
+  background-color: #f1f1f1;
+  background-color: #fff;
+  text-align: center;
 `;
 
-const Button = styled.button`
-  width: 50%;
+const Next = styled.button`
+  width: 5%;
   height: 2.5rem;
+  text-align: center;
   background-color: #fff;
-  border: 1px solid black;
+  border: none;
+  position: absolute;
+  left: 52%;
+  top: 15%;
+  z-index: 99;
+  /* border: 1px solid black; */
   transition: 500ms ease-out;
   &:hover {
     cursor: pointer;
     background-color: #e0dfdf;
+  }
+  &:focus { outline: none }
+
+  @media (min-width: 300px) and (max-width: 1024px) {
+    top: 55%
+  }
+`;
+
+const Prev = styled.button`
+  width: 5%;
+  height: 2.5rem;
+  text-align: center;
+  background-color: #fff;
+  border: none;
+  position: absolute;
+  left: 43%;
+  top: 15%;
+  z-index: 99;
+  /* border: 1px solid black; */
+  transition: 500ms ease-out;
+  &:hover {
+    cursor: pointer;
+    background-color: #e0dfdf;
+  }
+  &:focus { outline: none }
+
+  @media (min-width: 300px) and (max-width: 1024px) {
+    /* display: none; */
+    top: 55%
+
   }
 `;
 
@@ -44,8 +84,9 @@ function AudioPlayer() {
 
   return (
     <Container>
-      <Button onClick={context.prevSong}>Previous</Button>
-      <Button onClick={context.nextSong}>Next</Button>
+      <Prev classname="prev-button" onClick={context.prevSong}><GrChapterPrevious size={25}/></Prev>
+      <Next classname="next-button" onClick={context.nextSong}><GrChapterNext size={25}/></Next>
+
       <SpotifyPlayer
         play={play}
         token={accessToken}

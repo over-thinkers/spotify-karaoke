@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Modal from './Modal'
 
 function NavLoggedIn() {
+  const [modal, openModal] = useState(false)
+
   return (
+    <>
     <nav>
       <ul className='nav-list2'>
         <li className='nav-item2'>
           <div className='logoName'>
             <div className='logo'>
-              <a href='#'>
+              <Link to={{ pathname: '/' }}>
                 <img
                   className='logoIcon'
                   src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
                   width='42px'
                 />
-              </a>
+              </Link>
             </div>
             <div className='name'>
-              <p>Spoti-oki</p>
+              <Link to={{ pathname: '/' }}>
+                <p>Spoti-oki</p>
+              </Link>
             </div>
           </div>
         </li>
@@ -31,8 +37,11 @@ function NavLoggedIn() {
         <li className='nav-item2'>
           <a href='#'>About</a>
         </li>
+
         <li className='nav-item2'>
-          <a href='#'>My Playlist</a>
+          <Link to={{ pathname: 'playlist' }}>
+            <a href='#'>My Playlist</a>
+          </Link>
         </li>
         <li className='nav-item2'>
           <p className='line'></p>
@@ -41,7 +50,7 @@ function NavLoggedIn() {
           <a
             href='#'
             onClick={() => {
-              alert('modal to logout');
+              openModal(p=>!p);
             }}
           >
             <div className='loggedIn'>
@@ -63,6 +72,9 @@ function NavLoggedIn() {
         </li>
       </ul>
     </nav>
+
+    {modal ? <Modal /> : null}
+  </>
   );
 }
 
