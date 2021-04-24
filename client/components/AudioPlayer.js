@@ -70,9 +70,14 @@ function AudioPlayer() {
   const accessToken = context.accessToken;
 
   useEffect(() => {
+    if (!playerReady) return;
     if (!context.currentSong) return setPlay(false);
     setPlay(true);
   }, [context.currentSong]);
+
+  useEffect(() => {
+    playerReady && setPlay(true);
+  }, [playerReady])
 
   if (!accessToken) return null;
 
