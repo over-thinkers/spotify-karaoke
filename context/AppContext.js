@@ -91,6 +91,7 @@ export const AppContextProvider = (props) => {
             title: track.name,
             uri: track.uri,
             albumUrl: largestImage.url,
+            length: track.duration_ms,
           };
         });
 
