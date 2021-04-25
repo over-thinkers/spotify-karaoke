@@ -25,10 +25,17 @@ const Button = styled.button`
     props.prev ? 'translateX(-40px)' : 'translateX(40px)'};
   top: 15%;
   z-index: 99;
-  transition: 500ms ease-out;
+  transition: 200ms ease-out;
   &:hover {
     cursor: pointer;
-    background-color: #e0dfdf;
+    transform: ${(props) =>
+      props.prev
+        ? 'translateX(-40px) scale(1.05)'
+        : 'translateX(40px) scale(1.05)'};
+  }
+  &:active {
+    transform: ${(props) =>
+      props.prev ? 'translateX(-40px)' : 'translateX(40px)'};
   }
   &:focus {
     outline: none;
