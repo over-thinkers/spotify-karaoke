@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema({
     title: String,
     uri: String,
     albumUrl: String,
+    length: Number,
   }]
 })
 

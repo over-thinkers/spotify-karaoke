@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
-import { GrChapterPrevious, GrChapterNext } from "react-icons/gr";
+import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
 
 const Container = styled.div`
   width: 100%;
@@ -13,67 +13,62 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const Next = styled.button`
-  width: 5%;
+const Button = styled.button`
   height: 2.5rem;
   text-align: center;
   background-color: #fff;
   border: none;
   position: absolute;
-  left: 52%;
+  right: ${(props) => props.prev && '50%'};
+  left: ${(props) => props.next && '50%'};
+  transform: ${(props) =>
+    props.prev ? 'translateX(-40px)' : 'translateX(40px)'};
   top: 15%;
   z-index: 99;
-  /* border: 1px solid black; */
-  transition: 500ms ease-out;
+  transition: 200ms ease-out;
   &:hover {
     cursor: pointer;
-    background-color: #e0dfdf;
+    transform: ${(props) =>
+      props.prev
+        ? 'translateX(-40px) scale(1.05)'
+        : 'translateX(40px) scale(1.05)'};
   }
-  &:focus { outline: none }
-
-  @media (min-width: 300px) and (max-width: 1024px) {
-    top: 55%
+  &:active {
+    transform: ${(props) =>
+      props.prev ? 'translateX(-40px)' : 'translateX(40px)'};
   }
-`;
-
-const Prev = styled.button`
-  width: 5%;
-  height: 2.5rem;
-  text-align: center;
-  background-color: #fff;
-  border: none;
-  position: absolute;
-  left: 43%;
-  top: 15%;
-  z-index: 99;
-  /* border: 1px solid black; */
-  transition: 500ms ease-out;
-  &:hover {
-    cursor: pointer;
-    background-color: #e0dfdf;
+  &:focus {
+    outline: none;
   }
-  &:focus { outline: none }
 
   @media (min-width: 300px) and (max-width: 1024px) {
     /* display: none; */
-    top: 55%
-
+    top: 55%;
   }
 `;
 
 function AudioPlayer() {
   const context = useContext(AppContext);
   const [play, setPlay] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
   const accessToken = context.accessToken;
 
   useEffect(() => {
+    if (!playerReady) return;
     if (!context.currentSong) return setPlay(false);
     setPlay(true);
   }, [context.currentSong]);
 
+  useEffect(() => {
+    playerReady && setPlay(true);
+  }, [playerReady]);
+
   if (!accessToken) return null;
 
   const playerCallback = (state) => {
+    if (!playerReady && state.status === 'READY') {
+      setPlayerReady(true);
+    }
     if (!state.isPlaying) {
       setPlay(false);
       if (state.type === 'player_update' && state.position === 0) {
@@ -84,8 +79,16 @@ function AudioPlayer() {
 
   return (
     <Container>
-      <Prev classname="prev-button" onClick={context.prevSong}><GrChapterPrevious size={25}/></Prev>
-      <Next classname="next-button" onClick={context.nextSong}><GrChapterNext size={25}/></Next>
+      {playerReady && context.playlistIdx > 0 && (
+        <Button prev onClick={context.prevSong}>
+          <GrChapterPrevious size={25} />
+        </Button>
+      )}
+      {playerReady && context.playlistIdx < context.playlist.length - 1 && (
+        <Button next onClick={context.nextSong}>
+          <GrChapterNext size={25} />
+        </Button>
+      )}
 
       <SpotifyPlayer
         play={play}

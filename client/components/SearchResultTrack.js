@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
@@ -11,7 +11,7 @@ const SongContainer = styled.li`
   &:hover {
     cursor: pointer;
   }
-`
+`;
 
 const Overlay = styled.div`
   position: absolute;
@@ -23,11 +23,13 @@ const Overlay = styled.div`
   width: 100%;
   opacity: 0;
   transition: 500ms ease-out;
-`
+`;
 
 const OverlayText = styled.div`
+  width: 100%;
   color: #000;
   font-size: 20px;
+  font-weight: 700;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,14 +37,14 @@ const OverlayText = styled.div`
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
-`
+`;
 
 const AlbumCover = styled.img`
   display: block;
   width: 100%;
   height: auto;
   transition: 500ms ease-out;
-`
+`;
 
 const Title = styled.h4`
   white-space: nowrap;
@@ -50,7 +52,7 @@ const Title = styled.h4`
   width: 90%;
   text-overflow: ellipsis;
   margin: 0.5rem auto 0 auto;
-`
+`;
 
 const ImageContainer = styled.div`
   position: relative;
@@ -61,35 +63,35 @@ const ImageContainer = styled.div`
       opacity: 1;
     }
     ${AlbumCover} {
-      opacity: 0.3;
+      opacity: 0.2;
     }
   }
-`
+`;
 
 const SearchResultTrack = ({ track }) => {
   const context = useContext(AppContext);
+  const [overlayText, setOverlayText] = useState('+ Add to playlist')
 
   const { artist, title, uri, albumUrl } = track;
 
   return (
-    <SongContainer 
+    <SongContainer
       onClick={() => {
-        context.addToPlaylist(track)
+        context.addToPlaylist(track);
+        setOverlayText('Added!')
       }}
     >
       <ImageContainer>
         <AlbumCover src={albumUrl} />
         <Overlay>
-          <OverlayText>
-            + Add to playlist
-          </OverlayText>
+          <OverlayText>{overlayText}</OverlayText>
         </Overlay>
       </ImageContainer>
 
       <Title>{title}</Title>
       <div>{artist}</div>
     </SongContainer>
-  )
-}
+  );
+};
 
-export default SearchResultTrack
+export default SearchResultTrack;
