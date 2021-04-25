@@ -13,7 +13,7 @@ function NavBar() {
                 <a href="#"><img className="logoIcon" src="https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png" width="42px"/></a>
               </div>
               <div className="name">
-                <p>Spoti-oki</p>
+                <p>Spoti-oke</p>
               </div>
             </div>
           </li>
