@@ -13,39 +13,16 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const Next = styled.button`
-  width: 5%;
+const Button = styled.button`
   height: 2.5rem;
   text-align: center;
   background-color: #fff;
   border: none;
   position: absolute;
-  left: 52%;
-  top: 15%;
-  z-index: 99;
-  /* border: 1px solid black; */
-  transition: 500ms ease-out;
-  &:hover {
-    cursor: pointer;
-    background-color: #e0dfdf;
-  }
-  &:focus {
-    outline: none;
-  }
-
-  @media (min-width: 300px) and (max-width: 1024px) {
-    top: 55%;
-  }
-`;
-
-const Prev = styled.button`
-  width: 5%;
-  height: 2.5rem;
-  text-align: center;
-  background-color: #fff;
-  border: none;
-  position: absolute;
-  left: 43%;
+  right: ${(props) => props.prev && '50%'};
+  left: ${(props) => props.next && '50%'};
+  transform: ${(props) =>
+    props.prev ? 'translateX(-40px)' : 'translateX(40px)'};
   top: 15%;
   z-index: 99;
   transition: 500ms ease-out;
@@ -77,7 +54,7 @@ function AudioPlayer() {
 
   useEffect(() => {
     playerReady && setPlay(true);
-  }, [playerReady])
+  }, [playerReady]);
 
   if (!accessToken) return null;
 
@@ -96,14 +73,14 @@ function AudioPlayer() {
   return (
     <Container>
       {playerReady && context.playlistIdx > 0 && (
-        <Prev classname='prev-button' onClick={context.prevSong}>
+        <Button prev onClick={context.prevSong}>
           <GrChapterPrevious size={25} />
-        </Prev>
+        </Button>
       )}
       {playerReady && context.playlistIdx < context.playlist.length - 1 && (
-        <Next classname='next-button' onClick={context.nextSong}>
+        <Button next onClick={context.nextSong}>
           <GrChapterNext size={25} />
-        </Next>
+        </Button>
       )}
 
       <SpotifyPlayer
