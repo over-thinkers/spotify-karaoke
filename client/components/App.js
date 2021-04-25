@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Route,
   BrowserRouter as Router,
@@ -29,6 +29,8 @@ const ScrollToTop = withRouter(_ScrollToTop);
 function App() {
   const [code, setCode] = useState();
 
+  const dashboardRef = useRef();
+
   useEffect(() => {
     setCode(new URLSearchParams(window.location.search).get('code'));
   }, []);
@@ -40,8 +42,14 @@ function App() {
           <Switch>
             <Route path='/' exact>
               {code ? <NavLoggedIn /> : <NavBar />}
-              {code ? <HeaderLoggedIn /> : <Header />}
-              {code ? <Dashboard code={code} /> : null}
+              {code ? (
+                <HeaderLoggedIn dashboardRef={dashboardRef} />
+              ) : (
+                <Header />
+              )}
+              {code ? (
+                <Dashboard dashboardRef={dashboardRef} code={code} />
+              ) : null}
             </Route>
 
             <Route path='/playlist' exact>

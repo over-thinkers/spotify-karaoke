@@ -25,7 +25,7 @@ const SearchContainer = styled.div`
 const Title = styled.h1`
   font-size: 5rem;
   font-weight: bold;
-  margin: 3rem 0;
+  margin: 4rem 0 2rem 0;
 `;
 
 const InputContainer = styled.div`
@@ -53,11 +53,11 @@ const SearchResultsContainer = styled.ul`
   justify-content: center;
 `;
 
-const Dashboard = ({ code }) => {
+const Dashboard = ({ code, dashboardRef }) => {
   const context = useContext(AppContext);
 
   return (
-    <SearchContainer>
+    <SearchContainer ref={dashboardRef}>
       <Title>Looking for music?</Title>
       <InputContainer>
         <Input

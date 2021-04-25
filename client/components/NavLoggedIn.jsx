@@ -24,7 +24,7 @@ function NavLoggedIn() {
               </div>
               <div className='name'>
                 <Link to={{ pathname: '/' }}>
-                  <p>Spoti-oki</p>
+                  <p>Spoti-oke</p>
                 </Link>
               </div>
             </div>
