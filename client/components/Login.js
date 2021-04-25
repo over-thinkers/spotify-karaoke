@@ -10,7 +10,7 @@ const Anchor = styled.a`
 `;
 
 const LoginButton = styled.button`
-  border: 1px #31b954 solid;
+  border: none;
   border-radius: 50px;
   height: 50px;
   width: 250px;
@@ -19,8 +19,13 @@ const LoginButton = styled.button`
   font-size: 17px;
   font-weight: 500;
   text-decoration: none;
+  transition: 300ms ease-out;
   &:hover {
     cursor: pointer;
+    background-color: #1ed760;
+  }
+  &:active {
+    background-color: #31b954;
   }
 `;
 
