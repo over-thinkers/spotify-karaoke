@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #f2b858;
+  background-color: ${(props) => props.theme.colors.secondary};
   color: #fff;
 `;
 
@@ -31,7 +31,7 @@ const Button = styled.button`
   border-radius: 50px;
   height: 50px;
   width: 250px;
-  background-color: #31b954;
+  background-color: ${(props) => props.theme.colors.button};
   color: #fff;
   font-size: 17px;
   font-weight: 500;
@@ -41,7 +41,7 @@ const Button = styled.button`
     background-color: #1ed760;
   }
   &:active {
-    background-color: #31b954;
+    background-color: ${(props) => props.theme.colors.button};
   }
 `;
 

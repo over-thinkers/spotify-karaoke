@@ -11,7 +11,7 @@ const SongContainer = styled.div((props) => ({
   padding: '0.3rem',
   borderRadius: '5px',
   boxShadow: props.playing && 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
-  border: props.playing && '1px solid #2941ab',
+  border: props.playing && `1px solid ${props.theme.colors.primary}`,
   backgroundColor: props.playing && '#fff',
 }));
 
@@ -20,7 +20,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 0 .7rem;
+  margin: 0 0.7rem;
   max-width: 70%;
   &:hover {
     cursor: pointer;
@@ -29,7 +29,7 @@ const TextContainer = styled.div`
 
 const Title = styled.h4`
   margin: 0;
-  font-size: .9rem;
+  font-size: 0.9rem;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -54,7 +54,7 @@ const TrashCan = styled.div`
 
   &:hover {
     cursor: pointer;
-    color: #2941ab;
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
 

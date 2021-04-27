@@ -14,7 +14,7 @@ const LoginButton = styled.button`
   border-radius: 50px;
   height: 50px;
   width: 250px;
-  background-color: #31b954;
+  background-color: ${(props) => props.theme.colors.button};
   color: #fff;
   font-size: 17px;
   font-weight: 500;
@@ -25,7 +25,7 @@ const LoginButton = styled.button`
     background-color: #1ed760;
   }
   &:active {
-    background-color: #31b954;
+    background-color: ${(props) => props.theme.colors.button};
   }
 `;
 

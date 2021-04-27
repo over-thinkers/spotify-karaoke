@@ -9,7 +9,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #2941ab;
+  background-color: ${(props) => props.theme.colors.primary};
   color: #fff;
 `;
 

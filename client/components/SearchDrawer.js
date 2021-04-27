@@ -21,7 +21,7 @@ const ListContainer = styled.div((props) => ({
 
 const Header = styled.h3`
   width: 100%;
-  background-color: #2941ab;
+  background-color: ${(props) => props.theme.colors.primary};
   text-align: center;
   margin: 0;
   border-radius: 10px 0 0 0;
@@ -56,7 +56,7 @@ const OpenSearchTab = styled.div`
   top: 46%;
   left: -51px;
   transform: rotate(-90deg);
-  background-color: #2941ab;
+  background-color: ${(props) => props.theme.colors.primary};
   color: #fff;
   z-index: -1;
   border-radius: 5px 5px 0 0;

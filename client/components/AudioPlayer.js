@@ -3,6 +3,7 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
+import { jsx, ThemeProvider, useTheme } from '@emotion/react';
 
 const Container = styled.div`
   width: 100%;
@@ -53,6 +54,8 @@ function AudioPlayer() {
   const [playerReady, setPlayerReady] = useState(false);
   const accessToken = context.accessToken;
 
+  const theme = useTheme();
+
   useEffect(() => {
     if (!playerReady) return;
     if (!context.currentSong) return setPlay(false);
@@ -97,8 +100,8 @@ function AudioPlayer() {
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
         styles={{
-          sliderColor: '#2941ab',
-          activeColor: '#2941ab',
+          sliderColor: theme.colors.primary,
+          activeColor: theme.colors.primary,
         }}
       />
     </Container>

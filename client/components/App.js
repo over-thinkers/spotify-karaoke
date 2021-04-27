@@ -16,6 +16,15 @@ import Playlist from './Playlist';
 import { AppContextProvider } from '../../context/AppContext';
 import SearchDrawer from './SearchDrawer';
 import AudioPlayer from './AudioPlayer';
+import { jsx, ThemeProvider } from '@emotion/react';
+
+const theme = {
+  colors: {
+    primary: '#2941ab',
+    secondary: '#347FC4',
+    button: '#31b954',
+  },
+};
 
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
@@ -37,31 +46,33 @@ function App() {
 
   return (
     <AppContextProvider code={code}>
-      <Router>
-        <ScrollToTop>
-          <Switch>
-            <Route path='/' exact>
-              {code ? <NavLoggedIn /> : <NavBar />}
-              {code ? (
-                <HeaderLoggedIn dashboardRef={dashboardRef} />
-              ) : (
-                <Header />
-              )}
-              {code ? (
-                <Dashboard dashboardRef={dashboardRef} code={code} />
-              ) : null}
-            </Route>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <ScrollToTop>
+            <Switch>
+              <Route path='/' exact>
+                {code ? <NavLoggedIn /> : <NavBar />}
+                {code ? (
+                  <HeaderLoggedIn dashboardRef={dashboardRef} />
+                ) : (
+                  <Header />
+                )}
+                {code ? (
+                  <Dashboard dashboardRef={dashboardRef} code={code} />
+                ) : null}
+              </Route>
 
-            <Route path='/playlist' exact>
-              <Lyrics />
-              <Playlist />
-              <SearchDrawer />
-              <NavLoggedIn />
-            </Route>
-          </Switch>
-        </ScrollToTop>
-      </Router>
-      {code && <AudioPlayer />}
+              <Route path='/playlist' exact>
+                <Lyrics />
+                <Playlist />
+                <SearchDrawer />
+                <NavLoggedIn />
+              </Route>
+            </Switch>
+          </ScrollToTop>
+        </Router>
+        {code && <AudioPlayer />}
+      </ThemeProvider>
     </AppContextProvider>
   );
 }
