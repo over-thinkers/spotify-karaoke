@@ -64,8 +64,8 @@ function App() {
 
               <Route path='/playlist' exact>
                 <Lyrics />
-                <Playlist />
-                <SearchDrawer />
+                {/* <Playlist />
+                <SearchDrawer /> */}
                 <NavLoggedIn />
               </Route>
             </Switch>

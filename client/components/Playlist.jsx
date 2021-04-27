@@ -8,17 +8,19 @@ import styled from '@emotion/styled';
 
 const PlaylistContainer = styled.div((props) => ({
   backgroundColor: '#f1f1f1',
-  borderRadius: '0 10px 10px 0',
+  // borderRadius: '0 10px 10px 0',
   margin: 0,
-  width: '22rem',
+  // width: '22rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
-  position: 'fixed',
-  top: '15%',
-  left: 0,
+  // position: 'fixed',
+  // top: '15%',
+  // left: 0,
   transition: '500ms ease-in',
-  transform: props.open ? '' : 'translateX(-100%)',
-  zIndex: 1000,
+  // transform: props.open ? '' : 'translateX(-100%)',
+  // zIndex: 1000,
+  height: '100%',
+  display: props.viewPlaylist ? '' : 'none',
 }));
 
 const Header = styled.h3`
@@ -56,7 +58,7 @@ const OpenPlaylistTab = styled.div`
   }
 `;
 
-function Playlist() {
+function Playlist({ viewPlaylist }) {
   const context = useContext(AppContext);
   const playlist = context.playlist;
   const [playlistOpen, setPlaylistOpen] = useState(true);
@@ -75,8 +77,7 @@ function Playlist() {
   }
 
   return (
-    <PlaylistContainer open={playlistOpen}>
-      <Header>My Playlist</Header>
+    <PlaylistContainer viewPlaylist={viewPlaylist} open={playlistOpen}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='songs'>
           {(provided) => (
@@ -99,7 +100,7 @@ function Playlist() {
           )}
         </Droppable>
       </DragDropContext>
-      <OpenPlaylistTab onClick={toggleOpenPlaylist}>PLAYLIST</OpenPlaylistTab>
+      {/* <OpenPlaylistTab onClick={toggleOpenPlaylist}>PLAYLIST</OpenPlaylistTab> */}
     </PlaylistContainer>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
+import PlaylistAndSearch from './PlaylistAndSearch';
 import styled from '@emotion/styled';
 import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
 import { jsx, ThemeProvider, useTheme } from '@emotion/react';
@@ -93,6 +94,8 @@ function AudioPlayer() {
         </Button>
       )}
 
+      {playerReady && <PlaylistAndSearch />}
+
       <SpotifyPlayer
         play={play}
         token={accessToken}
@@ -102,6 +105,7 @@ function AudioPlayer() {
         styles={{
           sliderColor: theme.colors.primary,
           activeColor: theme.colors.primary,
+          zIndex: 1000,
         }}
       />
     </Container>
