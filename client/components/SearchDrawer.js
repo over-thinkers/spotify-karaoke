@@ -40,16 +40,21 @@ const InputContainer = styled.div`
 const Input = styled.input`
   font-size: 1rem;
   text-align: center;
-  border-radius: 7px;
+  border-radius: 15px;
   border: 1px solid black;
   padding: 0.3rem;
+
+  &:focus {
+    outline: none;
+    border-color: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 const List = styled.ul`
   list-style: none;
   padding: 0.1rem 0.5rem;
   margin: 0;
-  height: 27rem;
+  height: 28rem;
   overflow-y: scroll;
 `;
 
