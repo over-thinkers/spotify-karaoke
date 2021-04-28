@@ -67,10 +67,9 @@ const IconContainer = styled.div`
 `;
 
 function HeaderLoggedIn({ dashboardRef }) {
-
   const handleIconClick = () => {
     dashboardRef.current.scrollIntoView();
-  }
+  };
 
   return (
     <Container>
@@ -91,7 +90,7 @@ export default HeaderLoggedIn;
 
 function ChevronIcon() {
   return (
-    <IconContext.Provider value={{ color: 'black' }}>
+    <IconContext.Provider value={{ color: 'white' }}>
       <BiChevronDownCircle size='50px' />
     </IconContext.Provider>
   );
