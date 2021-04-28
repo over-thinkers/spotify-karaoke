@@ -44,6 +44,15 @@ function App() {
     setCode(new URLSearchParams(window.location.search).get('code'));
   }, []);
 
+  if (!code) {
+    return (
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <Header />
+      </ThemeProvider>
+    );
+  }
+
   return (
     <AppContextProvider code={code}>
       <ThemeProvider theme={theme}>
@@ -51,27 +60,21 @@ function App() {
           <ScrollToTop>
             <Switch>
               <Route path='/' exact>
-                {code ? <NavLoggedIn /> : <NavBar />}
-                {code ? (
-                  <HeaderLoggedIn dashboardRef={dashboardRef} />
-                ) : (
-                  <Header />
-                )}
-                {code ? (
-                  <Dashboard dashboardRef={dashboardRef} code={code} />
-                ) : null}
+                <NavLoggedIn />
+                <HeaderLoggedIn dashboardRef={dashboardRef} />
+                <Dashboard dashboardRef={dashboardRef} code={code} />
               </Route>
 
               <Route path='/playlist' exact>
+                <NavLoggedIn />
                 <Lyrics />
                 {/* <Playlist />
                 <SearchDrawer /> */}
-                <NavLoggedIn />
               </Route>
             </Switch>
           </ScrollToTop>
         </Router>
-        {code && <AudioPlayer />}
+        <AudioPlayer />
       </ThemeProvider>
     </AppContextProvider>
   );
