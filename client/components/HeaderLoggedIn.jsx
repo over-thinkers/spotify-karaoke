@@ -68,7 +68,7 @@ const IconContainer = styled.div`
 
 function HeaderLoggedIn({ dashboardRef }) {
   const handleIconClick = () => {
-    dashboardRef.current.scrollIntoView();
+    dashboardRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
