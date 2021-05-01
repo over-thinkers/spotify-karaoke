@@ -32,6 +32,7 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
   font-size: 1rem;
+  width: 20rem;
   text-align: center;
   border-radius: 15px;
   border: 1px solid black;
@@ -56,7 +57,7 @@ const SearchDrawer = ({ viewPlaylist }) => {
       <InputContainer>
         <Input
           type='search'
-          placeholder='song title or artist'
+          placeholder='Search by song or artist'
           value={context.search}
           onChange={(e) => context.setSearch(e.target.value)}
         />
