@@ -94,8 +94,6 @@ function AudioPlayer() {
         </Button>
       )}
       
-      <PlaylistAndSearch />
-
       <SpotifyPlayer
         play={play}
         token={accessToken}
