@@ -8,7 +8,8 @@ const Container = styled.div((props) => ({
   position: 'fixed',
   top: '10rem',
   left: 0,
-  width: '27rem',
+  width: '24rem',
+  boxShadow: props.open && 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
   transform: props.open ? '' : 'translateX(-100%)',
   transition: '500ms ease-in',
 }));
@@ -18,6 +19,7 @@ const OpenTab = styled.div`
   height: 4rem;
   width: 2rem;
   border-radius: 0 5px 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   right: 0;
   top: 50%;
   transform: translate(100%, -50%);
@@ -47,6 +49,7 @@ const PlaylistTab = styled.div`
   height: ${(props) => (props.viewPlaylist ? '110%' : '100%')};
   border-radius: ${(props) =>
     props.viewPlaylist ? '5px 5px 0 0' : '5px 0 0 0'};
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,6 +67,7 @@ const SearchTab = styled.div`
   width: 50%;
   height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
   border-radius: ${(props) => (props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0')};
+  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
