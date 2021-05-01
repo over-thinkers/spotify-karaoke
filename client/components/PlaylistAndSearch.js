@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
 import Playlist from './Playlist';
 import SearchDrawer from './SearchDrawer';
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import styled from '@emotion/styled';
 
 const Container = styled.div((props) => ({
-  position: 'absolute',
-  bottom: '52px',
-  left: '1rem',
+  position: 'fixed',
+  top: '10rem',
+  left: 0,
   width: '27rem',
-  zIndex: -1,
-  transform: props.open ? '' : 'translateY(30rem)',
+  transform: props.open ? '' : 'translateX(-100%)',
   transition: '500ms ease-in',
 }));
 
-const Header = styled.h3`
-  width: 100%;
-  background-color: ${(props) => props.theme.colors.primary};
-  text-align: center;
-  margin: 0;
-  border-radius: 10px 10px 0 0;
-  padding: 0.5rem 0;
+const OpenTab = styled.div`
+  position: absolute;
+  height: 4rem;
+  width: 2rem;
+  border-radius: 0 5px 5px 0;
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
   color: #fff;
+  background-color: ${(props) => props.theme.colors.primary};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     cursor: pointer;
@@ -39,11 +44,13 @@ const Tabs = styled.div`
 
 const PlaylistTab = styled.div`
   width: 50%;
-  height: 100%;
+  height: ${(props) => (props.viewPlaylist ? '110%' : '100%')};
+  border-radius: ${(props) =>
+    props.viewPlaylist ? '5px 5px 0 0' : '5px 0 0 0'};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? 'red' : 'pink')};
+  background-color: ${(props) => (props.viewPlaylist ? '#fff' : 'grey')};
   &:hover {
     cursor: pointer;
   }
@@ -55,11 +62,12 @@ const PlaylistTabText = styled.h5`
 
 const SearchTab = styled.div`
   width: 50%;
-  height: 100%;
+  height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
+  border-radius: ${(props) => (props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0')};
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? 'pink' : 'red')};
+  background-color: ${(props) => (props.viewPlaylist ? 'grey' : '#fff')};
   &:hover {
     cursor: pointer;
   }
@@ -87,7 +95,9 @@ const PlaylistAndSearch = () => {
 
   return (
     <Container open={open}>
-      <Header onClick={handleOpen}>^</Header>
+      <OpenTab onClick={handleOpen}>
+        {open ? <FaChevronLeft /> : <FaChevronRight />}
+      </OpenTab>
       <Tabs>
         <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
           <PlaylistTabText>Playlist</PlaylistTabText>

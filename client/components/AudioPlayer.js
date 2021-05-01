@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
-import PlaylistAndSearch from './PlaylistAndSearch';
 import styled from '@emotion/styled';
 import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
 import { jsx, ThemeProvider, useTheme } from '@emotion/react';
+import PlaylistAndSearch from './PlaylistAndSearch';
 
 const Container = styled.div`
   width: 100%;
@@ -93,8 +93,8 @@ function AudioPlayer() {
           <GrChapterNext size={25} />
         </Button>
       )}
-
-      {playerReady && <PlaylistAndSearch />}
+      
+      <PlaylistAndSearch />
 
       <SpotifyPlayer
         play={play}

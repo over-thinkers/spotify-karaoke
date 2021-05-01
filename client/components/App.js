@@ -17,6 +17,7 @@ import { AppContextProvider } from '../../context/AppContext';
 import SearchDrawer from './SearchDrawer';
 import AudioPlayer from './AudioPlayer';
 import { jsx, ThemeProvider } from '@emotion/react';
+import PlaylistAndSearch from './PlaylistAndSearch';
 
 const theme = {
   colors: {
@@ -68,8 +69,7 @@ function App() {
               <Route path='/playlist' exact>
                 <NavLoggedIn />
                 <Lyrics />
-                {/* <Playlist />
-                <SearchDrawer /> */}
+                <PlaylistAndSearch />
               </Route>
             </Switch>
           </ScrollToTop>

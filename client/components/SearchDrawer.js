@@ -5,30 +5,23 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from '@emotion/styled';
 
 const ListContainer = styled.div((props) => ({
-  backgroundColor: '#f1f1f1',
-  // borderRadius: '10px 0 0 10px',
+  backgroundColor: '#fff',
   margin: 0,
-  // width: '22rem',
+  padding: '0.5rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
-  // position: 'fixed',
-  // top: '15%',
-  // right: 0,
   transition: '500ms ease-in',
-  // transform: props.open ? '' : 'translateX(100%)',
-  // zIndex: 1000,
   height: '100%',
-  display: props.viewPlaylist ? 'none' : '',
+  display: props.viewPlaylist ? 'none' : 'flex',
+  flexDirection: 'column',
 }));
 
-const Header = styled.h3`
-  width: 100%;
-  background-color: ${(props) => props.theme.colors.primary};
-  text-align: center;
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
   margin: 0;
-  border-radius: 10px 0 0 0;
-  padding: 0.5rem 0;
-  color: #fff;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 const InputContainer = styled.div`
@@ -47,31 +40,6 @@ const Input = styled.input`
   &:focus {
     outline: none;
     border-color: ${(props) => props.theme.colors.primary};
-  }
-`;
-
-const List = styled.ul`
-  list-style: none;
-  padding: 0.1rem 0.5rem;
-  margin: 0;
-  height: 28rem;
-  overflow-y: scroll;
-`;
-
-const OpenSearchTab = styled.div`
-  position: absolute;
-  top: 46%;
-  left: -51px;
-  transform: rotate(-90deg);
-  background-color: ${(props) => props.theme.colors.primary};
-  color: #fff;
-  z-index: -1;
-  border-radius: 5px 5px 0 0;
-  padding: 0.3rem;
-  transition: 200ms ease-out;
-  &:hover {
-    cursor: pointer;
-    background-color: #203282;
   }
 `;
 
@@ -111,7 +79,6 @@ const SearchDrawer = ({ viewPlaylist }) => {
           ))}
         </InfiniteScroll>
       </List>
-      {/* <OpenSearchTab onClick={toggleOpenSearch}>SEARCH</OpenSearchTab> */}
     </ListContainer>
   );
 };
