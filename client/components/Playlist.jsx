@@ -40,6 +40,21 @@ function Playlist({ viewPlaylist }) {
     const [draggedItem] = songs.splice(result.source.index, 1);
     songs.splice(result.destination.index, 0, draggedItem);
 
+    // If drag & drop affects position of playing song
+    if (result.source.index === context.playlistIdx) {
+      context.setPlaylistIdx(result.destination.index);
+    } else if (
+      result.source.index > context.playlistIdx &&
+      result.destination.index <= context.playlistIdx
+    ) {
+      context.setPlaylistIdx((prev) => prev + 1);
+    } else if (
+      result.source.index < context.playlistIdx &&
+      result.destination.index <= context.playlistIdx
+    ) {
+      context.setPlaylistIdx((prev) => prev - 1);
+    }
+
     context.setPlaylist(songs);
   }
 
