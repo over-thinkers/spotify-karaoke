@@ -15,6 +15,7 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 5rem;
+  text-align: center;
 `;
 
 function Header() {
