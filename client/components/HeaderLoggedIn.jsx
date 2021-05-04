@@ -19,6 +19,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 5rem;
   margin-top: 0;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
