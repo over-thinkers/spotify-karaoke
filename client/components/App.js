@@ -61,13 +61,13 @@ function App() {
           <ScrollToTop>
             <Switch>
               <Route path='/' exact>
-                <NavLoggedIn />
+                <NavLoggedIn setCode={setCode} />
                 <HeaderLoggedIn dashboardRef={dashboardRef} />
                 <Dashboard dashboardRef={dashboardRef} code={code} />
               </Route>
 
               <Route path='/playlist' exact>
-                <NavLoggedIn />
+                <NavLoggedIn setCode={setCode} />
                 <Lyrics />
                 <PlaylistAndSearch />
               </Route>
