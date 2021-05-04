@@ -83,7 +83,7 @@ const SearchTabText = styled.h5`
 
 const PlaylistAndSearch = () => {
   const [viewPlaylist, setViewPlaylist] = useState(true);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const handleOpen = () => {
     setOpen((prev) => !prev);
