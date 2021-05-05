@@ -7,56 +7,25 @@ import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 
 const PlaylistContainer = styled.div((props) => ({
-  backgroundColor: '#f1f1f1',
-  borderRadius: '0 10px 10px 0',
+  backgroundColor: '#fff',
   margin: 0,
-  width: '22rem',
+  padding: '0.5rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#000',
-  position: 'fixed',
-  top: '15%',
-  left: 0,
   transition: '500ms ease-in',
-  transform: props.open ? '' : 'translateX(-100%)',
-  zIndex: 1000,
+  height: '100%',
+  display: props.viewPlaylist ? '' : 'none',
 }));
-
-const Header = styled.h3`
-  width: 100%;
-  background-color: #2941ab;
-  text-align: center;
-  margin: 0;
-  border-radius: 0 10px 0 0;
-  padding: 0.5rem 0;
-  color: #fff;
-`;
 
 const List = styled.ul`
   list-style: none;
-  padding: 0.3rem 0.5rem;
+  padding: 0;
   margin: 0;
-  height: 27rem;
+  height: 100%;
   overflow-y: scroll;
 `;
 
-const OpenPlaylistTab = styled.div`
-  position: absolute;
-  top: 46%;
-  right: -55px;
-  transform: rotate(90deg);
-  background-color: #2941ab;
-  color: #fff;
-  z-index: -1;
-  border-radius: 5px 5px 0 0;
-  padding: 0.3rem;
-  transition: 200ms ease-out;
-  &:hover {
-    cursor: pointer;
-    background-color: #203282;
-  }
-`;
-
-function Playlist() {
+function Playlist({ viewPlaylist }) {
   const context = useContext(AppContext);
   const playlist = context.playlist;
   const [playlistOpen, setPlaylistOpen] = useState(true);
@@ -71,12 +40,26 @@ function Playlist() {
     const [draggedItem] = songs.splice(result.source.index, 1);
     songs.splice(result.destination.index, 0, draggedItem);
 
+    // If drag & drop affects position of playing song
+    if (result.source.index === context.playlistIdx) {
+      context.setPlaylistIdx(result.destination.index);
+    } else if (
+      result.source.index > context.playlistIdx &&
+      result.destination.index <= context.playlistIdx
+    ) {
+      context.setPlaylistIdx((prev) => prev + 1);
+    } else if (
+      result.source.index < context.playlistIdx &&
+      result.destination.index <= context.playlistIdx
+    ) {
+      context.setPlaylistIdx((prev) => prev - 1);
+    }
+
     context.setPlaylist(songs);
   }
 
   return (
-    <PlaylistContainer open={playlistOpen}>
-      <Header>My Playlist</Header>
+    <PlaylistContainer viewPlaylist={viewPlaylist} open={playlistOpen}>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId='songs'>
           {(provided) => (
@@ -99,7 +82,6 @@ function Playlist() {
           )}
         </Droppable>
       </DragDropContext>
-      <OpenPlaylistTab onClick={toggleOpenPlaylist}>PLAYLIST</OpenPlaylistTab>
     </PlaylistContainer>
   );
 }

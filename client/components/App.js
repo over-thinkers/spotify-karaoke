@@ -16,6 +16,16 @@ import Playlist from './Playlist';
 import { AppContextProvider } from '../../context/AppContext';
 import SearchDrawer from './SearchDrawer';
 import AudioPlayer from './AudioPlayer';
+import { jsx, ThemeProvider } from '@emotion/react';
+import PlaylistAndSearch from './PlaylistAndSearch';
+
+const theme = {
+  colors: {
+    primary: '#2941ab',
+    secondary: '#347FC4',
+    button: '#31b954',
+  },
+};
 
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
@@ -27,7 +37,7 @@ function _ScrollToTop(props) {
 const ScrollToTop = withRouter(_ScrollToTop);
 
 function App() {
-  const [code, setCode] = useState();
+  const [code, setCode] = useState(null);
 
   const dashboardRef = useRef();
 
@@ -35,33 +45,36 @@ function App() {
     setCode(new URLSearchParams(window.location.search).get('code'));
   }, []);
 
+  if (!code) {
+    return (
+      <ThemeProvider theme={theme}>
+        <NavBar loggedOut />
+        <Header />
+      </ThemeProvider>
+    );
+  }
+
   return (
     <AppContextProvider code={code}>
-      <Router>
-        <ScrollToTop>
-          <Switch>
-            <Route path='/' exact>
-              {code ? <NavLoggedIn /> : <NavBar />}
-              {code ? (
+      <ThemeProvider theme={theme}>
+        <Router>
+          <NavBar setCode={setCode} code={code} loggedIn />
+          <ScrollToTop>
+            <Switch>
+              <Route path='/' exact>
                 <HeaderLoggedIn dashboardRef={dashboardRef} />
-              ) : (
-                <Header />
-              )}
-              {code ? (
                 <Dashboard dashboardRef={dashboardRef} code={code} />
-              ) : null}
-            </Route>
+              </Route>
 
-            <Route path='/playlist' exact>
-              <Lyrics />
-              <Playlist />
-              <SearchDrawer />
-              <NavLoggedIn />
-            </Route>
-          </Switch>
-        </ScrollToTop>
-      </Router>
-      {code && <AudioPlayer />}
+              <Route path='/playlist' exact>
+                <Lyrics />
+                <PlaylistAndSearch />
+              </Route>
+            </Switch>
+          </ScrollToTop>
+        </Router>
+        <AudioPlayer />
+      </ThemeProvider>
     </AppContextProvider>
   );
 }

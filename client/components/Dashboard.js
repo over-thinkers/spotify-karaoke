@@ -26,6 +26,7 @@ const Title = styled.h1`
   font-size: 5rem;
   font-weight: bold;
   margin: 4rem 0 2rem 0;
+  text-align: center;
 `;
 
 const InputContainer = styled.div`

@@ -12,13 +12,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: #f2b858;
+  background-color: ${(props) => props.theme.colors.secondary};
   color: #fff;
 `;
 
 const Title = styled.h1`
   font-size: 5rem;
   margin-top: 0;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
@@ -31,7 +32,7 @@ const Button = styled.button`
   border-radius: 50px;
   height: 50px;
   width: 250px;
-  background-color: #31b954;
+  background-color: ${(props) => props.theme.colors.button};
   color: #fff;
   font-size: 17px;
   font-weight: 500;
@@ -41,7 +42,7 @@ const Button = styled.button`
     background-color: #1ed760;
   }
   &:active {
-    background-color: #31b954;
+    background-color: ${(props) => props.theme.colors.button};
   }
 `;
 
@@ -67,10 +68,9 @@ const IconContainer = styled.div`
 `;
 
 function HeaderLoggedIn({ dashboardRef }) {
-
   const handleIconClick = () => {
-    dashboardRef.current.scrollIntoView();
-  }
+    dashboardRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <Container>
@@ -91,7 +91,7 @@ export default HeaderLoggedIn;
 
 function ChevronIcon() {
   return (
-    <IconContext.Provider value={{ color: 'black' }}>
+    <IconContext.Provider value={{ color: 'white' }}>
       <BiChevronDownCircle size='50px' />
     </IconContext.Provider>
   );
