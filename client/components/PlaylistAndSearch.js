@@ -53,7 +53,7 @@ const PlaylistTab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? '#fff' : 'grey')};
+  background-color: ${(props) => (props.viewPlaylist ? '#fff' : '#b9b9b9')};
   &:hover {
     cursor: pointer;
   }
@@ -71,7 +71,7 @@ const SearchTab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? 'grey' : '#fff')};
+  background-color: ${(props) => (props.viewPlaylist ? '#b9b9b9' : '#fff')};
   &:hover {
     cursor: pointer;
   }
