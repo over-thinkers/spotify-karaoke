@@ -37,7 +37,7 @@ function _ScrollToTop(props) {
 const ScrollToTop = withRouter(_ScrollToTop);
 
 function App() {
-  const [code, setCode] = useState();
+  const [code, setCode] = useState(null);
 
   const dashboardRef = useRef();
 
@@ -48,7 +48,7 @@ function App() {
   if (!code) {
     return (
       <ThemeProvider theme={theme}>
-        <NavBar />
+        <NavBar loggedOut />
         <Header />
       </ThemeProvider>
     );
@@ -58,16 +58,15 @@ function App() {
     <AppContextProvider code={code}>
       <ThemeProvider theme={theme}>
         <Router>
+          <NavBar setCode={setCode} code={code} loggedIn />
           <ScrollToTop>
             <Switch>
               <Route path='/' exact>
-                <NavLoggedIn setCode={setCode} />
                 <HeaderLoggedIn dashboardRef={dashboardRef} />
                 <Dashboard dashboardRef={dashboardRef} code={code} />
               </Route>
 
               <Route path='/playlist' exact>
-                <NavLoggedIn setCode={setCode} />
                 <Lyrics />
                 <PlaylistAndSearch />
               </Route>
