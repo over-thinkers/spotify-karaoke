@@ -22,7 +22,7 @@ const LoginButton = styled.button`
   transition: 300ms ease-out;
   &:hover {
     cursor: pointer;
-    background-color: #1ed760;
+    background-color: ${(props) => props.theme.colors.buttonHover};
   }
   &:active {
     background-color: ${(props) => props.theme.colors.button};

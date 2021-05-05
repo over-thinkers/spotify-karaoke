@@ -28,9 +28,11 @@ const OpenTab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 300ms ease-out;
 
   &:hover {
     cursor: pointer;
+    background-color: ${(props) => props.theme.colors.buttonHover};
   }
 `;
 
@@ -66,7 +68,8 @@ const PlaylistTabText = styled.h5`
 const SearchTab = styled.div`
   width: 50%;
   height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
-  border-radius: ${(props) => (props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0')};
+  border-radius: ${(props) =>
+    props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0'};
   font-size: 1.3rem;
   display: flex;
   justify-content: center;

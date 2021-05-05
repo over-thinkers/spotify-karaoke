@@ -24,6 +24,7 @@ const theme = {
     primary: '#2941ab',
     secondary: '#ec7c00',
     button: '#31b954',
+    buttonHover: '#279844',
     lyricsBg: '#2941ab',
     lyricsText: 'white',
   },
