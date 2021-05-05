@@ -9,7 +9,8 @@ const Nav = styled.div`
   align-items: center;
   top: 0;
   width: 100%;
-  background-color: #000;
+  background-color: ${(props) =>
+    props.loggedOut ? '#000' : 'rgba(0, 0, 0, 0.6)'};
   height: 50px;
   margin: 0;
   padding: 1rem 0;
@@ -27,6 +28,15 @@ const NavContent = styled.div`
 `;
 
 const Logo = styled.a`
+  text-decoration: none;
+  display: flex;
+  width: 12rem;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+`;
+
+const LogoLoggedIn = styled.div`
   text-decoration: none;
   display: flex;
   width: 12rem;
@@ -86,7 +96,7 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
 
   if (loggedOut) {
     return (
-      <Nav>
+      <Nav loggedOut>
         <NavContent>
           <Logo href='/'>
             <img
@@ -113,14 +123,16 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
   return (
     <Nav>
       <NavContent>
-        <Logo href='/'>
-          <img
-            className='logoIcon'
-            src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
-            width='42px'
-          />
-          <Name>Spoti-oke</Name>
-        </Logo>
+        <Link to={{ pathname: '/' }} style={{ textDecoration: 'none' }}>
+          <LogoLoggedIn>
+            <img
+              className='logoIcon'
+              src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
+              width='42px'
+            />
+            <Name>Spoti-oke</Name>
+          </LogoLoggedIn>
+        </Link>
         <Links>
           <LinkItem>
             <Link to={{ pathname: '/' }}>Home</Link>
