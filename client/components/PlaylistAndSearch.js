@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 
 const Container = styled.div((props) => ({
   position: 'fixed',
-  top: '10rem',
+  top: '25%',
   left: 0,
   width: '24rem',
   boxShadow: props.open && 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
