@@ -65,6 +65,7 @@ const LinkItem = styled.li`
     font-size: 15px;
     text-decoration: none;
     color: #fff;
+    transition: 100ms ease-out;
     &:hover {
       color: rgb(35, 187, 35);
     }
@@ -74,6 +75,7 @@ const LinkItem = styled.li`
     font-size: 15px;
     text-decoration: none;
     color: #fff;
+    transition: 100ms ease-out;
     &:hover {
       color: rgb(35, 187, 35);
       cursor: pointer;
