@@ -107,10 +107,10 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
             <Name>Spoti-oke</Name>
           </Logo>
           <Links>
-            <LinkItem>
+            {/* <LinkItem>
               <a href='#'>About</a>
             </LinkItem>
-            <Line />
+            <Line /> */}
             <LinkItem>
               <a href={AUTH_URL}>Log in</a>
             </LinkItem>
@@ -137,9 +137,9 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
           <LinkItem>
             <Link to={{ pathname: '/' }}>Home</Link>
           </LinkItem>
-          <LinkItem>
+          {/* <LinkItem>
             <a href='#'>About</a>
-          </LinkItem>
+          </LinkItem> */}
           <LinkItem>
             <Link to={{ pathname: 'playlist' }}>My Playlist</Link>
           </LinkItem>
