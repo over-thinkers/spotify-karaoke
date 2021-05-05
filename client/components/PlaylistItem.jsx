@@ -11,7 +11,9 @@ const SongContainer = styled.div((props) => ({
   padding: '0.3rem',
   borderRadius: '5px',
   boxShadow: props.playing && 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
-  border: props.playing && `1px solid ${props.theme.colors.primary}`,
+  border: props.playing
+    ? `1px solid ${props.theme.colors.primary}`
+    : '1px solid transparent',
   backgroundColor: props.playing && '#fff',
 }));
 
