@@ -29,6 +29,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "live-server": "^1.2.1",
+    "lrc-file-parser": "^1.0.7",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^5.12.4",
     "mysql": "^2.18.1",

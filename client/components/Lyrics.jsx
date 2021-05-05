@@ -33,6 +33,8 @@ function Lyrics() {
   const context = useContext(AppContext);
   const [lyrics, setLyrics] = useState('');
 
+  {console.log("da lyrics", lyrics)}
+
   useEffect(() => {
     if (!context.currentSong) return;
 
@@ -61,6 +63,10 @@ function Lyrics() {
 
     return () => source.cancel();
   }, [context.currentSong]);
+
+  {
+    
+  }
 
   if (!lyrics) {
     return (

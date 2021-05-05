@@ -162,16 +162,16 @@ body {
   height: 7%;
   width: 11%;
   border-radius: 5px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .account p:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 
 .account {
-  padding: 2px 0px 5px 12px;
-}
+  padding: 2px 0px 5px 12px;}
 
 /* ------------- HEADER ---------------- */
 .header-container {

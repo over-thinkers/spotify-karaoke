@@ -16,7 +16,7 @@ export const AppContextProvider = (props) => {
   const [userEmail, setUserEmail] = useState('');
 
   /********** SEARCH **********/
-  const [search, setSearch] = useState('gryffin');
+  const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [delay, setDelay] = useState();
   const [searchLimit, setSearchLimit] = useState(10);
