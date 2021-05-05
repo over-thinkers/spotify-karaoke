@@ -10,8 +10,8 @@ const LyricsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 82px 0 150px 0;
-  background-color: #f2b858;
-  color: #000;
+  background-color: ${(props) => props.theme.colors.secondary};
+  color: #fff;
   min-height: 100vh;
   width: 100%;
 `;
@@ -26,6 +26,7 @@ const SongLyrics = styled.p`
   line-height: 1.6;
   white-space: pre;
   font-size: 1.2rem;
+  color: #fff;
 `;
 
 function Lyrics() {

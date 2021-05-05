@@ -4,9 +4,8 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 
-function NavLoggedIn() {
+function NavLoggedIn({ setCode }) {
   const [modal, openModal] = useState(false);
-
   return (
     <>
       <nav>
@@ -24,7 +23,7 @@ function NavLoggedIn() {
               </div>
               <div className='name'>
                 <Link to={{ pathname: '/' }}>
-                  <p>Spoti-oki</p>
+                  <p>Spoti-oke</p>
                 </Link>
               </div>
             </div>
@@ -32,10 +31,9 @@ function NavLoggedIn() {
           <li className='nav-item2'>
             <Link to={{ pathname: '/' }}>Home</Link>
           </li>
-          <li className='nav-item2'>
+          {/* <li className='nav-item2'>
             <a href='#'>About</a>
-          </li>
-
+          </li> */}
           <li className='nav-item2'>
             <Link to={{ pathname: 'playlist' }}>My Playlist</Link>
           </li>
@@ -43,6 +41,9 @@ function NavLoggedIn() {
             <p className='line'></p>
           </li>
           <li className='nav-item2'>
+            <p onClick={() => setCode(null)}>Logout</p>
+          </li>
+          {/* <li className='nav-item2'>
             <a
               href='#'
               onClick={() => {
@@ -65,7 +66,7 @@ function NavLoggedIn() {
                 </div>
               </div>
             </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
 
