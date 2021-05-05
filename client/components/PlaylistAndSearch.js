@@ -24,7 +24,7 @@ const OpenTab = styled.div`
   top: 50%;
   transform: translate(100%, -50%);
   color: #fff;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.button};
   display: flex;
   justify-content: center;
   align-items: center;
