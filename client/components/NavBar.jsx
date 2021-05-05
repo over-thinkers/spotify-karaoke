@@ -112,7 +112,7 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
             </LinkItem>
             <Line />
             <LinkItem>
-              <a href={AUTH_URL}>Log In</a>
+              <a href={AUTH_URL}>Log in</a>
             </LinkItem>
           </Links>
         </NavContent>
@@ -145,7 +145,7 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
           </LinkItem>
           <Line />
           <LinkItem>
-            <p onClick={() => setCode(null)}>Logout</p>
+            <p onClick={() => setCode(null)}>Log out</p>
           </LinkItem>
         </Links>
       </NavContent>
