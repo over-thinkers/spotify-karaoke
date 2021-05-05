@@ -26,6 +26,7 @@ const TextContainer = styled.div`
   max-width: 70%;
   &:hover {
     cursor: pointer;
+    color: ${(props) => props.theme.colors.primary};
   }
 `;
 
