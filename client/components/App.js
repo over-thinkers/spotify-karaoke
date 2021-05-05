@@ -27,7 +27,11 @@ function _ScrollToTop(props) {
 const ScrollToTop = withRouter(_ScrollToTop);
 
 function App() {
-  const code = new URLSearchParams(window.location.search).get('code');
+  const [code, setCode] = useState();
+
+  useEffect(() => {
+    setCode(new URLSearchParams(window.location.search).get('code'));
+  }, []);
 
   return (
     <AppContextProvider code={code}>

@@ -36,10 +36,16 @@ function Lyrics() {
 
   useEffect(() => {
     if (!context.currentSong) return;
+
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
+    window.scrollTo(0, 0);
     setLyrics('');
 
     axios
       .get('http://localhost:3000/lyrics', {
+        cancelToken: source.token,
         params: {
           track: context.currentSong.title,
           artist: context.currentSong.artist,
@@ -47,7 +53,14 @@ function Lyrics() {
       })
       .then((res) => {
         setLyrics(res.data.lyrics);
+      })
+      .catch((err) => {
+        if (axios.isCancel(err)) {
+          console.log('Request cancelled!');
+        }
       });
+
+    return () => source.cancel();
   }, [context.currentSong]);
 
   {
