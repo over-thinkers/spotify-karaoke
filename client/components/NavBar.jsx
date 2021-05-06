@@ -67,7 +67,7 @@ const LinkItem = styled.li`
     color: #fff;
     transition: 100ms ease-out;
     &:hover {
-      color: rgb(35, 187, 35);
+      color: ${(props) => props.theme.colors.button};
     }
   }
 
@@ -77,7 +77,7 @@ const LinkItem = styled.li`
     color: #fff;
     transition: 100ms ease-out;
     &:hover {
-      color: rgb(35, 187, 35);
+      color: ${(props) => props.theme.colors.button};
       cursor: pointer;
     }
   }
