@@ -10,8 +10,8 @@ const LyricsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 82px 0 150px 0;
-  background-color: ${(props) => props.theme.colors.secondary};
-  color: #fff;
+  background-color: ${(props) => props.theme.colors.lyricsBg};
+  color: ${(props) => props.theme.colors.lyricsText};
   min-height: 100vh;
   width: 100%;
 `;
@@ -26,14 +26,11 @@ const SongLyrics = styled.p`
   line-height: 1.6;
   white-space: pre;
   font-size: 1.2rem;
-  color: #fff;
 `;
 
 function Lyrics() {
   const context = useContext(AppContext);
   const [lyrics, setLyrics] = useState('');
-
-  {console.log("da lyrics", lyrics)}
 
   useEffect(() => {
     if (!context.currentSong) return;
@@ -63,10 +60,6 @@ function Lyrics() {
 
     return () => source.cancel();
   }, [context.currentSong]);
-
-  {
-    
-  }
 
   if (!lyrics) {
     return (

@@ -101,7 +101,6 @@ function AudioPlayer() {
         uris={context.currentSong ? [context.currentSong.uri] : []}
         callback={playerCallback}
         styles={{
-          sliderColor: theme.colors.primary,
           activeColor: theme.colors.primary,
           zIndex: 1000,
         }}

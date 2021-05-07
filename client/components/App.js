@@ -21,9 +21,18 @@ import PlaylistAndSearch from './PlaylistAndSearch';
 
 const theme = {
   colors: {
+<<<<<<< HEAD
     primary: '#0F4C75',
     secondary: '#566246',
     button: '#26C485',
+=======
+    primary: '#2941ab',
+    secondary: '#ec7c00',
+    button: '#08A045',
+    buttonHover: '#088c3d',
+    lyricsBg: '#2941ab',
+    lyricsText: 'white',
+>>>>>>> a055ab39a8635c7f79e5db0b168546fb24816ade
   },
 };
 
