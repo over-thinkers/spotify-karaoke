@@ -23,3 +23,4 @@ function Modal() {
 }
 
 export default Modal
+var number = 10

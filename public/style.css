@@ -171,7 +171,9 @@ body {
 }
 
 .account {
-  padding: 2px 0px 5px 12px;}
+  padding: 2px 0px 5px 12px;
+  /* text-decoration: none; */
+}
 
 /* ------------- HEADER ---------------- */
 .header-container {
