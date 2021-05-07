@@ -37,6 +37,15 @@ const OverlayText = styled.div`
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.primary};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const AlbumCover = styled.img`
@@ -70,7 +79,7 @@ const ImageContainer = styled.div`
 
 const SearchResultTrack = ({ track }) => {
   const context = useContext(AppContext);
-  const [overlayText, setOverlayText] = useState('+ Add to playlist')
+  const [overlayText, setOverlayText] = useState('+ Add to playlist');
 
   const { artist, title, uri, albumUrl } = track;
 
@@ -78,13 +87,19 @@ const SearchResultTrack = ({ track }) => {
     <SongContainer
       onClick={() => {
         context.addToPlaylist(track);
-        setOverlayText('Added!')
+        setOverlayText('Added!');
       }}
     >
       <ImageContainer>
         <AlbumCover src={albumUrl} />
         <Overlay>
-          <OverlayText>{overlayText}</OverlayText>
+          <OverlayText>
+            {overlayText}
+            <br />
+            {overlayText === 'Added!' && (
+              <Link to={{ pathname: 'playlist' }}>Go to playlist</Link>
+            )}
+          </OverlayText>
         </Overlay>
       </ImageContainer>
 

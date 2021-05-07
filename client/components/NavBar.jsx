@@ -65,8 +65,9 @@ const LinkItem = styled.li`
     font-size: 15px;
     text-decoration: none;
     color: #fff;
+    transition: 100ms ease-out;
     &:hover {
-      color: rgb(35, 187, 35);
+      color: ${(props) => props.theme.colors.button};
     }
   }
 
@@ -74,8 +75,9 @@ const LinkItem = styled.li`
     font-size: 15px;
     text-decoration: none;
     color: #fff;
+    transition: 100ms ease-out;
     &:hover {
-      color: rgb(35, 187, 35);
+      color: ${(props) => props.theme.colors.button};
       cursor: pointer;
     }
   }
@@ -107,10 +109,10 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
             <Name>Spoti-oke</Name>
           </Logo>
           <Links>
-            <LinkItem>
+            {/* <LinkItem>
               <a href='#'>About</a>
             </LinkItem>
-            <Line />
+            <Line /> */}
             <LinkItem>
               <a href={AUTH_URL}>Log in</a>
             </LinkItem>
@@ -137,9 +139,9 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
           <LinkItem>
             <Link to={{ pathname: '/' }}>Home</Link>
           </LinkItem>
-          <LinkItem>
+          {/* <LinkItem>
             <a href='#'>About</a>
-          </LinkItem>
+          </LinkItem> */}
           <LinkItem>
             <Link to={{ pathname: 'playlist' }}>My Playlist</Link>
           </LinkItem>

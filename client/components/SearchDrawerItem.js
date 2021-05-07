@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from '../../context/AppContext';
 import { AiOutlinePlus } from 'react-icons/ai';
 import styled from '@emotion/styled';
@@ -10,10 +10,22 @@ const SongContainer = styled.li`
   padding: 0.3rem;
   border-radius: 5px;
   transition: 200ms ease-out;
+  border: 1px solid transparent;
   &:hover {
-    background-color: #fff;
+    color: ${(props) => props.theme.colors.primary};
     cursor: pointer;
   }
+  &:active {
+    background-color: #b9b9b9;
+  }
+`;
+
+const ImageAndText = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  max-width: 70%;
 `;
 
 const TextContainer = styled.div`
@@ -22,7 +34,7 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin: 0 0.7rem;
-  max-width: 70%;
+  max-width: 90%;
 `;
 
 const Title = styled.h4`
@@ -40,7 +52,7 @@ const Artist = styled.p`
 `;
 
 const Image = styled.img`
-  object-fit: contain;
+  height: 100%;
 `;
 
 const Plus = styled.div`
@@ -49,31 +61,32 @@ const Plus = styled.div`
   position: absolute;
   top: 16px;
   right: 8px;
-
-  &:hover {
-    cursor: pointer;
-    color: #2941ab;
-  }
 `;
 
 const SearchDrawerItem = ({ track }) => {
+  const [added, setAdded] = useState(false);
   const context = useContext(AppContext);
 
   return (
     <SongContainer
       onClick={() => {
         context.addToPlaylist(track);
+        setAdded(true);
       }}
     >
-      <Image src={track.albumUrl} />
-
-      <TextContainer>
-        <Title>{track.title}</Title>
-        <Artist>{track.artist}</Artist>
-      </TextContainer>
-      <Plus>
-        <AiOutlinePlus size={25} />
-      </Plus>
+      <ImageAndText>
+        <Image src={track.albumUrl} />
+        <TextContainer>
+          <Title>{track.title}</Title>
+          <Artist>{track.artist}</Artist>
+        </TextContainer>
+      </ImageAndText>
+      {!added && (
+        <Plus>
+          <AiOutlinePlus size={25} />
+        </Plus>
+      )}
+      {added && <Plus>Added!</Plus>}
     </SongContainer>
   );
 };

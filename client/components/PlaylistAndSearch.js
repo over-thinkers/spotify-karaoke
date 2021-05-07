@@ -24,13 +24,15 @@ const OpenTab = styled.div`
   top: 50%;
   transform: translate(100%, -50%);
   color: #fff;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.button};
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 300ms ease-out;
 
   &:hover {
     cursor: pointer;
+    background-color: ${(props) => props.theme.colors.buttonHover};
   }
 `;
 
@@ -53,7 +55,7 @@ const PlaylistTab = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? '#fff' : 'grey')};
+  background-color: ${(props) => (props.viewPlaylist ? '#fff' : '#b9b9b9')};
   &:hover {
     cursor: pointer;
   }
@@ -66,12 +68,13 @@ const PlaylistTabText = styled.h5`
 const SearchTab = styled.div`
   width: 50%;
   height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
-  border-radius: ${(props) => (props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0')};
+  border-radius: ${(props) =>
+    props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0'};
   font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? 'grey' : '#fff')};
+  background-color: ${(props) => (props.viewPlaylist ? '#b9b9b9' : '#fff')};
   &:hover {
     cursor: pointer;
   }
