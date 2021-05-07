@@ -5,6 +5,7 @@ import axios from 'axios';
 import PlaylistItem from './PlaylistItem';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
+import { CgScrollV } from "react-icons/cg"
 
 const PlaylistContainer = styled.div((props) => ({
   backgroundColor: '#fff',
