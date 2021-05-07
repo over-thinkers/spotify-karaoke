@@ -31,6 +31,23 @@ const SongLyrics = styled.p`
 function Lyrics() {
   const context = useContext(AppContext);
   const [lyrics, setLyrics] = useState('');
+  const [autoScroll, setAutoScroll] = useState(false);
+  const [scrollInterval, setScrollInterval] = useState(null);
+
+  useEffect(() => {
+    if (!autoScroll) {
+      clearInterval(scrollInterval);
+      setScrollInterval(null);
+      return;
+    }
+    setScrollInterval(
+      setInterval(() => {
+        window.scrollBy(0, 1);
+      }, 100)
+    );
+
+    return () => clearInterval(scrollInterval);
+  }, [autoScroll]);
 
   useEffect(() => {
     if (!context.currentSong) return;
