@@ -18,7 +18,7 @@ const Container = styled.div((props) => ({
   transform: props.open ? '' : 'translateX(-100%)',
   transition: '500ms ease-in',
   zIndex: '0',
-}));
+  }));
 
 
 const OpenTab = styled.div`

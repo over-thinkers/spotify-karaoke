@@ -15,9 +15,9 @@ const LyricsContainer = styled.div`
   background: linear-gradient(114deg, rgba(158,0,255,1) 0%, rgba(244,1,138,1) 63%, rgba(250,167,91,1) 86%, rgba(254,61,20,1) 100%);
   color: ${(props) => props.theme.colors.lyricsText};
   min-height: 100vh;
-  width: 80%;
+  width: 90%;
   margin-left: 340px;
-  margin-right: 500px;
+  margin-right: 0px;
 `;
 
 const Title = styled.h2`
