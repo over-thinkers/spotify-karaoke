@@ -8,14 +8,18 @@ import styled from '@emotion/styled';
 import { CgScrollV } from "react-icons/cg"
 
 const PlaylistContainer = styled.div((props) => ({
-  backgroundColor: '#fff',
+  backgroundColor: '#000',
   margin: 0,
   padding: '0.5rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
-  color: '#000',
+  color: '#fff',
   transition: '500ms ease-in',
-  height: '100%',
+  height: '51.3%',
   display: props.viewPlaylist ? '' : 'none',
+  top: '40%',
+  position: 'fixed',
+  width: '368px',
+  borderTop: "1px solid #696768"
 }));
 
 const List = styled.ul`
@@ -24,6 +28,17 @@ const List = styled.ul`
   margin: 0;
   height: 100%;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+        border: 0px solid black;
+        background: 'red'
+    };
+    &::-webkit-scrollbar-thumb {
+        width: 10px;
+        border: 1px solid #696768;
+        color: 'red';
+        background: 'purple';
+        background-color: 'red'
+    }
 `;
 
 function Playlist({ viewPlaylist }) {

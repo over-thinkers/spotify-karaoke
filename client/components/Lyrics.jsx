@@ -10,10 +10,14 @@ const LyricsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 82px 0 150px 0;
-  background-color: ${(props) => props.theme.colors.lyricsBg};
+  /* background-color: ${(props) => props.theme.colors.lyricsBg}; */
+  background: rgb(158,0,255);
+  background: linear-gradient(114deg, rgba(158,0,255,1) 0%, rgba(244,1,138,1) 63%, rgba(250,167,91,1) 86%, rgba(254,61,20,1) 100%);
   color: ${(props) => props.theme.colors.lyricsText};
   min-height: 100vh;
-  width: 100%;
+  width: 80%;
+  margin-left: 340px;
+  margin-right: 500px;
 `;
 
 const Title = styled.h2`

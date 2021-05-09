@@ -23,7 +23,7 @@ function NavLoggedIn({ setCode }) {
               </div>
               <div className='name'>
                 <Link to={{ pathname: '/' }}>
-                  <p>Spoti-oke</p>
+                  <p>Spoti-offke</p>
                 </Link>
               </div>
             </div>

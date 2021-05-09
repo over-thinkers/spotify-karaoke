@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import styled from '@emotion/styled';
 
 const ListContainer = styled.div((props) => ({
-  backgroundColor: '#fff',
+  backgroundColor: '#000',
   margin: 0,
   padding: '0.5rem',
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
@@ -14,6 +14,11 @@ const ListContainer = styled.div((props) => ({
   height: '100%',
   display: props.viewPlaylist ? 'none' : 'flex',
   flexDirection: 'column',
+  top: '40%',
+  position: 'fixed',
+  width: '368px',
+  borderTop: "1px solid #696768",
+  color: '#fff'
 }));
 
 const List = styled.ul`
@@ -22,6 +27,7 @@ const List = styled.ul`
   margin: 0;
   height: 100%;
   overflow-y: scroll;
+
 `;
 
 const InputContainer = styled.div`
