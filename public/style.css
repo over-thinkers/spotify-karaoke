@@ -443,6 +443,7 @@ button:focus {
 	width: 24px;
 	height: 100px; */
 	margin-right: 80px;
+  cursor: pointer;
 }
 
 

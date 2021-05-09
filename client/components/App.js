@@ -26,7 +26,7 @@ const theme = {
     button: '#1BB954',
     buttonHover: '#00FFC2',
     switch: '#0066FF',
-    switchHover: '#0066FF',
+    switchHover: '#5C9DFF',
     textHover: '#FAA75B',
     lyricsBg: '#e9c46a',
     lyricsText: 'white',
