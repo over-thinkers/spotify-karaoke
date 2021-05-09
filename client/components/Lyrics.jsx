@@ -31,6 +31,25 @@ const SongLyrics = styled.p`
 function Lyrics() {
   const context = useContext(AppContext);
   const [lyrics, setLyrics] = useState('');
+  const [scrollInterval, setScrollInterval] = useState(null);
+  const [level, setLevel] = useState(0);
+
+  useEffect(() => {
+    clearInterval(scrollInterval);
+    setScrollInterval(null);
+    if (!level) return;
+
+    setScrollInterval(
+      setInterval(() => {
+        window.scrollBy({
+          top: 1,
+          behavior: 'smooth',
+        });
+      }, 100 * level)
+    );
+
+    return () => clearInterval(scrollInterval);
+  }, [level]);
 
   useEffect(() => {
     if (!context.currentSong) return;
@@ -81,15 +100,26 @@ function Lyrics() {
       <SongLyrics>{lyrics}</SongLyrics>
 
 
-      <div class="mouse_scroll">
-
-        <div class="mouse">
-          <div class="wheel"></div>
+      <div className='mouse_scroll'>
+        <div
+          className='mouse'
+          onClick={() => {
+            setLevel((prev) => {
+              if (prev === 0) return 3;
+              return prev - 1;
+            });
+          }}
+        >
+          <div className='wheel'></div>
         </div>
         <div>
-          <span class="m_scroll_arrows unu"></span>
-          <span class="m_scroll_arrows doi"></span>
-          <span class="m_scroll_arrows trei"></span>
+          {level > 0 && level <= 3 && (
+            <span className='m_scroll_arrows unu'></span>
+          )}
+          {level <= 2 && level >= 1 && (
+            <span className='m_scroll_arrows doi'></span>
+          )}
+          {level === 1 && <span className='m_scroll_arrows trei'></span>}
         </div>
       </div>
     </LyricsContainer>
