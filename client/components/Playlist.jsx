@@ -14,7 +14,7 @@ const PlaylistContainer = styled.div((props) => ({
   boxShadow: props.open ? 'rgba(0, 0, 0, 0.35) 0px 5px 15px' : 'none',
   color: '#fff',
   transition: '500ms ease-in',
-  height: '51.3%',
+  height: '53%',
   display: props.viewPlaylist ? '' : 'none',
   top: '40%',
   position: 'fixed',

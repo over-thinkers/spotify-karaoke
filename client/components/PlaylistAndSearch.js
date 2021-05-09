@@ -43,16 +43,8 @@ const OpenTab = styled.div`
   }
 `;
 
-const List = styled.div`
+const NavList = styled.div`
   height: 28rem;
-`;
-
-const ListT = styled.div`
-
-`;
-
-const ListTt = styled.div`
-
 `;
 
 const Tabs = styled.div`
@@ -118,9 +110,9 @@ const PlaylistAndSearch = () => {
       </OpenTab>
       <Tabs>
         <PlaylistTab>
-          <ListT>
+          <NavList>
             <AiOutlineHome />
-          </ListT>
+          </NavList>
           <PlaylistTabText>
             Home
           </PlaylistTabText>
@@ -128,9 +120,9 @@ const PlaylistAndSearch = () => {
 
         <SearchTab onClick={showSearch} viewPlaylist={viewPlaylist}>
 
-        <ListT>
+        <NavList>
             <AiOutlineSearch />
-          </ListT>
+          </NavList>
 
           <SearchTabText>Search</SearchTabText>
         </SearchTab>
