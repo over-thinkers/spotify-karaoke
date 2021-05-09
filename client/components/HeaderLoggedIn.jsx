@@ -12,7 +12,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background: ${(props) => props.theme.colors.secondary};
   color: #fff;
 `;
 

@@ -21,12 +21,13 @@ import PlaylistAndSearch from './PlaylistAndSearch';
 
 const theme = {
   colors: {
-    // primary: '#264653',
-    primary: '#FAA75B',
-    secondary: '#e9c46a',
-    // button: '#33C1B1',
-    button: '#0066FF',
-    buttonHover: '#088c3d',
+    primary: 'linear-gradient(114deg, rgba(0,102,255,1) 0%, rgba(189,1,255,1) 100%)',
+    secondary: '#ee7a62',
+    button: '#1BB954',
+    buttonHover: '#00FFC2',
+    switch: '#0066FF',
+    switchHover: '#0066FF',
+    textHover: '#FAA75B',
     lyricsBg: '#e9c46a',
     lyricsText: 'white',
 
@@ -67,12 +68,12 @@ function App() {
           <NavBar setCode={setCode} code={code} loggedIn />
           <ScrollToTop>
             <Switch>
-              {/* <Route path='/' exact>
+              <Route path='/' exact>
                 <HeaderLoggedIn dashboardRef={dashboardRef} />
                 <Dashboard dashboardRef={dashboardRef} code={code} />
-              </Route> */}
+              </Route>
 
-              <Route path='/' exact>
+              <Route path='/playlist' exact>
                 <Lyrics />
                 <PlaylistAndSearch />
               </Route>

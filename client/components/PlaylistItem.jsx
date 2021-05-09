@@ -27,7 +27,7 @@ const TextContainer = styled.div`
   max-width: 70%;
   &:hover {
     cursor: pointer;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.textHover};
   }
 `;
 
@@ -58,7 +58,7 @@ const TrashCan = styled.div`
 
   &:hover {
     cursor: pointer;
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.textHover};
   }
 `;
 

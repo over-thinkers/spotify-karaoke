@@ -31,7 +31,7 @@ const OpenTab = styled.div`
   top: 50%;
   transform: translate(100%, -50%);
   color: #fff;
-  background-color: ${(props) => props.theme.colors.button};
+  background-color: ${(props) => props.theme.colors.switch};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,13 +39,18 @@ const OpenTab = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.colors.buttonHover};
+    background-color: ${(props) => props.theme.colors.switchHover};
   }
 `;
 
-const NavList = styled.div`
+const List = styled.div`
   height: 28rem;
 `;
+
+const NavList = styled.div`
+
+`;
+
 
 const Tabs = styled.div`
   height: 34rem;
@@ -120,17 +125,18 @@ const PlaylistAndSearch = () => {
 
         <SearchTab onClick={showSearch} viewPlaylist={viewPlaylist}>
 
-        <NavList>
+          <NavList>
             <AiOutlineSearch />
           </NavList>
-
-          <SearchTabText>Search</SearchTabText>
+          <SearchTabText>
+            Search
+          </SearchTabText>
         </SearchTab>
         <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
 
-        <ListT>
+          <NavList>
             <HiOutlineMusicNote />
-          </ListT>
+          </NavList>
           <PlaylistTabText>
             Playlist
           </PlaylistTabText>
