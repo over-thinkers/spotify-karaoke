@@ -49,7 +49,7 @@ function Lyrics() {
           top: 1,
           behavior: 'smooth',
         });
-      }, 100 * level)
+      }, 25 * level)
     );
 
     return () => clearInterval(scrollInterval);
