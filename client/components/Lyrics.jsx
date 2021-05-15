@@ -10,22 +10,26 @@ const LyricsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 82px 0 150px 0;
-  background-color: ${(props) => props.theme.colors.lyricsBg};
+  /* background-color: ${(props) => props.theme.colors.lyricsBg}; */
+  background: rgb(158,0,255);
+  background: linear-gradient(114deg, rgba(158,0,255,1) 0%, rgba(244,1,138,1) 63%, rgba(250,167,91,1) 86%, rgba(254,61,20,1) 100%);
   color: ${(props) => props.theme.colors.lyricsText};
   min-height: 100vh;
-  width: 100%;
+  width: 90%;
+  margin-left: 340px;
+  margin-right: 0px;
 `;
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5vw;
 `;
 
 const SongLyrics = styled.p`
   text-align: center;
   line-height: 1.6;
   white-space: pre;
-  font-size: 1.2rem;
+  font-size: 2vw;
 `;
 
 function Lyrics() {
@@ -98,6 +102,7 @@ function Lyrics() {
         by {context.currentSong.artist}
       </Title>
       <SongLyrics>{lyrics}</SongLyrics>
+
 
       <div className='mouse_scroll'>
         <div

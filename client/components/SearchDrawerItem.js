@@ -12,7 +12,7 @@ const SongContainer = styled.li`
   transition: 200ms ease-out;
   border: 1px solid transparent;
   &:hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.textHover};
     cursor: pointer;
   }
   &:active {
