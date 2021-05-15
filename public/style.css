@@ -7,7 +7,18 @@ body {
   font-family: 'Open Sans', sans-serif;
   height: 100%;
 }
+body::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
+}
 
+li {
+  margin-bottom: 30px;
+  margin-left: 40px;
+  margin-top: 25px;
+  margin-right: 20px;
+}
 /* ------------- NAVIGATION BAR ---------------- */
 .nav-list {
   position: fixed;
@@ -431,7 +442,8 @@ button:focus {
   /* margin: 0 auto;
 	width: 24px;
 	height: 100px; */
-  margin-right: 80px;
+	margin-right: 80px;
+  cursor: pointer;
 }
 
 .mouse_scroll:hover {

@@ -2,17 +2,24 @@ import React, { useState } from 'react';
 import Playlist from './Playlist';
 import SearchDrawer from './SearchDrawer';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
+import { HiOutlineMusicNote } from "react-icons/hi";
 import styled from '@emotion/styled';
+
 
 const Container = styled.div((props) => ({
   position: 'fixed',
-  top: '25%',
+  top: '0%',
   left: 0,
+  height: '100vh',
+  backgroundColor: "#000000",
   width: '24rem',
   boxShadow: props.open && 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
   transform: props.open ? '' : 'translateX(-100%)',
   transition: '500ms ease-in',
-}));
+  zIndex: '0',
+  }));
+
 
 const OpenTab = styled.div`
   position: absolute;
@@ -24,7 +31,7 @@ const OpenTab = styled.div`
   top: 50%;
   transform: translate(100%, -50%);
   color: #fff;
-  background-color: ${(props) => props.theme.colors.button};
+  background-color: ${(props) => props.theme.colors.switch};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,7 +39,7 @@ const OpenTab = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: ${(props) => props.theme.colors.buttonHover};
+    background-color: ${(props) => props.theme.colors.switchHover};
   }
 `;
 
@@ -40,48 +47,49 @@ const List = styled.div`
   height: 28rem;
 `;
 
+const NavList = styled.div`
+
+`;
+
+
 const Tabs = styled.div`
+  height: 34rem;
+  width: 20%;
+  margin-bottom: 50px;
+  font-size: 30px;
   display: flex;
-  height: 2rem;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 15%;
+  color: #fff;
+  padding-top: 60%;
 `;
 
 const PlaylistTab = styled.div`
-  width: 50%;
-  height: ${(props) => (props.viewPlaylist ? '110%' : '100%')};
-  border-radius: ${(props) =>
-    props.viewPlaylist ? '5px 5px 0 0' : '5px 0 0 0'};
-  font-size: 1.3rem;
+  margin-bottom: 50px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? '#fff' : '#b9b9b9')};
   &:hover {
     cursor: pointer;
-  }
+  };
+
 `;
 
 const PlaylistTabText = styled.h5`
   margin: 0;
+  margin-left: 20px;
 `;
 
 const SearchTab = styled.div`
-  width: 50%;
-  height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
-  border-radius: ${(props) =>
-    props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0'};
-  font-size: 1.3rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => (props.viewPlaylist ? '#b9b9b9' : '#fff')};
+  margin-bottom: 50px;
   &:hover {
     cursor: pointer;
-  }
+  };
 `;
 
 const SearchTabText = styled.h5`
   margin: 0;
+  margin-left: 20px;
 `;
 
 const PlaylistAndSearch = () => {
@@ -106,12 +114,33 @@ const PlaylistAndSearch = () => {
         {open ? <FaChevronLeft /> : <FaChevronRight />}
       </OpenTab>
       <Tabs>
-        <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
-          <PlaylistTabText>Playlist</PlaylistTabText>
+        <PlaylistTab>
+          <NavList>
+            <AiOutlineHome />
+          </NavList>
+          <PlaylistTabText>
+            Home
+          </PlaylistTabText>
         </PlaylistTab>
+
         <SearchTab onClick={showSearch} viewPlaylist={viewPlaylist}>
-          <SearchTabText>Search</SearchTabText>
+
+          <NavList>
+            <AiOutlineSearch />
+          </NavList>
+          <SearchTabText>
+            Search
+          </SearchTabText>
         </SearchTab>
+        <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
+
+          <NavList>
+            <HiOutlineMusicNote />
+          </NavList>
+          <PlaylistTabText>
+            Playlist
+          </PlaylistTabText>
+        </PlaylistTab>
       </Tabs>
       <List>
         <Playlist viewPlaylist={viewPlaylist} />
@@ -122,3 +151,32 @@ const PlaylistAndSearch = () => {
 };
 
 export default PlaylistAndSearch;
+
+/* SEARCH TAB
+ /* width: 50%;
+  height: ${(props) => (props.viewPlaylist ? '100%' : '110%')};
+  border-radius: ${(props) =>
+    props.viewPlaylist ? '0 5px 0 0' : '5px 5px 0 0'};
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => (props.viewPlaylist ? '#b9b9b9' : '#fff')};
+  /* &:hover {
+    cursor: pointer;
+  }; */
+
+  /* PLAYLIST TAB
+  /* width: 50%;
+  height: ${(props) => (props.viewPlaylist ? '110%' : '100%')};
+  border-radius: ${(props) =>
+    props.viewPlaylist ? '5px 5px 0 0' : '5px 0 0 0'};
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: ${(props) => (props.viewPlaylist ? '#fff' : '#b9b9b9')}; */
+  /* &:hover {
+    cursor: pointer;
+  }; */
