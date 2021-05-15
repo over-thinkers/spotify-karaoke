@@ -22,14 +22,14 @@ const LyricsContainer = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5vw;
 `;
 
 const SongLyrics = styled.p`
   text-align: center;
   line-height: 1.6;
   white-space: pre;
-  font-size: 1.2rem;
+  font-size: 2vw;
 `;
 
 function Lyrics() {
