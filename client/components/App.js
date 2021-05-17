@@ -65,17 +65,17 @@ function App() {
     <AppContextProvider code={code}>
       <ThemeProvider theme={theme}>
         <Router>
-          <NavBar setCode={setCode} code={code} loggedIn />
           <ScrollToTop>
             <Switch>
               <Route path='/' exact>
+                <NavBar setCode={setCode} code={code} loggedIn />
                 <HeaderLoggedIn dashboardRef={dashboardRef} />
                 <Dashboard dashboardRef={dashboardRef} code={code} />
               </Route>
 
               <Route path='/playlist' exact>
                 <Lyrics />
-                <PlaylistAndSearch />
+                <PlaylistAndSearch setCode={setCode} code={code} loggedIn/>
               </Route>
             </Switch>
           </ScrollToTop>
