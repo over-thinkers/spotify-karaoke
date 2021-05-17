@@ -19,6 +19,11 @@ li {
   margin-top: 25px;
   margin-right: 20px;
 }
+
+a {
+  text-decoration: none;
+  color: white;
+}
 /* ------------- NAVIGATION BAR ---------------- */
 .nav-list {
   position: fixed;

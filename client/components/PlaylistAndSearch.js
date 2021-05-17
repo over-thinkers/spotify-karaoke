@@ -167,13 +167,11 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
       <Tabs>
         <Logo>
           <Image>
-            {/* <Link to={{ pathname: '/' }}> */}
               <img
                 className='logoIcon'
                 src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
                 width='42px'
               />
-            {/* </Link> */}
           </Image>
 
           <div>
@@ -181,14 +179,16 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
           </div>
         </Logo>
 
-        <PlaylistTab>
-          <NavList>
-            <AiOutlineHome />
-          </NavList>
-          <PlaylistTabText>
-            Home
-          </PlaylistTabText>
-        </PlaylistTab>
+        <Link to={{ pathname: '/' }}>
+          <PlaylistTab>
+            <NavList>
+              <AiOutlineHome />
+            </NavList>
+            <PlaylistTabText>
+              Home
+            </PlaylistTabText>
+          </PlaylistTab>
+        </Link>
 
         <SearchTab onClick={showSearch} viewPlaylist={viewPlaylist}>
           <NavList>
