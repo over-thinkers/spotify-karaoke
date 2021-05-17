@@ -3,8 +3,11 @@ import SpotifyPlayer from 'react-spotify-web-playback';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
 import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
+import { BiSkipNext } from 'react-icons/bi';
 import { jsx, ThemeProvider, useTheme } from '@emotion/react';
 import PlaylistAndSearch from './PlaylistAndSearch';
+import { Next, Previous } from "../../Icons.js";
+
 
 const Container = styled.div`
   width: 100%;
@@ -18,7 +21,7 @@ const Container = styled.div`
 const Button = styled.button`
   height: 2.5rem;
   text-align: center;
-  background-color: #fff;
+  background: none;
   border: none;
   position: absolute;
   right: ${(props) => props.prev && '50%'};
@@ -85,15 +88,15 @@ function AudioPlayer() {
     <Container>
       {playerReady && context.playlistIdx > 0 && (
         <Button prev onClick={context.prevSong}>
-          <GrChapterPrevious size={25} />
+          <Previous color="white" size={25} />
         </Button>
       )}
       {playerReady && context.playlistIdx < context.playlist.length - 1 && (
         <Button next onClick={context.nextSong}>
-          <GrChapterNext size={25} />
+          <Next color="white" size={25} />
         </Button>
       )}
-      
+
       <SpotifyPlayer
         play={play}
         token={accessToken}
@@ -103,6 +106,12 @@ function AudioPlayer() {
         styles={{
           activeColor: theme.colors.primary,
           zIndex: 1000,
+          bgColor: 'black',
+          color: '#fff',
+          trackNameColor: '#fff',
+          sliderTrackColor: '#fff',
+          sliderHandleColor: '#fff',
+          sliderColor: '#0066FF',
         }}
       />
     </Container>
