@@ -43,8 +43,6 @@ const LogoLoggedIn = styled.div`
   align-items: center;
   justify-content: space-evenly;
   color: #fff;
-  margin-top: 55%;
-  margin-left: -80%
 `;
 
 const Name = styled.div`

@@ -3,8 +3,10 @@ import Playlist from './Playlist';
 import SearchDrawer from './SearchDrawer';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import { AiOutlineHome, AiOutlineSearch } from "react-icons/ai";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import { HiOutlineMusicNote } from "react-icons/hi";
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div((props) => ({
@@ -47,11 +49,6 @@ const List = styled.div`
   height: 28rem;
 `;
 
-const NavList = styled.div`
-
-`;
-
-
 const Tabs = styled.div`
   height: 34rem;
   width: 20%;
@@ -65,12 +62,40 @@ const Tabs = styled.div`
   padding-top: 60%;
 `;
 
-const PlaylistTab = styled.div`
-  margin-bottom: 50px;
+const Logo = styled.div`
+  margin-bottom: 65%;
+  margin-top: -188%;
   display: flex;
   &:hover {
     cursor: pointer;
   };
+  justify-content: center;
+  width: 12rem;
+`
+
+const Image = styled.div`
+`
+
+const Spotioke = styled.a`
+  text-decoration: none;
+  display: flex;
+  width: 12rem;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #fff;
+  font-weight: 700;
+  margin-left: 4%;
+`;
+
+const PlaylistTab = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  };
+`;
+
+const NavList = styled.div`
 
 `;
 
@@ -79,9 +104,33 @@ const PlaylistTabText = styled.h5`
   margin-left: 20px;
 `;
 
+const Logout = styled.h5`
+  margin-bottom: 27px;
+  display: flex;
+  &:hover {
+    cursor: pointer;
+  };
+  width: 200px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  margin-left: 135px;
+  margin-top: 59px;
+  border-radius: 25px;
+  width: 105px;
+  height: 23px;
+  padding-top: 6px;
+`;
+
+const LogoutText = styled.h5`
+  margin: 0;
+  margin-left: 10px;
+`;
+
 const SearchTab = styled.div`
   display: flex;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   &:hover {
     cursor: pointer;
   };
@@ -92,7 +141,7 @@ const SearchTabText = styled.h5`
   margin-left: 20px;
 `;
 
-const PlaylistAndSearch = () => {
+const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
   const [viewPlaylist, setViewPlaylist] = useState(true);
   const [open, setOpen] = useState(true);
 
@@ -110,10 +159,28 @@ const PlaylistAndSearch = () => {
 
   return (
     <Container open={open}>
-      <OpenTab onClick={handleOpen}>
+      {/* <OpenTab onClick={handleOpen}>
         {open ? <FaChevronLeft /> : <FaChevronRight />}
-      </OpenTab>
+      </OpenTab> */}
+
+
       <Tabs>
+        <Logo>
+          <Image>
+            {/* <Link to={{ pathname: '/' }}> */}
+              <img
+                className='logoIcon'
+                src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
+                width='42px'
+              />
+            {/* </Link> */}
+          </Image>
+
+          <div>
+            <Spotioke>Spoti-oke</Spotioke>
+          </div>
+        </Logo>
+
         <PlaylistTab>
           <NavList>
             <AiOutlineHome />
@@ -124,7 +191,6 @@ const PlaylistAndSearch = () => {
         </PlaylistTab>
 
         <SearchTab onClick={showSearch} viewPlaylist={viewPlaylist}>
-
           <NavList>
             <AiOutlineSearch />
           </NavList>
@@ -132,8 +198,8 @@ const PlaylistAndSearch = () => {
             Search
           </SearchTabText>
         </SearchTab>
-        <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
 
+        <PlaylistTab onClick={showPlaylist} viewPlaylist={viewPlaylist}>
           <NavList>
             <HiOutlineMusicNote />
           </NavList>
@@ -141,11 +207,35 @@ const PlaylistAndSearch = () => {
             Playlist
           </PlaylistTabText>
         </PlaylistTab>
+
+        {/* <Logout>
+          <NavList>
+            <RiLogoutCircleLine />
+          </NavList>
+          <PlaylistTabText>
+            Log out
+          </PlaylistTabText>
+        </Logout> */}
+
+
+
       </Tabs>
+      <div><h1>fshdfjkh</h1></div>
       <List>
         <Playlist viewPlaylist={viewPlaylist} />
         <SearchDrawer viewPlaylist={viewPlaylist} />
       </List>
+
+
+
+      <Logout>
+          <NavList>
+            <RiLogoutCircleLine />
+          </NavList>
+          <LogoutText onClick={() => setCode(null)}>
+            Log out
+          </LogoutText>
+        </Logout>
     </Container>
   );
 };

@@ -14,7 +14,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 li {
-  margin-bottom: 30px;
+  margin-bottom: -10px;
   margin-left: 40px;
   margin-top: 25px;
   margin-right: 20px;
