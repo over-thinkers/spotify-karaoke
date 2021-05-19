@@ -14,9 +14,9 @@ const ListContainer = styled.div((props) => ({
   height: '100%',
   display: props.viewPlaylist ? 'none' : 'flex',
   flexDirection: 'column',
-  borderTop: "1px solid #696768",
-  borderBottom: "1px solid #313031",
-  color: '#fff'
+  borderTop: '1px solid #696768',
+  borderBottom: '1px solid #696768',
+  color: '#fff',
 }));
 
 const List = styled.ul`
@@ -26,16 +26,16 @@ const List = styled.ul`
   height: 100%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-        border: 0px solid black;
-        background: 'red'
-    };
-    &::-webkit-scrollbar-thumb {
-        width: 10px;
-        border: 1px solid #696768;
-        color: 'red';
-        background: 'purple';
-        background-color: 'red'
-    }
+    border: 0px solid black;
+    background: 'red';
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    border: 1px solid #696768;
+    color: 'red';
+    background: 'purple';
+    background-color: 'red';
+  }
 `;
 
 const InputContainer = styled.div`
