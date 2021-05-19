@@ -62,7 +62,7 @@ const SidebarLink = styled.div`
   &:hover {
     cursor: pointer;
   }
-  color: ${(props) => props.selected && props.theme.colors.textHover}
+  color: ${(props) => props.selected && props.theme.colors.textHover};
 `;
 
 const SidebarLinkText = styled.h5`
@@ -70,6 +70,11 @@ const SidebarLinkText = styled.h5`
   margin-left: 10px;
   font-size: 1rem;
   font-weight: 600;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
 const Logout = styled.button`
@@ -125,7 +130,7 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
       <Links>
         <SidebarLink>
           <Link to={{ pathname: '/' }}>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', color: '#fff' }}>
               <AiOutlineHome size={22} />
             </div>
           </Link>
