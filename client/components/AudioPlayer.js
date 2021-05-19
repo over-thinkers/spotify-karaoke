@@ -6,8 +6,7 @@ import { GrChapterPrevious, GrChapterNext } from 'react-icons/gr';
 import { BiSkipNext } from 'react-icons/bi';
 import { jsx, ThemeProvider, useTheme } from '@emotion/react';
 import PlaylistAndSearch from './PlaylistAndSearch';
-import { Next, Previous } from "../../Icons.js";
-
+import { Next, Previous } from '../../Icons.js';
 
 const Container = styled.div`
   width: 100%;
@@ -88,12 +87,12 @@ function AudioPlayer() {
     <Container>
       {playerReady && context.playlistIdx > 0 && (
         <Button prev onClick={context.prevSong}>
-          <Previous color="white" size={25} />
+          <Previous color='white' size={25} />
         </Button>
       )}
       {playerReady && context.playlistIdx < context.playlist.length - 1 && (
         <Button next onClick={context.nextSong}>
-          <Next color="white" size={25} />
+          <Next color='white' size={25} />
         </Button>
       )}
 
@@ -109,7 +108,7 @@ function AudioPlayer() {
           bgColor: 'black',
           color: '#fff',
           trackNameColor: '#fff',
-          sliderTrackColor: '#fff',
+          sliderTrackColor: '#999697',
           sliderHandleColor: '#fff',
           sliderColor: '#0066FF',
         }}
