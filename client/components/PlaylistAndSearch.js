@@ -116,16 +116,18 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
 
   return (
     <Container>
-      <Logo>
-        <div style={{ marginRight: '0.5rem' }}>
-          <img
-            className='logoIcon'
-            src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
-            width='42px'
-          />
-        </div>
-        <Spotioke>Spoti-oke</Spotioke>
-      </Logo>
+      <Link to={{ pathname: '/' }} style={{ textDecoration: 'none' }}>
+        <Logo>
+          <div style={{ marginRight: '0.5rem' }}>
+            <img
+              className='logoIcon'
+              src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
+              width='42px'
+            />
+          </div>
+          <Spotioke>Spoti-oke</Spotioke>
+        </Logo>
+      </Link>
 
       <Links>
         <SidebarLink>
