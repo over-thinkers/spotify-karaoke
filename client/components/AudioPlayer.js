@@ -65,9 +65,9 @@ function AudioPlayer() {
     setPlay(true);
   }, [context.currentSong]);
 
-  useEffect(() => {
-    playerReady && setPlay(true);
-  }, [playerReady]);
+  // useEffect(() => {
+  //   playerReady && setPlay(true);
+  // }, [playerReady]);
 
   if (!accessToken) return null;
 
