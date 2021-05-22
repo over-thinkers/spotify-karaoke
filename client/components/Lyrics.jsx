@@ -70,7 +70,7 @@ function Lyrics() {
     setLyrics('');
 
     axios
-      .get('http://localhost:3000/lyrics', {
+      .get('https://spotioke.herokuapp.com/lyrics', {
         cancelToken: source.token,
         params: {
           track: context.currentSong.title,
