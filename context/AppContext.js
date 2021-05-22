@@ -50,7 +50,7 @@ export const AppContextProvider = (props) => {
     if (!userEmail) return;
 
     axios
-      .get('http://localhost:3000/user', {
+      .get('https://spotioke.herokuapp.com/user', {
         params: { email: userEmail },
       })
       .then((res) => {
@@ -59,7 +59,7 @@ export const AppContextProvider = (props) => {
         } else {
           // if it's a new user
           axios
-            .post('http://localhost:3000/user', {
+            .post('https://spotioke.herokuapp.com/user', {
               email: userEmail,
             })
             .then((res) => {
@@ -173,7 +173,7 @@ export const AppContextProvider = (props) => {
     setCurrentSong(playlist[playlistIdx]);
 
     axios
-      .put('http://localhost:3000/playlist', {
+      .put('https://spotioke.herokuapp.com/playlist', {
         email: userEmail,
         playlist,
       })
