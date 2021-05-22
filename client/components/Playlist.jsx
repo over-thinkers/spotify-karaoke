@@ -5,7 +5,7 @@ import axios from 'axios';
 import PlaylistItem from './PlaylistItem';
 import AppContext from '../../context/AppContext';
 import styled from '@emotion/styled';
-import { CgScrollV } from "react-icons/cg"
+import { CgScrollV } from 'react-icons/cg';
 
 const PlaylistContainer = styled.div((props) => ({
   backgroundColor: '#000',
@@ -16,8 +16,8 @@ const PlaylistContainer = styled.div((props) => ({
   transition: '500ms ease-in',
   height: '100%',
   display: props.viewPlaylist ? '' : 'none',
-  borderTop: "1px solid #696768",
-  borderBottom: "1px solid #313031",
+  borderTop: '1px solid #696768',
+  borderBottom: '1px solid #696768',
 }));
 
 const List = styled.ul`
@@ -27,16 +27,16 @@ const List = styled.ul`
   height: 100%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-        border: 0px solid black;
-        background: 'red'
-    };
-    &::-webkit-scrollbar-thumb {
-        width: 10px;
-        border: 1px solid #696768;
-        color: 'red';
-        background: 'purple';
-        background-color: 'red'
-    }
+    border: 0px solid black;
+    background: 'red';
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 10px;
+    border: 1px solid #696768;
+    color: 'red';
+    background: 'purple';
+    background-color: 'red';
+  }
 `;
 
 function Playlist({ viewPlaylist }) {

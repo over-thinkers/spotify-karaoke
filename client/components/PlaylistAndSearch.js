@@ -62,7 +62,7 @@ const SidebarLink = styled.div`
   &:hover {
     cursor: pointer;
   }
-  color: ${(props) => props.selected && props.theme.colors.textHover}
+  color: ${(props) => props.selected && props.theme.colors.textHover};
 `;
 
 const SidebarLinkText = styled.h5`
@@ -70,6 +70,11 @@ const SidebarLinkText = styled.h5`
   margin-left: 10px;
   font-size: 1rem;
   font-weight: 600;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
 `;
 
 const Logout = styled.button`
@@ -111,21 +116,23 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
 
   return (
     <Container>
-      <Logo>
-        <div style={{ marginRight: '0.5rem' }}>
-          <img
-            className='logoIcon'
-            src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
-            width='42px'
-          />
-        </div>
-        <Spotioke>Spoti-oke</Spotioke>
-      </Logo>
+      <Link to={{ pathname: '/' }} style={{ textDecoration: 'none' }}>
+        <Logo>
+          <div style={{ marginRight: '0.5rem' }}>
+            <img
+              className='logoIcon'
+              src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
+              width='42px'
+            />
+          </div>
+          <Spotioke>Spoti-oke</Spotioke>
+        </Logo>
+      </Link>
 
       <Links>
         <SidebarLink>
           <Link to={{ pathname: '/' }}>
-            <div style={{ display: 'flex' }}>
+            <div style={{ display: 'flex', color: '#fff' }}>
               <AiOutlineHome size={22} />
             </div>
           </Link>

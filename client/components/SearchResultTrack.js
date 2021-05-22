@@ -39,11 +39,12 @@ const OverlayText = styled.div`
   text-align: center;
 
   a {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.primary};
+    text-decoration: underline;
+    color: ${(props) => props.theme.colors.button};
+    transition: 200ms ease-out;
 
     &:hover {
-      text-decoration: underline;
+      color: ${(props) => props.theme.colors.buttonHover};
     }
   }
 `;
