@@ -61,7 +61,7 @@ function Lyrics() {
     setLyrics('');
 
     axios
-      .get('https://spotioke.herokuapp.com/lyrics', {
+      .get('http://spotioke.herokuapp.com/lyrics', {
         cancelToken: source.token,
         params: {
           track: context.currentSong.title,
