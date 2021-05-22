@@ -106,7 +106,7 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
               src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
               width='42px'
             />
-            <Name>Spoti-oke</Name>
+            <Name>Spotioke</Name>
           </Logo>
           <Links>
             {/* <LinkItem>
@@ -132,7 +132,7 @@ function NavBar({ loggedOut, loggedIn, setCode }) {
               src='https://ez-drum-kit.s3-us-west-1.amazonaws.com/chat.png'
               width='42px'
             />
-            <Name>Spoti-oke</Name>
+            <Name>Spotioke</Name>
           </LogoLoggedIn>
         </Link>
         <Links>

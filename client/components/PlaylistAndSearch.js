@@ -125,7 +125,7 @@ const PlaylistAndSearch = ({ loggedOut, loggedIn, setCode }) => {
               width='42px'
             />
           </div>
-          <Spotioke>Spoti-oke</Spotioke>
+          <Spotioke>Spotioke</Spotioke>
         </Logo>
       </Link>
 
