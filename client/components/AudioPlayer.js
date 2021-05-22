@@ -77,7 +77,7 @@ function AudioPlayer() {
     }
     if (!state.isPlaying) {
       setPlay(false);
-      if (state.type === 'player_update' && state.position === 0) {
+      if (state.previousTracks.length) {
         context.nextSong();
       }
     }
