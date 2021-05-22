@@ -44,6 +44,7 @@ const Artist = styled.p`
 
 const Image = styled.img`
   object-fit: contain;
+  width: 48px;
 `;
 
 const TrashCan = styled.div`
