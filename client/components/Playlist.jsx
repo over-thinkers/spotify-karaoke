@@ -64,7 +64,7 @@ function Playlist({ viewPlaylist }) {
       context.setPlaylistIdx((prev) => prev + 1);
     } else if (
       result.source.index < context.playlistIdx &&
-      result.destination.index <= context.playlistIdx
+      result.destination.index >= context.playlistIdx
     ) {
       context.setPlaylistIdx((prev) => prev - 1);
     }
