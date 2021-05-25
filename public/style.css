@@ -203,6 +203,15 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
 }
 
+
+iframe {
+  width: 45vmin;
+  height: 25vmin;
+  margin-top: 5vmin;
+  margin-bottom: 5vmin;
+
+}
+
 .title {
   font-size: 40px;
   font-weight: bold;
